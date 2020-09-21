@@ -1,45 +1,11 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "./../styles/swiper-bundle.min.css";
+import Slider from "./ui/HomeSlider";
 
 export default () => {
   return (
-    <div className="">
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        <SwiperSlide>
-          <img
-            src="https://picsum.photos/800/400"
-            alt="Slide"
-            style={{ width: "100%" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://picsum.photos/800/400"
-            alt="Slide"
-            style={{ width: "100%" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://picsum.photos/800/400"
-            alt="Slide"
-            style={{ width: "100%" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://picsum.photos/800/400"
-            alt="Slide"
-            style={{ width: "100%" }}
-          />
-        </SwiperSlide>
-      </Swiper>
-    </div>
+    <React.Fragment>
+      <Slider />
+      <div className="container">Deneme</div>
+    </React.Fragment>
   );
 };

@@ -3,7 +3,7 @@ import { AiFillPhone, AiFillMail } from "react-icons/ai";
 
 export default () => {
   return (
-    <header>
+    <header className="container">
       <div className="header-top">
         <div className="header-top-content">
           <ul className="left-bar">

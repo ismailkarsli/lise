@@ -9,7 +9,7 @@ import "./styles/main.scss";
 const App = () => {
   return (
     <Router history={history}>
-      <div className="container">
+      <React.Fragment>
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/iletisim" component={Contact} />
          */}
         </Switch>
-      </div>
+      </React.Fragment>
     </Router>
   );
 };
