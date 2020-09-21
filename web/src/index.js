@@ -9,13 +9,15 @@ import "./styles/main.scss";
 const App = () => {
   return (
     <Router history={history}>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        {/**
+      <div className="container">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          {/**
         <Route path="/iletisim" component={Contact} />
          */}
-      </Switch>
+        </Switch>
+      </div>
     </Router>
   );
 };

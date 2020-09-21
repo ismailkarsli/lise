@@ -4,7 +4,7 @@ import "./../styles/swiper-bundle.min.css";
 
 export default () => {
   return (
-    <div className="container">
+    <div className="">
       <Swiper
         spaceBetween={50}
         slidesPerView={1}

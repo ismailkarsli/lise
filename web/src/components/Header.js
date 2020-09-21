@@ -4,9 +4,9 @@ import { AiFillPhone, AiFillMail } from "react-icons/ai";
 export default () => {
   return (
     <header>
-      <div className="header-top container">
+      <div className="header-top">
         <div className="header-top-content">
-          <ul className="right-bar">
+          <ul className="left-bar">
             <li>
               <AiFillPhone />
               +90 555 555 55 55
@@ -18,7 +18,8 @@ export default () => {
           </ul>
         </div>
       </div>
-      <div className="header container">
+
+      <div className="header">
         <div className="header-inner">
           <div className="title">
             <a href="/">Lorem Ipsum</a>
@@ -46,6 +47,10 @@ export default () => {
             <span style={{ display: "none" }}>mobil toggle</span>
           </div>
         </div>
+      </div>
+
+      <div className="ataturk">
+        <img src="/images/ataturk.png" alt="Atatürk" />
       </div>
     </header>
   );

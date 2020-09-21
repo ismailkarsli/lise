@@ -16,24 +16,34 @@
   margin-right: auto;
   max-width: 1280px;
 }
+
 header {
-  .header-top-content {
-    display: flex;
-    border-bottom: 1px solid rgb(200, 200, 200);
-    .right-bar {
+  display: grid;
+  grid-template-columns: auto 174px;
+  grid-template-rows: auto auto;
+  align-items: center;
+
+  .header-top {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    .header-top-content {
       display: flex;
-      margin-left: auto;
-      li {
-        padding: 8px 12px;
+      border-bottom: 1px solid rgb(200, 200, 200);
+      .left-bar {
         display: flex;
-        font-size: 14px;
-        color: #676767;
+        li {
+          padding: 8px 12px;
+          display: flex;
+          font-size: 14px;
+          color: #676767;
+        }
       }
     }
   }
+
   .header {
-    display: sticky;
-    top: 0;
+    grid-row: 2/3;
+    grid-column: 1/2;
     .header-inner {
       display: flex;
       justify-content: space-between;
@@ -46,10 +56,11 @@ header {
           font-weight: bold;
           font-family: "Encode Sans", sans-serif;
           &:hover {
-            color: rgb(233, 53, 53);
+            color: #e5272f;
           }
         }
       }
+
       .nav-wrap {
         nav ul {
           display: flex;
@@ -60,11 +71,16 @@ header {
             line-height: 82px;
             padding: 16px 16px 16px 48px;
             &:hover {
-              color: rgb(233, 53, 53);
+              color: #e5272f;
             }
           }
         }
       }
     }
+  }
+
+  .ataturk {
+    grid-row: 1/3;
+    grid-column: 2/3;
   }
 }
