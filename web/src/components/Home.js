@@ -8,6 +8,19 @@ export default () => {
       <div className="home-container container">
         <div className="home-container-content">İçerik gelecek</div>
       </div>
+      <div
+        className="parallax"
+        style={{
+          backgroundImage: "url('https://picsum.photos/1600/800')",
+          minHeight: "75vh",
+          marginTop: "24px",
+          width: "100%",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat",
+          backgroundSize: "cover",
+        }}
+      ></div>
     </React.Fragment>
   );
 };

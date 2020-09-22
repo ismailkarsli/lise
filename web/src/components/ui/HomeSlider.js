@@ -38,7 +38,6 @@ export default () => {
                 yükseköğretimin yeniden yapılandırılması çalışmaları kapsamında
                 Yükseköğretim Kalite Kurulu kur
               </p>
-              <Link to="/">Devamını oku</Link>
             </div>
           </div>
         </SwiperSlide>
@@ -57,6 +56,9 @@ export default () => {
                 Eğitim-Öğretim Süreçleri Konulu 04.09.2020 tarih ve 55362 sayılı
                 yazısı ile “Örgün eği
               </p>
+              <Link to="/" className="read-more">
+                Devamını oku
+              </Link>
             </div>
           </div>
         </SwiperSlide>
