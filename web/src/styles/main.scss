@@ -27,3 +27,45 @@ $mainColor: #e5272f;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.slider-hover {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  align-items: center;
+  justify-items: center;
+  .slider-navigation {
+    display: flex;
+    div {
+      padding: 0 3px;
+      cursor: pointer;
+      svg {
+        background-color: $mainColor;
+        border-radius: 100%;
+        padding: 8px;
+        fill: white;
+        &:hover {
+          background-color: #a10f16;
+        }
+      }
+    }
+    grid-row: 6/8;
+    grid-column: 12/13;
+  }
+  .slider-pagination {
+    grid-row: 12/13;
+    grid-column: 1/13;
+    .swiper-pagination-bullet {
+      width: 80px;
+      height: 6px;
+      border-radius: 5px;
+      background: $mainColor;
+    }
+  }
+}
