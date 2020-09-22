@@ -50,7 +50,7 @@ export default () => {
       </div>
 
       <div className="ataturk">
-        <img src="/images/ataturk.png" alt="Atatürk" />
+        <img src="/images/ui/ataturk.png" alt="Atatürk" />
       </div>
     </header>
   );
