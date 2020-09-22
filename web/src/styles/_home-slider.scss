@@ -1,20 +1,23 @@
 .swiper-wrapper > .swiper-slide {
   height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
   .slide-content-wrapper {
     display: flex;
     height: 100%;
-    align-items: center;
+    align-items: flex-end;
     .slide-content {
-      margin-top: -117px;
-      padding: 16px;
+      margin-bottom: 160px;
       max-width: 50%;
-      background-color: rgba(0, 0, 0, 0.75);
       border-radius: 8px;
       color: white;
+      h2 {
+        font-size: 32px;
+        margin-bottom: 16px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.1;
+      }
     }
   }
 }
@@ -22,21 +25,14 @@
 .slider-hover {
   position: absolute;
   z-index: 1;
-  top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  pointer-events: none;
-  display: grid;
-  grid-template:
-    ". . ."
-    ". . navigation"
-    "pagination pagination pagination";
+  bottom: 117px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
   .slider-navigation {
-    pointer-events: all;
-    grid-area: navigation;
-    align-self: center;
-    justify-self: end;
     display: flex;
     div {
       padding: 0 3px;
@@ -54,16 +50,18 @@
   }
 
   .slider-pagination {
-    grid-area: pagination;
-    align-self: end;
-    justify-self: center;
-    padding-bottom: 136px;
-    pointer-events: all;
     .swiper-pagination-bullet {
       width: 80px;
       height: 6px;
+      margin-left: 2px;
+      margin-right: 2px;
       border-radius: 5px;
-      background: $mainColor;
+      background: white;
+      opacity: 0.5;
+    }
+    .swiper-pagination-bullet-active {
+      background-color: $mainColor;
+      opacity: 1;
     }
   }
 }

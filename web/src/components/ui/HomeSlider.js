@@ -5,13 +5,18 @@ import "./../../styles/swiper-bundle.min.css";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
+const sliderBackgroundStyle = {
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+};
+
 export default () => {
   SwiperCore.use([Navigation, Pagination]);
 
   return (
     <React.Fragment>
       <Swiper
-        spaceBetween={50}
         slidesPerView={1}
         loop
         speed={1000}
@@ -19,7 +24,11 @@ export default () => {
         pagination={{ el: ".slider-pagination", clickable: true }}
       >
         <SwiperSlide
-          style={{ backgroundImage: "url(https://picsum.photos/1600/800)" }}
+          style={{
+            background:
+              "linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.60) 75%), url('https://picsum.photos/1600/800')",
+            ...sliderBackgroundStyle,
+          }}
         >
           <div className="slide-content-wrapper container">
             <div className="slide-content">
@@ -34,7 +43,11 @@ export default () => {
           </div>
         </SwiperSlide>
         <SwiperSlide
-          style={{ backgroundImage: "url(/images/slider-placeholder.png)" }}
+          style={{
+            background:
+              "linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 75%), url('/images/slider-placeholder.png')",
+            ...sliderBackgroundStyle,
+          }}
         >
           <div className="slide-content-wrapper container">
             <div className="slide-content">
@@ -42,17 +55,18 @@ export default () => {
               <p>
                 Yükseköğretim Kurulu Başkanlığının Yeni Corona Virüs Salgınında
                 Eğitim-Öğretim Süreçleri Konulu 04.09.2020 tarih ve 55362 sayılı
-                yazısı ile “Örgün eğitimlerde teorik derslerin mümkün olduğunca
-                yüz yüze aynı ortamda bulunmaksızın uzaktan ve dijital öğretim
-                yöntemleri ile yapılması, uygulamalı eğitimlerin zorunlu olduğu
-                programlarda uygula
+                yazısı ile “Örgün eği
               </p>
             </div>
           </div>
         </SwiperSlide>
 
         <SwiperSlide
-          style={{ backgroundImage: "url(https://upld.im/images/lyAQj.jpg)" }}
+          style={{
+            background:
+              "linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 75%), url('https://upld.im/images/lyAQj.jpg')",
+            ...sliderBackgroundStyle,
+          }}
         >
           <div className="slide-content-wrapper container">
             <div className="slide-content">
@@ -61,9 +75,7 @@ export default () => {
                 2014-2015 ve sonrası müfredatına tabi önlisans ve lisans
                 öğrencileri müfredatlarında yer alan minimum AKTS yükünü
                 sağlamaları halinde, 2020-2021 Eğitim-Öğretim Yılı Güz Yarıyılı
-                sonunda (yaz öğretimi dahil) mezun olacaklardır. Ancak, bazı
-                programların ders planlarındaki AKTS değişiklikleri program
-                sürelerine göre belirlenen AKTS yükünün
+                sonunda (yaz öğretimi dahil) m
               </p>
             </div>
           </div>

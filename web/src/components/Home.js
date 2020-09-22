@@ -6,7 +6,7 @@ export default () => {
     <React.Fragment>
       <Slider />
       <div className="home-container container">
-        <div>İçerik gelecek</div>
+        <div className="home-container-content">İçerik gelecek</div>
       </div>
     </React.Fragment>
   );
