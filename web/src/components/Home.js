@@ -5,7 +5,9 @@ export default () => {
   return (
     <React.Fragment>
       <Slider />
-      <div className="container">Deneme</div>
+      <div className="home-container container">
+        <div>İçerik gelecek</div>
+      </div>
     </React.Fragment>
   );
 };

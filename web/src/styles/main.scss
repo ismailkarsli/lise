@@ -12,7 +12,9 @@ $mainColor: #e5272f;
   color: inherit;
   vertical-align: baseline;
 }
-
+#root {
+  background-color: rgb(240, 240, 240);
+}
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -22,3 +24,13 @@ $mainColor: #e5272f;
 @import "header";
 
 @import "home-slider";
+
+.home-container {
+  background-color: white;
+  position: relative;
+  margin-top: -117px;
+  z-index: 1;
+  height: 500px;
+  box-shadow: 0 -31px 51px 0 rgba(0, 0, 0, 0.1),
+    0 -19px 38px 0 rgba(0, 0, 0, 0.22);
+}

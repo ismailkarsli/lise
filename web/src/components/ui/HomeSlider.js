@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import "./../../styles/swiper-bundle.min.css";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default () => {
   SwiperCore.use([Navigation, Pagination]);
@@ -12,9 +13,9 @@ export default () => {
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
+        loop
         navigation={{ prevEl: "#prev-slide", nextEl: "#next-slide" }}
         pagination={{ el: ".slider-pagination", clickable: true }}
-        style={{ position: "relative" }}
       >
         <SwiperSlide
           style={{ backgroundImage: "url(https://picsum.photos/1600/800)" }}
@@ -35,6 +36,7 @@ export default () => {
                 süreçlerimizde sürdürülebilir bir kalite düzeyinin
                 sağlanabilmesi son derece önemlidir.
               </p>
+              <Link to="/">Devamını oku</Link>
             </div>
           </div>
         </SwiperSlide>
