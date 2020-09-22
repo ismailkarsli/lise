@@ -15,6 +15,12 @@
       background-color: rgba(0, 0, 0, 0.75);
       border-radius: 8px;
       color: white;
+      h2 {
+        font-size: 22px;
+      }
+      p {
+        font-size: 14px;
+      }
     }
   }
 }
@@ -26,12 +32,14 @@
   left: 0;
   right: 0;
   bottom: 0;
+  pointer-events: none;
   display: grid;
   grid-template:
     ". . ."
     ". . navigation"
     "pagination pagination pagination";
   .slider-navigation {
+    pointer-events: all;
     grid-area: navigation;
     align-self: center;
     justify-self: end;
@@ -56,6 +64,7 @@
     align-self: end;
     justify-self: center;
     padding-bottom: 136px;
+    pointer-events: all;
     .swiper-pagination-bullet {
       width: 80px;
       height: 6px;
