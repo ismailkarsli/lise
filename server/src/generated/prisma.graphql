@@ -1,0 +1,2137 @@
+type AggregateCategory {
+  count: Int!
+}
+
+type AggregateComment {
+  count: Int!
+}
+
+type AggregateContent {
+  count: Int!
+}
+
+type AggregatePost {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+type Category {
+  id: ID!
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  categoryType: UsageType!
+  order: Int
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  categoryType: UsageType!
+  order: Int
+  posts: PostCreateManyWithoutCategoryInput
+}
+
+input CategoryCreateOneWithoutPostsInput {
+  create: CategoryCreateWithoutPostsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryCreateWithoutPostsInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  categoryType: UsageType!
+  order: Int
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  language_ASC
+  language_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  photo_ASC
+  photo_DESC
+  description_ASC
+  description_DESC
+  categoryType_ASC
+  categoryType_DESC
+  order_ASC
+  order_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  categoryType: UsageType!
+  order: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  categoryType: UsageType
+  order: Int
+  posts: PostUpdateManyWithoutCategoryInput
+}
+
+input CategoryUpdateManyMutationInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  categoryType: UsageType
+  order: Int
+}
+
+input CategoryUpdateOneRequiredWithoutPostsInput {
+  create: CategoryCreateWithoutPostsInput
+  update: CategoryUpdateWithoutPostsDataInput
+  upsert: CategoryUpsertWithoutPostsInput
+  connect: CategoryWhereUniqueInput
+}
+
+input CategoryUpdateWithoutPostsDataInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  categoryType: UsageType
+  order: Int
+}
+
+input CategoryUpsertWithoutPostsInput {
+  update: CategoryUpdateWithoutPostsDataInput!
+  create: CategoryCreateWithoutPostsInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  language: String
+  language_not: String
+  language_in: [String!]
+  language_not_in: [String!]
+  language_lt: String
+  language_lte: String
+  language_gt: String
+  language_gte: String
+  language_contains: String
+  language_not_contains: String
+  language_starts_with: String
+  language_not_starts_with: String
+  language_ends_with: String
+  language_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  photo: String
+  photo_not: String
+  photo_in: [String!]
+  photo_not_in: [String!]
+  photo_lt: String
+  photo_lte: String
+  photo_gt: String
+  photo_gte: String
+  photo_contains: String
+  photo_not_contains: String
+  photo_starts_with: String
+  photo_not_starts_with: String
+  photo_ends_with: String
+  photo_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  categoryType: UsageType
+  categoryType_not: UsageType
+  categoryType_in: [UsageType!]
+  categoryType_not_in: [UsageType!]
+  order: Int
+  order_not: Int
+  order_in: [Int!]
+  order_not_in: [Int!]
+  order_lt: Int
+  order_lte: Int
+  order_gt: Int
+  order_gte: Int
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+}
+
+enum CodeType {
+  C
+  CSHARP
+  CSS
+  HTML
+  HTTP
+  JAVA
+  JAVASCRIPT
+  JSON
+  MARKDOWN
+  PHP
+  PLAINTEXT
+  PYTHON
+  SCSS
+  SQL
+  TYPESCRIPT
+  XML
+  YAML
+}
+
+type Comment {
+  id: ID!
+  text: String!
+  user: User!
+  post: Post!
+  status: CommentStatus
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type CommentConnection {
+  pageInfo: PageInfo!
+  edges: [CommentEdge]!
+  aggregate: AggregateComment!
+}
+
+input CommentCreateInput {
+  id: ID
+  text: String!
+  user: UserCreateOneWithoutCommentsInput!
+  post: PostCreateOneWithoutCommentsInput!
+  status: CommentStatus
+}
+
+input CommentCreateManyWithoutPostInput {
+  create: [CommentCreateWithoutPostInput!]
+  connect: [CommentWhereUniqueInput!]
+}
+
+input CommentCreateManyWithoutUserInput {
+  create: [CommentCreateWithoutUserInput!]
+  connect: [CommentWhereUniqueInput!]
+}
+
+input CommentCreateWithoutPostInput {
+  id: ID
+  text: String!
+  user: UserCreateOneWithoutCommentsInput!
+  status: CommentStatus
+}
+
+input CommentCreateWithoutUserInput {
+  id: ID
+  text: String!
+  post: PostCreateOneWithoutCommentsInput!
+  status: CommentStatus
+}
+
+type CommentEdge {
+  node: Comment!
+  cursor: String!
+}
+
+enum CommentOrderByInput {
+  id_ASC
+  id_DESC
+  text_ASC
+  text_DESC
+  status_ASC
+  status_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type CommentPreviousValues {
+  id: ID!
+  text: String!
+  status: CommentStatus
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input CommentScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  status: CommentStatus
+  status_not: CommentStatus
+  status_in: [CommentStatus!]
+  status_not_in: [CommentStatus!]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [CommentScalarWhereInput!]
+  OR: [CommentScalarWhereInput!]
+  NOT: [CommentScalarWhereInput!]
+}
+
+enum CommentStatus {
+  PENDING
+  PUBLISHED
+  DECLINED
+}
+
+type CommentSubscriptionPayload {
+  mutation: MutationType!
+  node: Comment
+  updatedFields: [String!]
+  previousValues: CommentPreviousValues
+}
+
+input CommentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CommentWhereInput
+  AND: [CommentSubscriptionWhereInput!]
+  OR: [CommentSubscriptionWhereInput!]
+  NOT: [CommentSubscriptionWhereInput!]
+}
+
+input CommentUpdateInput {
+  text: String
+  user: UserUpdateOneRequiredWithoutCommentsInput
+  post: PostUpdateOneRequiredWithoutCommentsInput
+  status: CommentStatus
+}
+
+input CommentUpdateManyDataInput {
+  text: String
+  status: CommentStatus
+}
+
+input CommentUpdateManyMutationInput {
+  text: String
+  status: CommentStatus
+}
+
+input CommentUpdateManyWithoutPostInput {
+  create: [CommentCreateWithoutPostInput!]
+  delete: [CommentWhereUniqueInput!]
+  connect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutPostInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutPostInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  updateMany: [CommentUpdateManyWithWhereNestedInput!]
+}
+
+input CommentUpdateManyWithoutUserInput {
+  create: [CommentCreateWithoutUserInput!]
+  delete: [CommentWhereUniqueInput!]
+  connect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  updateMany: [CommentUpdateManyWithWhereNestedInput!]
+}
+
+input CommentUpdateManyWithWhereNestedInput {
+  where: CommentScalarWhereInput!
+  data: CommentUpdateManyDataInput!
+}
+
+input CommentUpdateWithoutPostDataInput {
+  text: String
+  user: UserUpdateOneRequiredWithoutCommentsInput
+  status: CommentStatus
+}
+
+input CommentUpdateWithoutUserDataInput {
+  text: String
+  post: PostUpdateOneRequiredWithoutCommentsInput
+  status: CommentStatus
+}
+
+input CommentUpdateWithWhereUniqueWithoutPostInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateWithoutPostDataInput!
+}
+
+input CommentUpdateWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput!
+  data: CommentUpdateWithoutUserDataInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutPostInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateWithoutPostDataInput!
+  create: CommentCreateWithoutPostInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutUserInput {
+  where: CommentWhereUniqueInput!
+  update: CommentUpdateWithoutUserDataInput!
+  create: CommentCreateWithoutUserInput!
+}
+
+input CommentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  text: String
+  text_not: String
+  text_in: [String!]
+  text_not_in: [String!]
+  text_lt: String
+  text_lte: String
+  text_gt: String
+  text_gte: String
+  text_contains: String
+  text_not_contains: String
+  text_starts_with: String
+  text_not_starts_with: String
+  text_ends_with: String
+  text_not_ends_with: String
+  user: UserWhereInput
+  post: PostWhereInput
+  status: CommentStatus
+  status_not: CommentStatus
+  status_in: [CommentStatus!]
+  status_not_in: [CommentStatus!]
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+}
+
+input CommentWhereUniqueInput {
+  id: ID
+}
+
+type Content {
+  id: ID!
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: [String!]!
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType!
+  soruce: String
+  order: Int
+  post: Post!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type ContentConnection {
+  pageInfo: PageInfo!
+  edges: [ContentEdge]!
+  aggregate: AggregateContent!
+}
+
+input ContentCreateInput {
+  id: ID
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: ContentCreatephotosInput
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType!
+  soruce: String
+  order: Int
+  post: PostCreateOneWithoutContentsInput!
+}
+
+input ContentCreateManyWithoutPostInput {
+  create: [ContentCreateWithoutPostInput!]
+  connect: [ContentWhereUniqueInput!]
+}
+
+input ContentCreatephotosInput {
+  set: [String!]
+}
+
+input ContentCreateWithoutPostInput {
+  id: ID
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: ContentCreatephotosInput
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType!
+  soruce: String
+  order: Int
+}
+
+type ContentEdge {
+  node: Content!
+  cursor: String!
+}
+
+enum ContentOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  latitude_ASC
+  latitude_DESC
+  longitude_ASC
+  longitude_DESC
+  video_ASC
+  video_DESC
+  embedCode_ASC
+  embedCode_DESC
+  mediaType_ASC
+  mediaType_DESC
+  codeType_ASC
+  codeType_DESC
+  contentType_ASC
+  contentType_DESC
+  soruce_ASC
+  soruce_DESC
+  order_ASC
+  order_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ContentPreviousValues {
+  id: ID!
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: [String!]!
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType!
+  soruce: String
+  order: Int
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input ContentScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  latitude: Float
+  latitude_not: Float
+  latitude_in: [Float!]
+  latitude_not_in: [Float!]
+  latitude_lt: Float
+  latitude_lte: Float
+  latitude_gt: Float
+  latitude_gte: Float
+  longitude: Float
+  longitude_not: Float
+  longitude_in: [Float!]
+  longitude_not_in: [Float!]
+  longitude_lt: Float
+  longitude_lte: Float
+  longitude_gt: Float
+  longitude_gte: Float
+  video: String
+  video_not: String
+  video_in: [String!]
+  video_not_in: [String!]
+  video_lt: String
+  video_lte: String
+  video_gt: String
+  video_gte: String
+  video_contains: String
+  video_not_contains: String
+  video_starts_with: String
+  video_not_starts_with: String
+  video_ends_with: String
+  video_not_ends_with: String
+  embedCode: String
+  embedCode_not: String
+  embedCode_in: [String!]
+  embedCode_not_in: [String!]
+  embedCode_lt: String
+  embedCode_lte: String
+  embedCode_gt: String
+  embedCode_gte: String
+  embedCode_contains: String
+  embedCode_not_contains: String
+  embedCode_starts_with: String
+  embedCode_not_starts_with: String
+  embedCode_ends_with: String
+  embedCode_not_ends_with: String
+  mediaType: MediaType
+  mediaType_not: MediaType
+  mediaType_in: [MediaType!]
+  mediaType_not_in: [MediaType!]
+  codeType: CodeType
+  codeType_not: CodeType
+  codeType_in: [CodeType!]
+  codeType_not_in: [CodeType!]
+  contentType: ContentType
+  contentType_not: ContentType
+  contentType_in: [ContentType!]
+  contentType_not_in: [ContentType!]
+  soruce: String
+  soruce_not: String
+  soruce_in: [String!]
+  soruce_not_in: [String!]
+  soruce_lt: String
+  soruce_lte: String
+  soruce_gt: String
+  soruce_gte: String
+  soruce_contains: String
+  soruce_not_contains: String
+  soruce_starts_with: String
+  soruce_not_starts_with: String
+  soruce_ends_with: String
+  soruce_not_ends_with: String
+  order: Int
+  order_not: Int
+  order_in: [Int!]
+  order_not_in: [Int!]
+  order_lt: Int
+  order_lte: Int
+  order_gt: Int
+  order_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ContentScalarWhereInput!]
+  OR: [ContentScalarWhereInput!]
+  NOT: [ContentScalarWhereInput!]
+}
+
+type ContentSubscriptionPayload {
+  mutation: MutationType!
+  node: Content
+  updatedFields: [String!]
+  previousValues: ContentPreviousValues
+}
+
+input ContentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ContentWhereInput
+  AND: [ContentSubscriptionWhereInput!]
+  OR: [ContentSubscriptionWhereInput!]
+  NOT: [ContentSubscriptionWhereInput!]
+}
+
+enum ContentType {
+  TEXT
+  IMAGE
+  VIDEO
+  TWITTER
+  FACEBOOK
+  INSTAGRAM
+  MAP
+  CODE
+}
+
+input ContentUpdateInput {
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: ContentUpdatephotosInput
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType
+  soruce: String
+  order: Int
+  post: PostUpdateOneRequiredWithoutContentsInput
+}
+
+input ContentUpdateManyDataInput {
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: ContentUpdatephotosInput
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType
+  soruce: String
+  order: Int
+}
+
+input ContentUpdateManyMutationInput {
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: ContentUpdatephotosInput
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType
+  soruce: String
+  order: Int
+}
+
+input ContentUpdateManyWithoutPostInput {
+  create: [ContentCreateWithoutPostInput!]
+  delete: [ContentWhereUniqueInput!]
+  connect: [ContentWhereUniqueInput!]
+  set: [ContentWhereUniqueInput!]
+  disconnect: [ContentWhereUniqueInput!]
+  update: [ContentUpdateWithWhereUniqueWithoutPostInput!]
+  upsert: [ContentUpsertWithWhereUniqueWithoutPostInput!]
+  deleteMany: [ContentScalarWhereInput!]
+  updateMany: [ContentUpdateManyWithWhereNestedInput!]
+}
+
+input ContentUpdateManyWithWhereNestedInput {
+  where: ContentScalarWhereInput!
+  data: ContentUpdateManyDataInput!
+}
+
+input ContentUpdatephotosInput {
+  set: [String!]
+}
+
+input ContentUpdateWithoutPostDataInput {
+  title: String
+  description: String
+  latitude: Float
+  longitude: Float
+  photos: ContentUpdatephotosInput
+  video: String
+  embedCode: String
+  mediaType: MediaType
+  codeType: CodeType
+  contentType: ContentType
+  soruce: String
+  order: Int
+}
+
+input ContentUpdateWithWhereUniqueWithoutPostInput {
+  where: ContentWhereUniqueInput!
+  data: ContentUpdateWithoutPostDataInput!
+}
+
+input ContentUpsertWithWhereUniqueWithoutPostInput {
+  where: ContentWhereUniqueInput!
+  update: ContentUpdateWithoutPostDataInput!
+  create: ContentCreateWithoutPostInput!
+}
+
+input ContentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  latitude: Float
+  latitude_not: Float
+  latitude_in: [Float!]
+  latitude_not_in: [Float!]
+  latitude_lt: Float
+  latitude_lte: Float
+  latitude_gt: Float
+  latitude_gte: Float
+  longitude: Float
+  longitude_not: Float
+  longitude_in: [Float!]
+  longitude_not_in: [Float!]
+  longitude_lt: Float
+  longitude_lte: Float
+  longitude_gt: Float
+  longitude_gte: Float
+  video: String
+  video_not: String
+  video_in: [String!]
+  video_not_in: [String!]
+  video_lt: String
+  video_lte: String
+  video_gt: String
+  video_gte: String
+  video_contains: String
+  video_not_contains: String
+  video_starts_with: String
+  video_not_starts_with: String
+  video_ends_with: String
+  video_not_ends_with: String
+  embedCode: String
+  embedCode_not: String
+  embedCode_in: [String!]
+  embedCode_not_in: [String!]
+  embedCode_lt: String
+  embedCode_lte: String
+  embedCode_gt: String
+  embedCode_gte: String
+  embedCode_contains: String
+  embedCode_not_contains: String
+  embedCode_starts_with: String
+  embedCode_not_starts_with: String
+  embedCode_ends_with: String
+  embedCode_not_ends_with: String
+  mediaType: MediaType
+  mediaType_not: MediaType
+  mediaType_in: [MediaType!]
+  mediaType_not_in: [MediaType!]
+  codeType: CodeType
+  codeType_not: CodeType
+  codeType_in: [CodeType!]
+  codeType_not_in: [CodeType!]
+  contentType: ContentType
+  contentType_not: ContentType
+  contentType_in: [ContentType!]
+  contentType_not_in: [ContentType!]
+  soruce: String
+  soruce_not: String
+  soruce_in: [String!]
+  soruce_not_in: [String!]
+  soruce_lt: String
+  soruce_lte: String
+  soruce_gt: String
+  soruce_gte: String
+  soruce_contains: String
+  soruce_not_contains: String
+  soruce_starts_with: String
+  soruce_not_starts_with: String
+  soruce_ends_with: String
+  soruce_not_ends_with: String
+  order: Int
+  order_not: Int
+  order_in: [Int!]
+  order_not_in: [Int!]
+  order_lt: Int
+  order_lte: Int
+  order_gt: Int
+  order_gte: Int
+  post: PostWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ContentWhereInput!]
+  OR: [ContentWhereInput!]
+  NOT: [ContentWhereInput!]
+}
+
+input ContentWhereUniqueInput {
+  id: ID
+}
+
+scalar DateTime
+
+scalar Long
+
+enum MediaType {
+  SINGLE
+  THUMBS
+  GALLERY
+}
+
+type Mutation {
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
+  createComment(data: CommentCreateInput!): Comment!
+  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
+  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
+  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
+  deleteComment(where: CommentWhereUniqueInput!): Comment
+  deleteManyComments(where: CommentWhereInput): BatchPayload!
+  createContent(data: ContentCreateInput!): Content!
+  updateContent(data: ContentUpdateInput!, where: ContentWhereUniqueInput!): Content
+  updateManyContents(data: ContentUpdateManyMutationInput!, where: ContentWhereInput): BatchPayload!
+  upsertContent(where: ContentWhereUniqueInput!, create: ContentCreateInput!, update: ContentUpdateInput!): Content!
+  deleteContent(where: ContentWhereUniqueInput!): Content
+  deleteManyContents(where: ContentWhereInput): BatchPayload!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  deletePost(where: PostWhereUniqueInput!): Post
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Post {
+  id: ID!
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int!
+  shareCount: Int!
+  category: Category!
+  user: User!
+  contents(where: ContentWhereInput, orderBy: ContentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Content!]
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type PostConnection {
+  pageInfo: PageInfo!
+  edges: [PostEdge]!
+  aggregate: AggregatePost!
+}
+
+input PostCreateInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int
+  shareCount: Int
+  category: CategoryCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput!
+  contents: ContentCreateManyWithoutPostInput
+  comments: CommentCreateManyWithoutPostInput
+}
+
+input PostCreateManyWithoutCategoryInput {
+  create: [PostCreateWithoutCategoryInput!]
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connect: [PostWhereUniqueInput!]
+}
+
+input PostCreateOneWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostCreateOneWithoutContentsInput {
+  create: PostCreateWithoutContentsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostCreateWithoutCategoryInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int
+  shareCount: Int
+  user: UserCreateOneWithoutPostsInput!
+  contents: ContentCreateManyWithoutPostInput
+  comments: CommentCreateManyWithoutPostInput
+}
+
+input PostCreateWithoutCommentsInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int
+  shareCount: Int
+  category: CategoryCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput!
+  contents: ContentCreateManyWithoutPostInput
+}
+
+input PostCreateWithoutContentsInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int
+  shareCount: Int
+  category: CategoryCreateOneWithoutPostsInput!
+  user: UserCreateOneWithoutPostsInput!
+  comments: CommentCreateManyWithoutPostInput
+}
+
+input PostCreateWithoutUserInput {
+  id: ID
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int
+  shareCount: Int
+  category: CategoryCreateOneWithoutPostsInput!
+  contents: ContentCreateManyWithoutPostInput
+  comments: CommentCreateManyWithoutPostInput
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+enum PostOrderByInput {
+  id_ASC
+  id_DESC
+  language_ASC
+  language_DESC
+  title_ASC
+  title_DESC
+  slug_ASC
+  slug_DESC
+  photo_ASC
+  photo_DESC
+  description_ASC
+  description_DESC
+  publishedAt_ASC
+  publishedAt_DESC
+  viewCount_ASC
+  viewCount_DESC
+  shareCount_ASC
+  shareCount_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type PostPreviousValues {
+  id: ID!
+  language: String
+  title: String!
+  slug: String!
+  photo: String
+  description: String
+  publishedAt: DateTime!
+  viewCount: Int!
+  shareCount: Int!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+input PostScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  language: String
+  language_not: String
+  language_in: [String!]
+  language_not_in: [String!]
+  language_lt: String
+  language_lte: String
+  language_gt: String
+  language_gte: String
+  language_contains: String
+  language_not_contains: String
+  language_starts_with: String
+  language_not_starts_with: String
+  language_ends_with: String
+  language_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  photo: String
+  photo_not: String
+  photo_in: [String!]
+  photo_not_in: [String!]
+  photo_lt: String
+  photo_lte: String
+  photo_gt: String
+  photo_gte: String
+  photo_contains: String
+  photo_not_contains: String
+  photo_starts_with: String
+  photo_not_starts_with: String
+  photo_ends_with: String
+  photo_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  publishedAt: DateTime
+  publishedAt_not: DateTime
+  publishedAt_in: [DateTime!]
+  publishedAt_not_in: [DateTime!]
+  publishedAt_lt: DateTime
+  publishedAt_lte: DateTime
+  publishedAt_gt: DateTime
+  publishedAt_gte: DateTime
+  viewCount: Int
+  viewCount_not: Int
+  viewCount_in: [Int!]
+  viewCount_not_in: [Int!]
+  viewCount_lt: Int
+  viewCount_lte: Int
+  viewCount_gt: Int
+  viewCount_gte: Int
+  shareCount: Int
+  shareCount_not: Int
+  shareCount_in: [Int!]
+  shareCount_not_in: [Int!]
+  shareCount_lt: Int
+  shareCount_lte: Int
+  shareCount_gt: Int
+  shareCount_gte: Int
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
+}
+
+type PostSubscriptionPayload {
+  mutation: MutationType!
+  node: Post
+  updatedFields: [String!]
+  previousValues: PostPreviousValues
+}
+
+input PostSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PostWhereInput
+  AND: [PostSubscriptionWhereInput!]
+  OR: [PostSubscriptionWhereInput!]
+  NOT: [PostSubscriptionWhereInput!]
+}
+
+input PostUpdateInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+  category: CategoryUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneRequiredWithoutPostsInput
+  contents: ContentUpdateManyWithoutPostInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
+input PostUpdateManyDataInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+}
+
+input PostUpdateManyMutationInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+}
+
+input PostUpdateManyWithoutCategoryInput {
+  create: [PostCreateWithoutCategoryInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutCategoryInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutCategoryInput!]
+  deleteMany: [PostScalarWhereInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+}
+
+input PostUpdateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [PostScalarWhereInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
+}
+
+input PostUpdateOneRequiredWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput
+  update: PostUpdateWithoutCommentsDataInput
+  upsert: PostUpsertWithoutCommentsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostUpdateOneRequiredWithoutContentsInput {
+  create: PostCreateWithoutContentsInput
+  update: PostUpdateWithoutContentsDataInput
+  upsert: PostUpsertWithoutContentsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostUpdateWithoutCategoryDataInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+  user: UserUpdateOneRequiredWithoutPostsInput
+  contents: ContentUpdateManyWithoutPostInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
+input PostUpdateWithoutCommentsDataInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+  category: CategoryUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneRequiredWithoutPostsInput
+  contents: ContentUpdateManyWithoutPostInput
+}
+
+input PostUpdateWithoutContentsDataInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+  category: CategoryUpdateOneRequiredWithoutPostsInput
+  user: UserUpdateOneRequiredWithoutPostsInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
+input PostUpdateWithoutUserDataInput {
+  language: String
+  title: String
+  slug: String
+  photo: String
+  description: String
+  publishedAt: DateTime
+  viewCount: Int
+  shareCount: Int
+  category: CategoryUpdateOneRequiredWithoutPostsInput
+  contents: ContentUpdateManyWithoutPostInput
+  comments: CommentUpdateManyWithoutPostInput
+}
+
+input PostUpdateWithWhereUniqueWithoutCategoryInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutCategoryDataInput!
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutUserDataInput!
+}
+
+input PostUpsertWithoutCommentsInput {
+  update: PostUpdateWithoutCommentsDataInput!
+  create: PostCreateWithoutCommentsInput!
+}
+
+input PostUpsertWithoutContentsInput {
+  update: PostUpdateWithoutContentsDataInput!
+  create: PostCreateWithoutContentsInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutCategoryInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutCategoryDataInput!
+  create: PostCreateWithoutCategoryInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutUserDataInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  language: String
+  language_not: String
+  language_in: [String!]
+  language_not_in: [String!]
+  language_lt: String
+  language_lte: String
+  language_gt: String
+  language_gte: String
+  language_contains: String
+  language_not_contains: String
+  language_starts_with: String
+  language_not_starts_with: String
+  language_ends_with: String
+  language_not_ends_with: String
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
+  photo: String
+  photo_not: String
+  photo_in: [String!]
+  photo_not_in: [String!]
+  photo_lt: String
+  photo_lte: String
+  photo_gt: String
+  photo_gte: String
+  photo_contains: String
+  photo_not_contains: String
+  photo_starts_with: String
+  photo_not_starts_with: String
+  photo_ends_with: String
+  photo_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  publishedAt: DateTime
+  publishedAt_not: DateTime
+  publishedAt_in: [DateTime!]
+  publishedAt_not_in: [DateTime!]
+  publishedAt_lt: DateTime
+  publishedAt_lte: DateTime
+  publishedAt_gt: DateTime
+  publishedAt_gte: DateTime
+  viewCount: Int
+  viewCount_not: Int
+  viewCount_in: [Int!]
+  viewCount_not_in: [Int!]
+  viewCount_lt: Int
+  viewCount_lte: Int
+  viewCount_gt: Int
+  viewCount_gte: Int
+  shareCount: Int
+  shareCount_not: Int
+  shareCount_in: [Int!]
+  shareCount_not_in: [Int!]
+  shareCount_lt: Int
+  shareCount_lte: Int
+  shareCount_gt: Int
+  shareCount_gte: Int
+  category: CategoryWhereInput
+  user: UserWhereInput
+  contents_every: ContentWhereInput
+  contents_some: ContentWhereInput
+  contents_none: ContentWhereInput
+  comments_every: CommentWhereInput
+  comments_some: CommentWhereInput
+  comments_none: CommentWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+}
+
+input PostWhereUniqueInput {
+  id: ID
+}
+
+type Query {
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
+  comment(where: CommentWhereUniqueInput!): Comment
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
+  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
+  content(where: ContentWhereUniqueInput!): Content
+  contents(where: ContentWhereInput, orderBy: ContentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Content]!
+  contentsConnection(where: ContentWhereInput, orderBy: ContentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ContentConnection!
+  post(where: PostWhereUniqueInput!): Post
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
+  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
+  content(where: ContentSubscriptionWhereInput): ContentSubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+enum ThemeType {
+  LIGHT
+  DARK
+}
+
+enum UsageType {
+  BLOG
+  PAGE
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  userType: UserType!
+  theme: ThemeType!
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+  userType: UserType!
+  theme: ThemeType
+  posts: PostCreateManyWithoutUserInput
+  comments: CommentCreateManyWithoutUserInput
+}
+
+input UserCreateOneWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutCommentsInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+  userType: UserType!
+  theme: ThemeType
+  posts: PostCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutPostsInput {
+  id: ID
+  name: String!
+  email: String!
+  password: String!
+  userType: UserType!
+  theme: ThemeType
+  comments: CommentCreateManyWithoutUserInput
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  userType_ASC
+  userType_DESC
+  theme_ASC
+  theme_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  email: String!
+  password: String!
+  userType: UserType!
+  theme: ThemeType!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+enum UserType {
+  ADMIN
+  MODERATOR
+  USER
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  password: String
+  userType: UserType
+  theme: ThemeType
+  posts: PostUpdateManyWithoutUserInput
+  comments: CommentUpdateManyWithoutUserInput
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  email: String
+  password: String
+  userType: UserType
+  theme: ThemeType
+}
+
+input UserUpdateOneRequiredWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput
+  update: UserUpdateWithoutCommentsDataInput
+  upsert: UserUpsertWithoutCommentsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutCommentsDataInput {
+  name: String
+  email: String
+  password: String
+  userType: UserType
+  theme: ThemeType
+  posts: PostUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutPostsDataInput {
+  name: String
+  email: String
+  password: String
+  userType: UserType
+  theme: ThemeType
+  comments: CommentUpdateManyWithoutUserInput
+}
+
+input UserUpsertWithoutCommentsInput {
+  update: UserUpdateWithoutCommentsDataInput!
+  create: UserCreateWithoutCommentsInput!
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  userType: UserType
+  userType_not: UserType
+  userType_in: [UserType!]
+  userType_not_in: [UserType!]
+  theme: ThemeType
+  theme_not: ThemeType
+  theme_in: [ThemeType!]
+  theme_not_in: [ThemeType!]
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
+  comments_every: CommentWhereInput
+  comments_some: CommentWhereInput
+  comments_none: CommentWhereInput
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}
