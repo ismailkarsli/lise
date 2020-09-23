@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Switch } from "react-router-dom";
 import history from "history/browser";
-import Header from "./components/Header";
+import Header from "./components/ui/Header";
 import Home from "./components/Home";
 import "./styles/main.scss";
 
@@ -13,9 +13,6 @@ const App = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
-          {/**
-        <Route path="/iletisim" component={Contact} />
-         */}
         </Switch>
       </React.Fragment>
     </Router>
