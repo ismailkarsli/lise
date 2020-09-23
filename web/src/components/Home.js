@@ -6,7 +6,14 @@ export default () => {
     <React.Fragment>
       <Slider />
       <div className="home-container container">
-        <div className="home-container-content">İçerik gelecek</div>
+        <div className="home-container-content">
+          <div>
+            <h2>Haberler</h2>
+          </div>
+          <div>
+            <h2>Duyurular</h2>
+          </div>
+        </div>
       </div>
       <div
         className="parallax"

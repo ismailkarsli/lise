@@ -49,6 +49,13 @@ $mainColor: #d3262f;
   }
   .home-container-content {
     padding: 32px;
+    display: flex;
+    div {
+      width: 50%;
+      h2 {
+        display: inline-block;
+      }
+    }
     &:before,
     &:after {
       content: "";

@@ -6,7 +6,8 @@
     height: 100%;
     align-items: flex-end;
     .slide-content {
-      margin-bottom: 160px;
+      margin-bottom: 250px;
+      position: relative;
       max-width: 50%;
       border-radius: 8px;
       color: white;
@@ -16,14 +17,15 @@
       }
       p {
         font-size: 14px;
-        line-height: 1.1;
       }
       .read-more {
-        padding: 5px;
+        position: absolute;
+        bottom: -60px;
+        padding: 10px 20px;
         display: inline-block;
-        margin-top: 10px;
-        border-radius: 10px;
-        background-color: $mainColor;
+        border-radius: 3px;
+        background-color: #d3262f;
+        font-size: 15px;
       }
     }
   }
@@ -35,20 +37,20 @@
   left: 0;
   right: 0;
   bottom: 117px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
 
   .slider-navigation {
+    position: absolute;
+    bottom: 0;
+    right: 0;
     display: flex;
     div {
-      padding: 0 3px;
+      padding-left: 6px;
       cursor: pointer;
       svg {
         background-color: $mainColor;
-        border-radius: 100%;
-        padding: 8px;
-        fill: white;
+        border-radius: 0;
+        padding: 12px;
+        fill: #fff;
         &:hover {
           background-color: #a10f16;
         }
@@ -57,6 +59,10 @@
   }
 
   .slider-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     .swiper-pagination-bullet {
       width: 80px;
       height: 6px;
