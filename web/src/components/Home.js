@@ -9,6 +9,9 @@ export default () => {
       <Slider />
       <NewsAnns />
       <Parallax />
+      <div className="x">
+        <div className="container">Buradan devam edecek.</div>
+      </div>
     </React.Fragment>
   );
 };

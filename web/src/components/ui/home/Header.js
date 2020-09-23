@@ -22,25 +22,25 @@ export default () => {
       <div className="header">
         <div className="header-inner">
           <div className="title">
-            <a href="/">Lorem Ipsum</a>
+            <Link to="/">Lorem Ipsum</Link>
           </div>
           <div className="nav-wrap">
             <nav>
               <ul>
                 <li>
-                  <a href="/">Anasayfa</a>
+                  <Link to="/">Anasayfa</Link>
                 </li>
                 <li>
-                  <a href="/">Hakkımızda</a>
+                  <Link to="/">Hakkımızda</Link>
                 </li>
                 <li>
-                  <a href="/">Haberler</a>
+                  <Link to="/">Haberler</Link>
                 </li>
                 <li>
-                  <a href="/">Aktiviteler</a>
+                  <Link to="/">Aktiviteler</Link>
                 </li>
                 <li>
-                  <a href="/">İletişim</a>
+                  <Link to="/">İletişim</Link>
                 </li>
               </ul>
             </nav>

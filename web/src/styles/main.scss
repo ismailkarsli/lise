@@ -25,23 +25,9 @@ $mainColor: #d3262f;
 
 @import "home-slider";
 @import "home-news-anns";
+@import "home-parallax";
 
-.parallax {
-  min-height: 70vh;
-  margin-top: 24px;
+.x {
   width: 100%;
-
-  .parallax-content {
-    color: #fff;
-    font-size: 24px;
-    padding: 80px;
-
-    h1 {
-      margin-bottom: 32px;
-    }
-
-    > * {
-      font-family: "Encode Sans", sans-serif;
-    }
-  }
+  height: 1000px;
 }

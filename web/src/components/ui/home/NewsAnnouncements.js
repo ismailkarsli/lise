@@ -17,10 +17,10 @@ export default () => {
               </div>
               <div className="item-meta-info">
                 <h3>
-                  <a href="/" className="item-title">
+                  <Link to="/" className="item-title">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Nulla a egestas erat
-                  </a>
+                  </Link>
                 </h3>
                 <div className="date">
                   <time dateTime="2019-08-07T07:32:15+00:00">
@@ -39,10 +39,10 @@ export default () => {
               </div>
               <div className="item-meta-info">
                 <h3>
-                  <a href="/" className="item-title">
+                  <Link to="/" className="item-title">
                     In mattis mi scelerisque erat consectetur imperdiet. Etiam
                     vehicula quis leo nec vulputate
-                  </a>
+                  </Link>
                 </h3>
                 <div className="date">
                   <time dateTime="2019-08-07T07:32:15+00:00">
@@ -65,10 +65,10 @@ export default () => {
               </div>
               <div className="item-meta-info">
                 <h3>
-                  <a href="/" className="item-title">
+                  <Link to="/" className="item-title">
                     Nulla elementum nulla id leo sagittis laoreet. Sed
                     consequat, mi in fermentum congue
-                  </a>
+                  </Link>
                 </h3>
                 <div className="date">
                   <time dateTime="2019-08-07T07:32:15+00:00">
@@ -85,10 +85,10 @@ export default () => {
               </div>
               <div className="item-meta-info">
                 <h3>
-                  <a href="/" className="item-title">
+                  <Link to="/" className="item-title">
                     Curabitur rutrum, est id euismod porttitor, velit sapien
                     scelerisque sem, id iaculis
-                  </a>
+                  </Link>
                 </h3>
                 <div className="date">
                   <time dateTime="2019-08-07T07:32:15+00:00">
