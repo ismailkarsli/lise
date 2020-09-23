@@ -1,0 +1,100 @@
+.news-anns-section {
+  background-color: white;
+  position: relative;
+  margin-top: -80px;
+  z-index: 1;
+  min-height: 280px;
+  box-shadow: 0 -31px 51px 0 rgba(0, 0, 0, 0.1),
+    0 -19px 38px 0 rgba(0, 0, 0, 0.22);
+  &:after {
+    background-image: url("/images/ui/notch.svg");
+    background-repeat: no-repeat;
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: -28px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 42px;
+  }
+  .news-anns-section-content {
+    padding: 32px;
+    display: flex;
+    > div {
+      padding-left: 12px;
+      padding-right: 12px;
+      width: 50%;
+      > h2 {
+        padding-bottom: 12px;
+        font-size: 30px;
+        border-bottom: 1px solid gray;
+        font-family: "Maven Pro", sans-serif;
+      }
+      .news-anns-list {
+        .list-item {
+          display: flex;
+          position: relative;
+          width: 100%;
+          height: 120px;
+          padding: 15px 10px;
+
+          .image-container {
+            width: 30%;
+            flex: 0 0 30%;
+            > a > img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .item-meta-info {
+            display: flex;
+            flex-direction: column;
+            padding: 6px 12px;
+            width: 70%;
+            flex: 0 0 70%;
+            .item-title {
+              &:hover {
+                color: rgb(150, 0, 0);
+              }
+            }
+
+            .date {
+              font-weight: 400;
+              font-size: 12px;
+              color: #929292;
+              align-self: flex-end;
+              margin-top: auto;
+              > time svg {
+                margin-bottom: -1px;
+              }
+            }
+            * {
+              font-family: "Encode Sans", sans-serif;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      background: #fff;
+      top: -28px;
+      height: 28px;
+      width: calc(50% - 21px);
+    }
+    &:before {
+      left: 0;
+    }
+    &:after {
+      right: 0;
+    }
+  }
+}

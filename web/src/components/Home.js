@@ -1,33 +1,14 @@
 import React from "react";
-import Slider from "./ui/HomeSlider";
+import Slider from "./ui/home/MainSlider";
+import NewsAnns from "./ui/home/NewsAnnouncements";
+import Parallax from "./ui/home/Parallax";
 
 export default () => {
   return (
     <React.Fragment>
       <Slider />
-      <div className="home-container container">
-        <div className="home-container-content">
-          <div>
-            <h2>Haberler</h2>
-          </div>
-          <div>
-            <h2>Duyurular</h2>
-          </div>
-        </div>
-      </div>
-      <div
-        className="parallax"
-        style={{
-          backgroundImage: "url('https://picsum.photos/1600/800')",
-          minHeight: "75vh",
-          marginTop: "24px",
-          width: "100%",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat",
-          backgroundSize: "cover",
-        }}
-      ></div>
+      <NewsAnns />
+      <Parallax />
     </React.Fragment>
   );
 };

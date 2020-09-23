@@ -26,6 +26,9 @@
         border-radius: 3px;
         background-color: #d3262f;
         font-size: 15px;
+        &:hover {
+          background-color: #a10f16;
+        }
       }
     }
   }
@@ -36,7 +39,7 @@
   z-index: 1;
   left: 0;
   right: 0;
-  bottom: 117px;
+  bottom: 112px;
 
   .slider-navigation {
     position: absolute;
@@ -68,6 +71,7 @@
       height: 6px;
       margin-left: 2px;
       margin-right: 2px;
+      margin-bottom: 5px;
       border-radius: 5px;
       background: white;
       opacity: 0.5;

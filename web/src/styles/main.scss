@@ -9,6 +9,7 @@ $mainColor: #d3262f;
   list-style: none;
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
+  font-weight: normal;
   color: inherit;
   vertical-align: baseline;
 }
@@ -24,53 +25,18 @@ $mainColor: #d3262f;
 @import "header";
 
 @import "home-slider";
+@import "home-news-anns";
 
-.home-container {
-  background-color: white;
-  position: relative;
-  margin-top: -80px;
-  z-index: 1;
-  height: 500px;
-  box-shadow: 0 -31px 51px 0 rgba(0, 0, 0, 0.1),
-    0 -19px 38px 0 rgba(0, 0, 0, 0.22);
-  &:after {
-    background-image: url("/images/ui/notch.svg");
-    background-repeat: no-repeat;
-    content: "";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: -28px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    max-width: 42px;
-  }
-  .home-container-content {
-    padding: 32px;
-    display: flex;
-    div {
-      width: 50%;
-      h2 {
-        display: inline-block;
-      }
-    }
-    &:before,
-    &:after {
-      content: "";
-      position: absolute;
-      z-index: 3;
-      background: #fff;
-      top: -28px;
-      height: 28px;
-      width: calc(50% - 21px);
-    }
-    &:before {
-      left: 0;
-    }
-    &:after {
-      right: 0;
-    }
+.parallax {
+  min-height: 70vh;
+  margin-top: 24px;
+  width: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .parallax-content {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
   }
 }
