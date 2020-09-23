@@ -4,6 +4,7 @@ const backgroundImageStyle = {
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
+  backgroundAttachment: "fixed",
 };
 
 export default () => {
@@ -12,12 +13,23 @@ export default () => {
       className="parallax"
       style={{
         background:
-          "linear-gradient(rgba(0,0,0,.3) 0%, rgba(0,0,0,.3)), url('/images/bir-lise-binasi.jpg')",
+          "linear-gradient(rgba(0,0,0,.4) 0%, rgba(0,0,0,.4)), url('/images/bir-lise-binasi.jpg')",
         ...backgroundImageStyle,
       }}
     >
-      <div className="container parallax-content">
-        <h2>Lorem Ipsum Lisesi</h2>
+      <div className="container">
+        <div className="parallax-content">
+          <h1>Lorem Ipsum</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
       </div>
     </div>
   );

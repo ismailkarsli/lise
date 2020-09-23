@@ -9,7 +9,6 @@ $mainColor: #d3262f;
   list-style: none;
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
-  font-weight: normal;
   color: inherit;
   vertical-align: baseline;
 }
@@ -31,12 +30,18 @@ $mainColor: #d3262f;
   min-height: 70vh;
   margin-top: 24px;
   width: 100%;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
   .parallax-content {
-    color: rgb(255, 255, 255);
+    color: #fff;
     font-size: 24px;
+    padding: 80px;
+
+    h1 {
+      margin-bottom: 32px;
+    }
+
+    > * {
+      font-family: "Encode Sans", sans-serif;
+    }
   }
 }
