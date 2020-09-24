@@ -1,5 +1,8 @@
+import getUserData from "../../utils/getUserData";
+
 const user = {
   users(parent, args, { prisma, request }, info) {
+    const user = getUserData(request);
     return prisma.query.users({}, info);
   },
 

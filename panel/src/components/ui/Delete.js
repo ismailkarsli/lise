@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Modal from "react-modal";
+import { ScaleLoader } from "react-spinners";
 
 const customStyles = {
   content: {
@@ -14,7 +15,7 @@ const customStyles = {
   },
 };
 
-export default ({ title, dataId, handleDelete }) => {
+export default ({ title, dataId, handleDelete, deleteLoading }) => {
   const [open, setOpen] = useState(false);
   useEffect(() => {}, [dataId]);
   const openModal = () => {
@@ -48,7 +49,11 @@ export default ({ title, dataId, handleDelete }) => {
             className="bg-red-600 hover:bg-red-400 text-gray-100 py-1 text-xs px-2 rounded mr-4"
             onClick={() => handleDelete(dataId)}
           >
-            Onaylıyorum
+            {deleteLoading ? (
+              <ScaleLoader height={15} color="#f6fa28" />
+            ) : (
+              "Onaylıyorum"
+            )}
           </button>
           <button
             className="bg-blue-600 hover:bg-blue-400 text-gray-100 py-1 text-xs px-2 rounded mr-4"

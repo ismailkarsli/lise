@@ -1,11 +1,9 @@
-import gql from "graphql-tag";
+import { gql } from '@apollo/client';
 
-const UPLOAD_PHOTO = gql`
+export const UPLOAD_PHOTO = gql`
   mutation UploadPhoto($photo: Upload!) {
     uploadPhoto(photo: $photo) {
       photo
     }
   }
 `;
-
-export { UPLOAD_PHOTO };

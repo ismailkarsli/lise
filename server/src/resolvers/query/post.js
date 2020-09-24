@@ -1,10 +1,14 @@
 const post = {
   posts(parent, args, { prisma, request }, info) {
+    let postType = {};
+    if (args.postType) {
+      postType.where = {
+        postType: args.postType,
+      };
+    }
     return prisma.query.posts(
       {
-        where: {
-          postType: args.postType,
-        },
+        postType,
       },
       info
     );

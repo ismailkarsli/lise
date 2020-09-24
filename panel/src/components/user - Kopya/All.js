@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USERS } from "../../gql/user/query";
 import { DELETE_USER } from "./../../gql/user/mutation";
@@ -7,11 +7,9 @@ import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
 import Td from "../ui/TableData";
 import Delete from "../ui/Delete";
-import ErrorContainer from "../ui/ErrorContainer";
 import { BsArrowClockwise, BsPlusCircle } from "react-icons/bs";
 
 const All = () => {
-  const [submitError, setSubmitError] = useState(null);
   const [deleteUser, { loading: deleteLoading }] = useMutation(DELETE_USER);
   const { loading, error, data, networkStatus, refetch } = useQuery(GET_USERS, {
     notifyOnNetworkStatusChange: true,
@@ -37,7 +35,6 @@ const All = () => {
         refetch();
       }
     } catch (err) {
-      setSubmitError(err.message);
       console.log(err);
     }
   };
@@ -68,7 +65,7 @@ const All = () => {
           </Link>
         </div>
       </div>
-      {submitError && <ErrorContainer title={submitError} />}
+
       <table className="table-auto w-full mb-6">
         <thead>
           <tr>

@@ -22,6 +22,10 @@ const user = {
       args.data.password = await hashPassword(args.data.password);
     }
 
+    if (args.data.userType && user.userType !== "ADMIN") {
+      throw new Error("Yönetici yetkisi gereklidir.");
+    }
+
     return prisma.mutation.updateUser(
       {
         where: {
@@ -46,13 +50,13 @@ const user = {
   },
 
   async loginUser(parent, args, { request, prisma }, info) {
-    const email = args.data.email;
+    const username = args.data.username;
     const password = args.data.password;
 
     const user = await prisma.query.user(
       {
         where: {
-          email,
+          username,
         },
       },
       null

@@ -1,9 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
+
 const Dashboard = () => {
   return (
-    <Fragment>
-      <div>Blog Panel {process.env.REACT_APP_GOOGLE_MAP_API_KEY}</div>
-    </Fragment>
+    <div className="w-full mt-5">
+      <div className="container mx-auto">
+        <h1 className="text-5xl">Yönetim Paneli</h1>
+      </div>
+    </div>
   );
 };
 

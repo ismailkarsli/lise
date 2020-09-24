@@ -1,12 +1,12 @@
 import getUserData from "./../../utils/getUserData";
 
-export default {
-  updateSiteSettings(parent, args, { prisma, request }, info) {
-    const user = getUserData(request);
+const siteSettings = {
+  async updateSiteSettings(parent, args, { prisma, request }, info) {
+    const user = getUserData(request, true);
 
-    const currentSettingsId = prisma.query.siteSettingses({}, `id`);
+    const currentSettingsId = await prisma.query.siteSettingses({}, `{id}`);
 
-    if (settings[0]) {
+    if (!currentSettingsId[0]) {
       return prisma.mutation.createSiteSettings(
         {
           data: {
@@ -30,3 +30,5 @@ export default {
     );
   },
 };
+
+export default siteSettings;

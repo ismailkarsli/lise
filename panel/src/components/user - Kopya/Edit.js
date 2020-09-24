@@ -35,6 +35,7 @@ export default ({ dataId }) => {
         variables: {
           id: dataId,
           ...formData,
+          points: parseInt(formData.points),
         },
       });
 

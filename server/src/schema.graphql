@@ -4,7 +4,7 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
-  posts(postType: PostType!): [Post!]!
+  posts(postType: PostType): [Post!]!
   post(id: ID!): Post!
 
   links: [Link!]!

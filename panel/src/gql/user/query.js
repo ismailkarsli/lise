@@ -1,31 +1,21 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
-const GET_USERS = gql`
+export const GET_USERS = gql`
   query User {
     users {
       id
-      name
-      email
+      username
       userType
-      theme
     }
   }
 `;
 
-const GET_USER = gql`
+export const GET_USER = gql`
   query User($id: ID!) {
     user(id: $id) {
       id
-      name
-      email
+      username
       userType
-      theme
-      posts {
-        id
-        title
-      }
     }
   }
 `;
-
-export { GET_USERS, GET_USER };
