@@ -14,7 +14,7 @@ header {
         li {
           padding: 8px 12px;
           display: flex;
-          font-size: 14px;
+          font-size: 0.85rem;
           color: #676767;
         }
       }
@@ -31,7 +31,7 @@ header {
         display: flex;
         align-items: center;
         a {
-          font-size: 32px;
+          font-size: 2rem;
           color: #666666;
           font-weight: bold;
           font-family: "Encode Sans", sans-serif;
@@ -45,7 +45,7 @@ header {
         nav ul {
           display: flex;
           li a {
-            font-size: 14px;
+            font-size: 0.9rem;
             text-transform: uppercase;
             color: #424242;
             line-height: 82px;

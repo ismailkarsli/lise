@@ -12,11 +12,11 @@
       border-radius: 8px;
       color: white;
       h2 {
-        font-size: 32px;
-        margin-bottom: 16px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
       }
       p {
-        font-size: 14px;
+        font-size: 0.9rem;
       }
       .read-more {
         position: absolute;
@@ -25,7 +25,7 @@
         display: inline-block;
         border-radius: 3px;
         background-color: #d3262f;
-        font-size: 15px;
+        font-size: 1rem;
         &:hover {
           background-color: #a10f16;
         }
@@ -47,12 +47,12 @@
     right: 0;
     display: flex;
     div {
-      padding-left: 6px;
+      padding-left: 0.5rem;
       cursor: pointer;
       svg {
         background-color: $mainColor;
         border-radius: 0;
-        padding: 12px;
+        padding: 0.75rem;
         fill: #fff;
         &:hover {
           background-color: #a10f16;
