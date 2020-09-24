@@ -1,0 +1,46 @@
+.events {
+  .events-content {
+    padding: 64px 32px;
+    font-family: "Maven Pro", sans-serif;
+    > h2 {
+      position: relative;
+      margin-bottom: 32px;
+      padding-top: 16px;
+      font-size: 2rem;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 2px;
+        background-color: $secondaryColor;
+      }
+    }
+
+    .swiper-slide {
+      padding: 16px;
+      .event-slide-content {
+        > a > h3 {
+          font-weight: 500;
+          font-size: 1.3rem;
+        }
+        .event-date {
+          .day {
+            font-size: 28px;
+            border-right: 2px solid $secondaryColor;
+            padding-right: 10px;
+          }
+          .year-month {
+            padding-left: 12px;
+          }
+        }
+        .event-time {
+          padding-top: 8px;
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

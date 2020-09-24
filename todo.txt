@@ -1,3 +1,9 @@
-Robots.txt tüm botları kapatıyor.
+Server
 Gelecek tarihte yayınlanma tarihi eklenecek.
+
+Panel
 Kullanıcı silinirken tüm postlarının da silineceği eklenmesi gerekiyor.
+
+Web
+Etkinlikler slaytına mobilde navigasyon simgesi eklenmesi gerekiyor.
+Robots.txt tüm botları kapatıyor.

@@ -1,33 +1,35 @@
-.swiper-wrapper > .swiper-slide {
-  height: 100vh;
-  position: relative;
-  .slide-content-wrapper {
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
-    .slide-content {
-      margin-bottom: 250px;
-      position: relative;
-      max-width: 50%;
-      border-radius: 8px;
-      color: white;
-      h2 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-      p {
-        font-size: 0.9rem;
-      }
-      .read-more {
-        position: absolute;
-        bottom: -60px;
-        padding: 10px 20px;
-        display: inline-block;
-        border-radius: 3px;
-        background-color: #d3262f;
-        font-size: 1rem;
-        &:hover {
-          background-color: #a10f16;
+.home-slider {
+  .swiper-wrapper > .swiper-slide {
+    height: 100vh;
+    position: relative;
+    .slide-content-wrapper {
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+      .slide-content {
+        margin-bottom: 250px;
+        position: relative;
+        max-width: 50%;
+        border-radius: 8px;
+        color: white;
+        h2 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+        p {
+          font-size: 0.9rem;
+        }
+        .read-more {
+          position: absolute;
+          bottom: -60px;
+          padding: 10px 20px;
+          display: inline-block;
+          border-radius: 3px;
+          background-color: $mainColor;
+          font-size: 1rem;
+          &:hover {
+            background-color: $secondaryColor;
+          }
         }
       }
     }
@@ -55,7 +57,7 @@
         padding: 0.75rem;
         fill: #fff;
         &:hover {
-          background-color: #a10f16;
+          background-color: $secondaryColor;
         }
       }
     }

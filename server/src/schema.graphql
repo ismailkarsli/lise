@@ -149,7 +149,7 @@ input UpdateLinkInput {
 enum PostType {
   NEWS
   ANNOUNCEMENTS
-  ACTIVITES
+  EVENTS
 }
 
 enum UserType {

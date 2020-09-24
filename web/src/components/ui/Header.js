@@ -38,7 +38,7 @@ export default () => {
                   <Link to="/">Haberler</Link>
                 </li>
                 <li>
-                  <Link to="/">Aktiviteler</Link>
+                  <Link to="/">Etkinlikler</Link>
                 </li>
                 <li>
                   <Link to="/">İletişim</Link>

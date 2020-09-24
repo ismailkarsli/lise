@@ -1,4 +1,5 @@
 $mainColor: #d3262f;
+$secondaryColor: rgb(185, 17, 42);
 html {
   font-size: 16px;
 }
@@ -25,12 +26,11 @@ html {
 }
 
 @import "header";
+@import "footer";
 
 @import "home-slider";
 @import "home-news-anns";
 @import "home-parallax";
-
-.x {
-  width: 100%;
-  height: 1000px;
-}
+@import "home-events";
+@import "home-staff";
+@import "home-links";

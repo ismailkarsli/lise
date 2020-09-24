@@ -15,7 +15,7 @@ export default () => {
   SwiperCore.use([Navigation, Pagination]);
 
   return (
-    <React.Fragment>
+    <div className="home-slider">
       <Swiper
         slidesPerView={1}
         loop
@@ -23,7 +23,6 @@ export default () => {
         navigation={{ prevEl: "#prev-slide", nextEl: "#next-slide" }}
         pagination={{ el: ".slider-pagination", clickable: true }}
       >
-        {" "}
         <SwiperSlide
           style={{
             background:
@@ -96,6 +95,6 @@ export default () => {
           </div>
         </div>
       </Swiper>
-    </React.Fragment>
+    </div>
   );
 };

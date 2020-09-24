@@ -23,7 +23,7 @@ const AppRouter = () => {
           <PrivateRoute path="/kullanicilar" component={User} />
           <PrivateRoute path="/haberler" component={User} />
           <PrivateRoute path="/duyurular" component={User} />
-          <PrivateRoute path="/aktiviteler" component={User} />
+          <PrivateRoute path="/etkinlikler" component={User} />
           <PrivateRoute path="/ayarlar" component={User} />
         </Switch>
       </ApolloProvider>

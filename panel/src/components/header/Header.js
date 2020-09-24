@@ -30,7 +30,7 @@ const Header = (props) => {
             <TopMenuItem url="/anasayfa" title="Anasayfa" />
             <TopMenuItem url="/haberler" title="Haberler" />
             <TopMenuItem url="/duyurular" title="Duyurular" />
-            <TopMenuItem url="/aktiviteler" title="Aktiviteler" />
+            <TopMenuItem url="/etkinlikler" title="Etkinlikler" />
           </div>
 
           <div className="text-right flex">
@@ -65,7 +65,7 @@ const Header = (props) => {
           <TopMenuItem url="/anasayfa" title="Anasayfa" />
           <TopMenuItem url="/haberler" title="Haberler" />
           <TopMenuItem url="/duyurular" title="Duyurular" />
-          <TopMenuItem url="/aktiviteler" title="Aktiviteler" />
+          <TopMenuItem url="/etkinlikler" title="Etkinlikler" />
         </div>
       </div>
     </div>

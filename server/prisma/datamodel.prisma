@@ -47,7 +47,7 @@ type Link {
 enum PostType {
   NEWS
   ANNOUNCEMENTS
-  ACTIVITES
+  EVENTS
 }
 
 enum UserType {

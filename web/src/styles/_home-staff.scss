@@ -1,0 +1,22 @@
+.staff {
+  background-color: white;
+  .staff-content {
+    padding: 64px 32px;
+    font-family: "Maven Pro", sans-serif;
+    > h2 {
+      position: relative;
+      margin-bottom: 32px;
+      padding-top: 16px;
+      font-size: 2rem;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 2px;
+        background-color: $secondaryColor;
+      }
+    }
+  }
+}
