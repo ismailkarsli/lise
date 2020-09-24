@@ -1,128 +1,56 @@
 type User {
   id: ID! @id
-  name: String!
-  email: String! @unique
+  username: String! @unique
   password: String!
   userType: UserType!
-  theme: ThemeType! @default(value: LIGHT)
   posts: [Post!]! @relation(name: "PostToUser", onDelete: CASCADE)
-  comments: [Comment!]! @relation(name: "CommentToUser", onDelete: CASCADE)
-  updatedAt: DateTime! @updatedAt
-  createdAt: DateTime! @createdAt
-}
-
-type Category {
-  id: ID! @id
-  language: String @default(value: "tr")
-  title: String!
-  slug: String!
-  photo: String
-  description: String
-  categoryType: UsageType!
-  order: Int @default(value: 999)
-  posts: [Post!]! @relation(name: "PostToCategory", onDelete: CASCADE)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
 
 type Post {
   id: ID! @id
-  language: String @default(value: "tr")
   title: String!
   slug: String!
   photo: String
-  description: String
-  publishedAt: DateTime!
+  content: String
+  postType: PostType!
+  publishDate: DateTime!
   viewCount: Int! @default(value: 0)
-  shareCount: Int! @default(value: 0)
-  category: Category! @relation(name: "PostToCategory", onDelete: SET_NULL)
+  likeCount: Int! @default(value: 0)
   user: User! @relation(name: "PostToUser", onDelete: SET_NULL)
-  contents: [Content!]! @relation(name: "ContentToPost", onDelete: CASCADE)
-  comments: [Comment!]! @relation(name: "CommentToPost", onDelete: CASCADE)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
 
-type Content {
+type SiteSettings {
   id: ID! @id
-  title: String
-  description: String
-  latitude: Float
-  longitude: Float
-  photos: [String!]! @scalarList(strategy: RELATION)
-  video: String
-  embedCode: String
-  mediaType: MediaType
-  codeType: CodeType
-  contentType: ContentType!
-  soruce: String
-  order: Int @default(value: 999)
-  post: Post! @relation(name: "ContentToPost", onDelete: SET_NULL)
-  updatedAt: DateTime! @updatedAt
-  createdAt: DateTime! @createdAt
+  name: String!
+  phone: String
+  mail: String
+  address: String
+  mapLongitude: Float
+  mapLatitude: Float
+  about: String
+  aboutShort: String
+  classCount: Int
+  studentCount: Int
+  teacherCount: Int
 }
 
-type Comment {
+type Link {
   id: ID! @id
-  text: String!
-  user: User! @relation(name: "CommentToUser", onDelete: SET_NULL)
-  post: Post! @relation(name: "CommentToPost", onDelete: SET_NULL)
-  status: CommentStatus @default(value: PENDING)
-  updatedAt: DateTime! @updatedAt
-  createdAt: DateTime! @createdAt
+  title: String!
+  url: String!
 }
 
-enum CommentStatus {
-  PENDING
-  PUBLISHED
-  DECLINED
-}
-enum UsageType {
-  BLOG
-  PAGE
+enum PostType {
+  NEWS
+  ANNOUNCEMENTS
+  ACTIVITES
 }
 
-enum CodeType {
-  C
-  CSHARP
-  CSS
-  HTML
-  HTTP
-  JAVA
-  JAVASCRIPT
-  JSON
-  MARKDOWN
-  PHP
-  PLAINTEXT
-  PYTHON
-  SCSS
-  SQL
-  TYPESCRIPT
-  XML
-  YAML
-}
-enum MediaType {
-  SINGLE
-  THUMBS
-  GALLERY
-}
-
-enum ContentType {
-  TEXT
-  IMAGE
-  VIDEO
-  TWITTER
-  FACEBOOK
-  INSTAGRAM
-  MAP
-  CODE
-}
 enum UserType {
   ADMIN
   MODERATOR
-  USER
-}
-enum ThemeType {
-  LIGHT
-  DARK
 }

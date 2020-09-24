@@ -1,14 +1,12 @@
 import userQuery from "./query/user";
-import categoryQuery from "./query/category";
 import postQuery from "./query/post";
-import commentQuery from "./query/comment";
-import contentQuery from "./query/content";
+import linkQuery from "./query/link";
+import siteSettingsQuery from "./query/siteSettings";
 const Query = {
   ...userQuery,
-  ...categoryQuery,
   ...postQuery,
-  ...contentQuery,
-  ...commentQuery,
+  ...linkQuery,
+  ...siteSettingsQuery,
 };
 
 export default Query;

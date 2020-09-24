@@ -1,1 +1,3 @@
 Robots.txt tüm botları kapatıyor.
+Gelecek tarihte yayınlanma tarihi eklenecek.
+Kullanıcı silinirken tüm postlarının da silineceği eklenmesi gerekiyor.

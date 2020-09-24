@@ -1,10 +1,9 @@
 import getUserData from "./../../utils/getUserData";
-
 import getSlug from "speakingurl";
 
 const post = {
   createPost(parent, args, { request, prisma }, info) {
-    const userData = getUserData(request);
+    const user = getUserData(request);
 
     const categoryId = args.category;
     return prisma.mutation.createPost(
@@ -12,14 +11,9 @@ const post = {
         data: {
           ...args.data,
           slug: getSlug(args.data.title),
-          category: {
-            connect: {
-              id: categoryId,
-            },
-          },
           user: {
             connect: {
-              id: userData.id,
+              id: user.id,
             },
           },
         },
@@ -27,42 +21,14 @@ const post = {
       info
     );
   },
+
   async updatePost(parent, args, { request, prisma }, info) {
-    const userData = getUserData(request);
-
-    const post = await prisma.query.posts(
-      {
-        where: {
-          AND: [
-            {
-              user: {
-                id: userData.id,
-              },
-            },
-            {
-              id: args.id,
-            },
-          ],
-        },
-      },
-      null
-    );
-
-    if (!post[0]) {
-      throw new Error("Bu yazıyı düzenlemek için yetkiniz bulunmamaktadır.");
-    }
+    const user = getUserData(request);
 
     let slug = undefined;
-    const category = {};
 
-    if (typeof args.data.title === "string") {
+    if (args.data.title) {
       slug = getSlug(args.data.title);
-    }
-
-    if (args.category) {
-      category.connect = {
-        id: args.category,
-      };
     }
 
     return prisma.mutation.updatePost({
@@ -72,34 +38,12 @@ const post = {
       data: {
         ...args.data,
         slug,
-        category,
       },
     });
   },
   async deletePost(parent, args, { request, prisma }, info) {
-    const userData = getUserData(request);
+    const user = getUserData(request);
 
-    const post = await prisma.query.posts(
-      {
-        where: {
-          AND: [
-            {
-              id: args.id,
-            },
-            {
-              user: {
-                OR: [{ id: userData.id }, { userType: userData.userType }],
-              },
-            },
-          ],
-        },
-      },
-      null
-    );
-
-    if (!post[0]) {
-      throw new Error("Bu yazıyı silme yetkiniz bulunamamaktadır");
-    }
     return prisma.mutation.deletePost({
       where: {
         id: args.id,

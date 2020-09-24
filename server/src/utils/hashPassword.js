@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 
 const hashPassword = (password) => {
-  if (password < 6) {
-    throw new Error("Password must be 6 characters or longer");
+  if (password < 8) {
+    throw new Error("Parola 8 karakterden fazla olmalıdır.");
   }
 
   return bcrypt.hash(password, 10);

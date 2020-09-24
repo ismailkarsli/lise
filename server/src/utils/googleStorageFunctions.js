@@ -13,7 +13,10 @@ const storage = new Storage({
 });
 
 const makePublicFiles = async (fileName) => {
-  const changeFilePermission = await storage.bucket(bucketName).file(fileName).makePublic();
+  const changeFilePermission = await storage
+    .bucket(bucketName)
+    .file(fileName)
+    .makePublic();
   if (changeFilePermission[0].entity === "allUsers") {
     return true;
   }
@@ -54,7 +57,10 @@ const downloadGoogleStorageFile = async (remoteFileName) => {
   };
 
   try {
-    await storage.bucket(bucketName).file(remoteFileName).download(options);
+    await storage
+      .bucket(bucketName)
+      .file(remoteFileName)
+      .download(options);
     return {
       status: "success",
       fileName: remoteFileName,
@@ -67,7 +73,11 @@ const downloadGoogleStorageFile = async (remoteFileName) => {
 const uploadGoogleStorageFile = async (file) => {
   const fileType = file.mimetype;
   const bucket = storage.bucket(bucketName);
-  const fileName = `${new Date().getTime()}-${getSlug(file.filename)}`;
+  const fileName = `${new Date().getTime()}-${getSlug(file.filename, {
+    custom: {
+      ".": ".",
+    },
+  })}`;
   const blob = bucket.file(fileName);
   const dataStream = new stream.PassThrough();
 

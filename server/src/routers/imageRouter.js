@@ -6,12 +6,18 @@ const router = express.Router();
 const sharp = require("sharp");
 const imagePath = path.join(__dirname, "../../public/img");
 
-const { downloadGoogleStorageFile } = require("./../utils/googleStorageFunctions");
+const {
+  downloadGoogleStorageFile,
+} = require("./../utils/googleStorageFunctions");
 
 router.get("/images/:width/:height/:photo", async (req, res) => {
   const photo = req.params.photo;
   let width = parseFloat(req.params.width);
+  if (width > 4096) width = 4096;
+
   let height = parseFloat(req.params.height);
+  if (height > 3112) height = 3112;
+
   if (width === 0) {
     width = null;
   }
@@ -21,17 +27,22 @@ router.get("/images/:width/:height/:photo", async (req, res) => {
 
   try {
     if (fs.existsSync(`${imagePath}/${photo}`)) {
-      console.log("Fotoğraf Mevcut");
       let image = "";
 
-      image = await sharp(`${imagePath}/${photo}`).resize({ width, height }).png({ quality: 70 }).toBuffer();
+      image = await sharp(`${imagePath}/${photo}`)
+        .resize({ width, height })
+        .png({ quality: 70 })
+        .toBuffer();
       res.set("Content-Type", "image/png");
       res.send(image);
     } else {
       await downloadGoogleStorageFile(photo);
       let image = "";
 
-      image = await sharp(`${imagePath}/${photo}`).resize({ width, height }).png({ quality: 70 }).toBuffer();
+      image = await sharp(`${imagePath}/${photo}`)
+        .resize({ width, height })
+        .png({ quality: 70 })
+        .toBuffer();
       res.set("Content-Type", "image/png");
       res.send(image);
     }

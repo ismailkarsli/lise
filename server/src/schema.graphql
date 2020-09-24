@@ -3,38 +3,31 @@ scalar Upload
 type Query {
   users: [User!]!
   user(id: ID!): User!
-  me: User!
-  categories(categoryType: UsageType, language: String!): [Category!]!
-  category(id: ID!): Category!
-  posts(language: String!, categoryType: UsageType!): [Post!]!
+
+  posts(postType: PostType!): [Post!]!
   post(id: ID!): Post!
-  comments(status: CommentStatus): [Comment]!
-  comment(id: ID!): Comment!
-  contents(postId: ID!): [Content]!
-  content(id: ID!): Content!
+
+  links: [Link!]!
+  link(id: ID!): Link!
+
+  siteSettings: SiteSettings!
 }
 
 type Mutation {
-  loginUser(data: LoginUserInput!): AuthPayload!
   createUser(data: CreateUserInput!): User!
   updateUser(data: UpdateUserInput!, id: ID!): User!
   deleteUser(id: ID!): User!
+  loginUser(data: LoginUserInput!): AuthPayload!
 
-  createCategory(data: CreateCategoryInput!): Category!
-  updateCategory(data: UpdateCategoryInput!, id: ID!): Category!
-  deleteCategory(id: ID!): Category!
-
-  createPost(data: CreatePostInput!, category: ID!): Post!
-  updatePost(data: UpdatePostInput!, category: ID, id: ID!): Post!
+  createPost(data: CreatePostInput!): Post!
+  updatePost(data: UpdatePostInput!, id: ID!): Post!
   deletePost(id: ID!): Post!
 
-  createContent(data: CreateContentInput!, postId: ID!): Post!
-  updateContent(data: UpdateContentInput!, id: ID!): Content!
-  deleteContent(id: ID!): Content!
+  updateSiteSettings(data: UpdateSiteSettings!): SiteSettings!
 
-  createComment(text: String!, postId: ID!): Post!
-  updateComment(text: String, status: CommentStatus, id: ID!): Comment!
-  deleteComment(id: ID!): Comment!
+  createLink(data: CreateLinkInput!): Link!
+  updateLink(data: UpdateLinkInput!, id: ID!): Link!
+  deleteLink(id: ID!): Link!
 
   uploadPhoto(photo: Upload!): UploadPayload!
 }
@@ -44,31 +37,29 @@ type UploadPayload {
 }
 
 type User {
-  id: ID!
-  name: String!
-  email: String!
+  id: String!
+  username: String!
   password: String!
   userType: UserType!
-  theme: ThemeType!
   posts: [Post!]!
-  comments: [Comment!]!
+  updatedAt: String!
+  createdAt: String!
 }
 
 input CreateUserInput {
-  name: String!
-  email: String!
+  username: String!
   password: String!
   userType: UserType!
 }
 
 input UpdateUserInput {
-  name: String
-  email: String
+  username: String
   password: String
   userType: UserType
 }
+
 input LoginUserInput {
-  email: String!
+  username: String!
   password: String!
 }
 
@@ -77,160 +68,91 @@ type AuthPayload {
   user: User!
 }
 
-type Category {
-  id: ID!
-  title: String!
-  slug: String!
-  photo: String
-  description: String
-  categoryType: UsageType
-  posts: [Post!]!
-}
-
-input CreateCategoryInput {
-  title: String!
-  photo: String
-  description: String
-  categoryType: UsageType
-}
-
-input UpdateCategoryInput {
-  title: String
-  photo: String
-  description: String
-}
-
 type Post {
-  id: ID!
+  id: String!
   title: String!
   slug: String!
   photo: String
-  description: String
-  publishedAt: String!
-  viewCount: Int!
-  shareCount: Int!
-  category: Category!
+  content: String
   user: User!
-  contents: [Content!]!
-  comments: [Comment!]!
+  postType: PostType!
+  publishDate: String!
+  viewCount: Int
+  likeCount: Int
 }
 
 input CreatePostInput {
   title: String!
   photo: String
-  description: String
-  publishedAt: String!
+  content: String
+  postType: PostType!
+  publishDate: String!
+  viewCount: Int
+  likeCount: Int
 }
 
 input UpdatePostInput {
   title: String
   photo: String
-  description: String
-  publishedAt: String
+  content: String
+  postType: PostType
+  publishDate: String
+  viewCount: Int
+  likeCount: Int
 }
 
-type Content {
-  id: ID!
+type SiteSettings {
+  id: String!
+  name: String!
+  phone: String
+  mail: String
+  address: String
+  mapLongitude: Float
+  mapLatitude: Float
+  about: String
+  aboutShort: String
+  classCount: Int
+  studentCount: Int
+  teacherCount: Int
+}
+
+input UpdateSiteSettings {
+  name: String
+  phone: String
+  mail: String
+  address: String
+  mapLongitude: Float
+  mapLatitude: Float
+  about: String
+  aboutShort: String
+  classCount: Int
+  studentCount: Int
+  teacherCount: Int
+}
+
+type Link {
+  id: String!
+  title: String!
+  url: String!
+}
+
+input CreateLinkInput {
+  title: String!
+  url: String!
+}
+
+input UpdateLinkInput {
   title: String
-  description: String
-  latitude: Float
-  longitude: Float
-  photos: [String!]!
-  video: String
-  embedCode: String
-  mediaType: MediaType
-  codeType: CodeType
-  contentType: ContentType!
-  soruce: String
-  order: Int
+  url: String
 }
 
-input CreateContentInput {
-  title: String
-  description: String
-  latitude: Float
-  longitude: Float
-  photos: [String!]!
-  embedCode: String
-  mediaType: MediaType
-  codeType: CodeType
-  contentType: ContentType!
-  soruce: String
+enum PostType {
+  NEWS
+  ANNOUNCEMENTS
+  ACTIVITES
 }
 
-input UpdateContentInput {
-  title: String
-  description: String
-  latitude: Float
-  longitude: Float
-  photos: [String!]!
-  embedCode: String
-  mediaType: MediaType
-  codeType: CodeType
-  contentType: ContentType
-  soruce: String
-}
-
-type Comment {
-  id: ID!
-  text: String!
-  user: User!
-  status: CommentStatus
-  post: Post!
-  createdAt: String!
-}
-
-enum CommentStatus {
-  PENDING
-  PUBLISHED
-  DECLINED
-}
-enum UsageType {
-  BLOG
-  PAGE
-}
-
-enum CodeType {
-  C
-  CSHARP
-  CSS
-  HTML
-  HTTP
-  JAVA
-  JAVASCRIPT
-  JSON
-  MARKDOWN
-  PHP
-  PLAINTEXT
-  PYTHON
-  SCSS
-  SQL
-  TYPESCRIPT
-  XML
-  YAML
-}
-enum MediaType {
-  SINGLE
-  THUMBS
-  GALLERY
-}
-
-enum ContentType {
-  TEXT
-  IMAGE
-  VIDEO
-  TWITTER
-  FACEBOOK
-  INSTAGRAM
-  MAP
-  CODE
-}
 enum UserType {
   ADMIN
   MODERATOR
-  USER
-}
-enum ThemeType {
-  LIGHT
-  DARK
 }

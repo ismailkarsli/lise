@@ -1,16 +1,15 @@
 import userMutation from "./mutation/user";
-import categoryMutation from "./mutation/category";
 import postMutation from "./mutation/post";
-import contentMutation from "./mutation/content";
-import commentMutation from "./mutation/comment";
 import photoMutation from "./mutation/photo";
+import linkMutation from "./mutation/link";
+import siteSettingsMutation from "./mutation/siteSettings";
+
 const Mutation = {
   ...userMutation,
-  ...categoryMutation,
   ...postMutation,
-  ...contentMutation,
-  ...commentMutation,
   ...photoMutation,
+  ...linkMutation,
+  ...siteSettingsMutation,
 };
 
 export default Mutation;
