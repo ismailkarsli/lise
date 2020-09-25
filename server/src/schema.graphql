@@ -4,11 +4,14 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
-  posts(postType: PostType): [Post!]!
-  post(id: ID!): Post!
+  news: [New!]!
+  new(id: ID!): New!
 
-  links: [Link!]!
-  link(id: ID!): Link!
+  announcements: [Announcement!]!
+  announcement(id: ID!): Announcement!
+
+  events: [Event!]!
+  events(id: ID!): Event!
 
   siteSettings: SiteSettings!
 }
@@ -19,15 +22,19 @@ type Mutation {
   deleteUser(id: ID!): User!
   loginUser(data: LoginUserInput!): AuthPayload!
 
-  createPost(data: CreatePostInput!): Post!
-  updatePost(data: UpdatePostInput!, id: ID!): Post!
-  deletePost(id: ID!): Post!
+  createNew(data: CreateNewInput!): New!
+  updateNew(data: UpdateNewInput!): New!
+  deleteNew(id: ID!): New!
+
+  createAnnouncement(data: CreateAnnouncementInput!): Announcement!
+  updateAnnouncement(data: UpdateAnnouncementInput!): Announcement!
+  deleteAnnouncement(id: ID!): Announcement!
+
+  createEvent(data: CreateEventInput!): Event!
+  updateEvent(data: UpdateEventInput!): Event!
+  deleteEvent(id: ID!): Event!
 
   updateSiteSettings(data: UpdateSiteSettings!): SiteSettings!
-
-  createLink(data: CreateLinkInput!): Link!
-  updateLink(data: UpdateLinkInput!, id: ID!): Link!
-  deleteLink(id: ID!): Link!
 
   uploadPhoto(photo: Upload!): UploadPayload!
 }
@@ -68,39 +75,112 @@ type AuthPayload {
   user: User!
 }
 
-type Post {
+type New {
   id: String!
   title: String!
   slug: String!
   photo: String
   content: String
-  user: User!
-  postType: PostType!
   publishDate: String!
-  eventStartDate: String
-  eventEndDate: String
   viewCount: Int
   likeCount: Int
+  user: User!
+  createdAt: String!
+  updatedAt: String!
 }
 
-input CreatePostInput {
+input CreateNewInput {
   title: String!
   photo: String
   content: String
-  postType: PostType!
-  publishDate: String!
-  viewCount: Int
-  likeCount: Int
-}
-
-input UpdatePostInput {
-  title: String
-  photo: String
-  content: String
-  postType: PostType
   publishDate: String
   viewCount: Int
   likeCount: Int
+  user: User!
+}
+
+input UpdateNewInput {
+  title: String
+  photo: String
+  content: String
+  publishDate: String
+  viewCount: Int
+  likeCount: Int
+  user: User
+}
+
+type Announcement {
+  id: String!
+  title: String!
+  slug: String!
+  photo: String
+  content: String
+  publishDate: String!
+  viewCount: Int
+  likeCount: Int
+  user: User!
+  createdAt: String!
+  updatedAt: String!
+}
+
+input CreateAnnouncementInput {
+  title: String!
+  photo: String
+  content: String
+  publishDate: String
+  viewCount: Int
+  likeCount: Int
+  user: User!
+}
+
+input UpdateAnnouncementInput {
+  title: String
+  photo: String
+  content: String
+  publishDate: String
+  viewCount: Int
+  likeCount: Int
+  user: User
+}
+
+type Event {
+  id: String!
+  title: String!
+  slug: String!
+  photo: String
+  content: String
+  publishDate: String!
+  startDate: String
+  endDate: String
+  viewCount: Int
+  likeCount: Int
+  user: User!
+  createdAt: String!
+  updatedAt: String!
+}
+
+input CreateEventInput {
+  title: String!
+  photo: String
+  content: String
+  publishDate: String
+  startDate: String
+  endDate: String
+  viewCount: Int
+  likeCount: Int
+  user: User!
+}
+
+input UpdateEventInput {
+  title: String
+  photo: String
+  content: String
+  publishDate: String
+  startDate: String
+  endDate: String
+  viewCount: Int
+  likeCount: Int
+  user: User
 }
 
 type SiteSettings {
@@ -130,28 +210,6 @@ input UpdateSiteSettings {
   classCount: Int
   studentCount: Int
   teacherCount: Int
-}
-
-type Link {
-  id: String!
-  title: String!
-  url: String!
-}
-
-input CreateLinkInput {
-  title: String!
-  url: String!
-}
-
-input UpdateLinkInput {
-  title: String
-  url: String
-}
-
-enum PostType {
-  NEWS
-  ANNOUNCEMENTS
-  EVENTS
 }
 
 enum UserType {

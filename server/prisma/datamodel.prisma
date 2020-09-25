@@ -4,24 +4,37 @@ type User {
   password: String!
   userType: UserType!
   posts: [Post!]! @relation(name: "PostToUser", onDelete: CASCADE)
+  announcements: [Announcement!]!
+    @relation(name: "AnnmntToUser", onDelete: CASCADE)
   events: [Event!]! @relation(name: "EventToUser", onDelete: CASCADE)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
 
-type Post {
+type New {
   id: ID! @id
   title: String!
   slug: String!
   photo: String
   content: String
-  postType: PostType!
   publishDate: DateTime!
   viewCount: Int! @default(value: 0)
   likeCount: Int! @default(value: 0)
-  eventStartDate: DateTime
-  eventEndDate: DateTime
-  user: User! @relation(name: "PostToUser", onDelete: SET_NULL)
+  user: User! @relation(name: "NewsToUser", onDelete: SET_NULL)
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type Announcement {
+  id: ID! @id
+  title: String!
+  slug: String!
+  photo: String
+  content: String
+  publishDate: DateTime!
+  viewCount: Int! @default(value: 0)
+  likeCount: Int! @default(value: 0)
+  user: User! @relation(name: "AnnmntToUser", onDelete: SET_NULL)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
@@ -51,21 +64,6 @@ type SiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String
-  aboutShort: String
-  classCount: Int
-  studentCount: Int
-  teacherCount: Int
-}
-
-type Link {
-  id: ID! @id
-  title: String!
-  url: String!
-}
-
-enum PostType {
-  NEWS
-  ANNOUNCEMENTS
 }
 
 enum UserType {
