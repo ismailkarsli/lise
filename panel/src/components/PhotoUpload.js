@@ -1,8 +1,8 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from "react";
 
-import { useMutation } from '@apollo/client';
-import { useDropzone } from 'react-dropzone';
-import { UPLOAD_PHOTO } from '../gql/photo/mutation';
+import { useMutation } from "@apollo/client";
+import { useDropzone } from "react-dropzone";
+import { UPLOAD_PHOTO } from "../gql/photo/mutation";
 
 export default ({
   images,
@@ -30,16 +30,16 @@ export default ({
       return (
         <div
           key={i}
-          className='m-2 p-2 inline-block border b-gray-300 relative'
+          className="m-2 p-2 inline-block border b-gray-300 relative"
         >
           <div
             onClick={() => deletePhoto(photo)}
-            className='absolute t-0 r-0 py-1 px-2 text-sm text-white bg-red-600'
+            className="absolute t-0 r-0 py-1 px-2 text-sm text-white bg-red-600"
           >
             X
           </div>
           <img
-            alt='Görsel'
+            alt="Görsel"
             src={`${process.env.REACT_APP_GRAPHQL_SERVER}images/${previewWidth}/${previewHeight}/${photo}`}
           />
         </div>
@@ -77,20 +77,20 @@ export default ({
     <div>
       {renderPhotos(addedPhotos)}
       {isSingle && addedPhotos.length > 0 ? (
-        ''
+        ""
       ) : (
         <div {...getRootProps()}>
           <input {...getInputProps({ multiple: !isSingle })} />
           {isDragActive ? (
             <div>
-              <div className='block bg-yellow-200 border b-green-200 text-center p-12 font-display'>
-                Fotoğrafı buraya bırakın
+              <div className="block bg-yellow-200 border b-green-200 text-center p-0 lg:p-12 font-display">
+                Fotoğrafı buraya bırakın.
               </div>
             </div>
           ) : (
             <div>
-              <div className='block bg-green-200 text-center p-12 border b-green-200  font-display'>
-                Fotoğrafı buraya bırakın veya bilgisayarınızdan bir dosya seçin
+              <div className="block bg-green-200 text-center p-3 sm:p-6 md:p-8 lg:p-12 border b-green-200  font-display">
+                Bilgisayarınızdan bir fotoğraf seçin.
               </div>
             </div>
           )}

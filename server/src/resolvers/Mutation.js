@@ -1,15 +1,17 @@
-import userMutation from "./mutation/user";
-import postMutation from "./mutation/post";
-import photoMutation from "./mutation/photo";
-import linkMutation from "./mutation/link";
-import siteSettingsMutation from "./mutation/siteSettings";
+import user from "./mutation/user";
+import news from "./mutation/news";
+import announcement from "./mutation/announcement";
+import event from "./mutation/event";
+import photo from "./mutation/photo";
+import siteSettings from "./mutation/siteSettings";
 
-const Mutation = {
-  ...userMutation,
-  ...postMutation,
-  ...photoMutation,
-  ...linkMutation,
-  ...siteSettingsMutation,
+const mutations = {
+  ...user,
+  ...news,
+  ...announcement,
+  ...event,
+  ...photo,
+  ...siteSettings,
 };
 
-export default Mutation;
+export default mutations;

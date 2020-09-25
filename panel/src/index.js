@@ -1,17 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import './styles/tailwind.css';
-import "./styles/main.css"
+import "./styles/tailwind.css";
+import "./styles/main.css";
 
-import AppRouter from './routes/AppRouter';
+import AppRouter from "./routes/AppRouter";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <AppRouter />
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<AppRouter />, document.getElementById("root"));
 
 /* 
 // If you want your app to work offline and load faster, you can change

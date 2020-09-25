@@ -8,6 +8,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
   const [username, setUsername] = useState(data ? data.username : "");
   const [userType, setUserType] = useState(data ? data.userType : "MODERATOR");
+  const [nameSurname, setNameSurname] = useState(data ? data.nameSurname : "");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -34,6 +35,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     }
 
     const sendData = {
+      nameSurname,
       username,
       password: password.length === 0 ? undefined : password,
       userType,
@@ -46,18 +48,32 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     <form onSubmit={onSubmit} className="w-full bg-white p-5">
       <h1 className="text-2xl font-semibold mb-3 text-center">{pageTitle}</h1>
       {error && error}
+      <div className="w-full pb-2">
+        <div className="flex flex-wrap">
+          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Kullanıcı Adı
+          </label>
+          <input
+            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            type="text"
+            placeholder="Kullanıcı Adı"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
 
-      <div className="flex flex-wrap">
-        <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Kullanıcı Adı
-        </label>
-        <input
-          className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-          type="text"
-          placeholder="Kullanıcı adı"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <div className="flex flex-wrap">
+          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Ad Soyad
+          </label>
+          <input
+            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            type="text"
+            placeholder="Ad Soyad"
+            value={nameSurname}
+            onChange={(e) => setNameSurname(e.target.value)}
+          />
+        </div>
 
         <div className="w-full pb-2">
           <label
@@ -88,27 +104,29 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
           </div>
         </div>
 
-        <label className=" uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-          Şifre
-        </label>
-        <div className="relative w-full">
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            type={passwordVisible ? "text" : "password"}
-            placeholder="Şifre"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <div
-            onClick={() => setPasswordVisible(!passwordVisible)}
-            className="absolute"
-            style={{ top: "10px", right: "5px" }}
-          >
-            {passwordVisible ? (
-              <AiOutlineEyeInvisible className="text-2xl" />
-            ) : (
-              <AiOutlineEye className="text-2xl" />
-            )}
+        <div className="w-full pb-2">
+          <label className=" uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Şifre
+          </label>
+          <div className="relative w-full">
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Şifre"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <div
+              onClick={() => setPasswordVisible(!passwordVisible)}
+              className="absolute"
+              style={{ top: "10px", right: "5px" }}
+            >
+              {passwordVisible ? (
+                <AiOutlineEyeInvisible className="text-2xl" />
+              ) : (
+                <AiOutlineEye className="text-2xl" />
+              )}
+            </div>
           </div>
         </div>
       </div>

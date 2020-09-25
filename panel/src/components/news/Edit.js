@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_SETTINGS } from "../../gql/settings/query";
-import { UPDATE_SETTINGS } from "../../gql/settings/mutation";
+import { GET_NEW } from "../../gql/news/query";
 import ErrorContainer from "../ui/ErrorContainer";
+import { UPDATE_NEW } from "../../gql/news/mutation";
 import Loading from "../ui/Loading";
-
+import { useParams } from "react-router-dom";
 import Form from "./Form";
 import { history } from "../../routes/AppRouter";
 
 export default () => {
-  const { loading, error, data, networkStatus } = useQuery(GET_SETTINGS, {
+  const params = useParams();
+  const { loading, error, data, networkStatus } = useQuery(GET_NEW, {
+    variables: {
+      id: params.dataId,
+    },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
-  const [updateSettings, { loading: mutationLoading }] = useMutation(
-    UPDATE_SETTINGS
-  );
+
+  const [updateNew, { loading: mutationLoading }] = useMutation(UPDATE_NEW);
   const [submitError, setSubmitError] = useState("");
 
   if (loading || networkStatus === 4) {
@@ -32,14 +35,15 @@ export default () => {
 
   const handleSubmit = async (formData) => {
     try {
-      const result = await updateSettings({
+      const result = await updateNew({
         variables: {
+          id: params.dataId,
           ...formData,
         },
       });
 
       if (result) {
-        history.push("/ayarlar");
+        history.push("/haberler");
       }
     } catch (err) {
       console.log(err);
@@ -52,8 +56,8 @@ export default () => {
       {submitError && <ErrorContainer title={submitError} />}
       <Form
         handleSubmit={handleSubmit}
-        title={"Ayarları düzenle"}
-        data={data.siteSettings}
+        title={"Haber Düzenle"}
+        data={data.new}
         mutationLoading={mutationLoading}
       />
     </div>

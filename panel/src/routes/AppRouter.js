@@ -8,8 +8,9 @@ import PrivateRoute from "./PrivateRoute";
 import Login from "../components/Login";
 import Dashboard from "../components/Dashboard";
 
-import User from "../components/user/User";
-import Settings from "../components/settings/Settings";
+import User from "../components/user";
+import Settings from "../components/settings";
+import News from "../components/news/";
 
 export const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
@@ -23,7 +24,7 @@ const AppRouter = () => {
           <Route exact path="/" component={Login} />
           <PrivateRoute path="/anasayfa" component={Dashboard} />
           <PrivateRoute path="/kullanicilar" component={User} />
-          <PrivateRoute path="/haberler" component={User} />
+          <PrivateRoute path="/haberler" component={News} />
           <PrivateRoute path="/duyurular" component={User} />
           <PrivateRoute path="/etkinlikler" component={User} />
           <PrivateRoute path="/ayarlar" component={Settings} />

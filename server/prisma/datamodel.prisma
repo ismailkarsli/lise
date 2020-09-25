@@ -1,9 +1,10 @@
 type User {
   id: ID! @id
+  nameSurname: String
   username: String! @unique
   password: String!
   userType: UserType!
-  posts: [Post!]! @relation(name: "PostToUser", onDelete: CASCADE)
+  news: [New!]! @relation(name: "NewsToUser", onDelete: CASCADE)
   announcements: [Announcement!]!
     @relation(name: "AnnmntToUser", onDelete: CASCADE)
   events: [Event!]! @relation(name: "EventToUser", onDelete: CASCADE)

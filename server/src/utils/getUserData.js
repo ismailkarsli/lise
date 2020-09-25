@@ -12,14 +12,14 @@ const getUserData = (request, requireAdmin = false) => {
 
     if (requireAdmin) {
       if (decoded.userType !== "ADMIN") {
-        throw new Error("Yönetici yetkisi gereklidir");
+        throw new Error("Bu işlem için yönetici olmanız gerekmektedir.");
       }
     }
 
     return { id: decoded.id, userType: decoded.userType };
   }
 
-  throw new Error("Yetkiniz yeterli değil.");
+  throw new Error("Bu işlemi gerçekleştirmek için yetkiniz bulunmuyor.");
 };
 
 export default getUserData;

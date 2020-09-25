@@ -1,12 +1,15 @@
-import userQuery from "./query/user";
-import postQuery from "./query/post";
-import linkQuery from "./query/link";
-import siteSettingsQuery from "./query/siteSettings";
-const Query = {
-  ...userQuery,
-  ...postQuery,
-  ...linkQuery,
-  ...siteSettingsQuery,
+import user from "./query/user";
+import news from "./query/news";
+import announcement from "./query/announcement";
+import event from "./query/event";
+import siteSettings from "./query/siteSettings";
+
+const queries = {
+  ...user,
+  ...news,
+  ...announcement,
+  ...event,
+  ...siteSettings,
 };
 
-export default Query;
+export default queries;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ErrorContainer from "./../ui/ErrorContainer";
+import GoogleMap from "./../ui/GoogleMaps";
 import { ScaleLoader } from "react-spinners";
 
 export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
@@ -14,7 +15,6 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   );
   const [mapLatitude, setMapLatitude] = useState(data ? data.mapLatitude : "");
   const [about, setAbout] = useState(data ? data.about : "");
-  const [aboutShort, setAboutShort] = useState(data ? data.aboutShort : "");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +22,12 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
     const sendData = {
       name,
+      phone,
+      mail,
+      address,
+      mapLongitude: mapLongitude ? parseFloat(mapLongitude) : undefined,
+      mapLatitude: mapLatitude ? parseFloat(mapLatitude) : undefined,
+      about,
     };
 
     return handleSubmit(sendData);
@@ -70,19 +76,61 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
             onChange={(e) => setMail(e.target.value)}
           />
         </div>
-        <div className="w-full p-2">
+      </div>
+      <div className="w-full p-2">
+        <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Adres
+        </label>
+        <input
+          className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          type="text"
+          placeholder="Adres"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+      </div>
+      <div className="flex flex-col sm:flex-row">
+        <div className="w-full sm:w-1/2  p-2 mb-8" style={{ height: "21rem" }}>
           <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Telefon Numarası
+            Hakkında
           </label>
-          <input
-            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          <textarea
+            className="appearance-none w-full h-full bg-gray-200 text-gray-700 border rounded   leading-tight focus:outline-none focus:bg-white resize-y"
             type="textarea"
-            placeholder="Telefon Numarası"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            rows={8}
+            placeholder="Hakkında"
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+          />
+        </div>
+        <div className="w-full sm:w-1/2 p-2">
+          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Harita
+          </label>
+          <GoogleMap
+            addMarker={true}
+            latitude={mapLatitude}
+            setLatitude={setMapLatitude}
+            draggable={true}
+            longitude={mapLongitude}
+            setLongitude={setMapLongitude}
+            /*
+              Google map api key kullanılmalı
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
+              */
+            googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places`}
+            loadingElement={<div style={{ height: `100%` }} />}
+            containerElement={<div style={{ minHeight: `320px` }} />}
+            mapElement={
+              <div
+                className="block w-full h-full"
+                style={{ minWidth: "100%", height: "320px" }}
+              />
+            }
           />
         </div>
       </div>
+
       <div className="flex">
         <button
           className="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"

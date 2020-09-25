@@ -11,7 +11,7 @@ type Query {
   announcement(id: ID!): Announcement!
 
   events: [Event!]!
-  events(id: ID!): Event!
+  event(id: ID!): Event!
 
   siteSettings: SiteSettings!
 }
@@ -23,7 +23,7 @@ type Mutation {
   loginUser(data: LoginUserInput!): AuthPayload!
 
   createNew(data: CreateNewInput!): New!
-  updateNew(data: UpdateNewInput!): New!
+  updateNew(id: ID!, data: UpdateNewInput!): New!
   deleteNew(id: ID!): New!
 
   createAnnouncement(data: CreateAnnouncementInput!): Announcement!
@@ -46,20 +46,25 @@ type UploadPayload {
 type User {
   id: String!
   username: String!
+  nameSurname: String
   password: String!
   userType: UserType!
-  posts: [Post!]!
+  news: [New!]!
+  announcements: [Announcement!]!
+  events: [Event!]!
   updatedAt: String!
   createdAt: String!
 }
 
 input CreateUserInput {
+  nameSurname: String
   username: String!
   password: String!
   userType: UserType!
 }
 
 input UpdateUserInput {
+  nameSurname: String
   username: String
   password: String
   userType: UserType
@@ -72,7 +77,7 @@ input LoginUserInput {
 
 type AuthPayload {
   token: String!
-  user: User!
+  user: String!
 }
 
 type New {
@@ -96,7 +101,7 @@ input CreateNewInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: User!
+  user: String!
 }
 
 input UpdateNewInput {
@@ -106,7 +111,7 @@ input UpdateNewInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: User
+  user: String
 }
 
 type Announcement {
@@ -130,7 +135,7 @@ input CreateAnnouncementInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: User!
+  user: String!
 }
 
 input UpdateAnnouncementInput {
@@ -140,7 +145,7 @@ input UpdateAnnouncementInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: User
+  user: String
 }
 
 type Event {
@@ -168,7 +173,7 @@ input CreateEventInput {
   endDate: String
   viewCount: Int
   likeCount: Int
-  user: User!
+  user: String!
 }
 
 input UpdateEventInput {
@@ -180,7 +185,7 @@ input UpdateEventInput {
   endDate: String
   viewCount: Int
   likeCount: Int
-  user: User
+  user: String
 }
 
 type SiteSettings {
@@ -192,10 +197,6 @@ type SiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String
-  aboutShort: String
-  classCount: Int
-  studentCount: Int
-  teacherCount: Int
 }
 
 input UpdateSiteSettings {
@@ -206,10 +207,6 @@ input UpdateSiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String
-  aboutShort: String
-  classCount: Int
-  studentCount: Int
-  teacherCount: Int
 }
 
 enum UserType {

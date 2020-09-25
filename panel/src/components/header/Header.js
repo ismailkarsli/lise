@@ -24,7 +24,7 @@ const Header = (props) => {
               style={{ maxWidth: '250px' }}
               className='py-2'
             /> */}
-            <p className="text-4xl text-white">Logo</p>
+            <p className="text-4xl text-white">Yönetim Paneli</p>
           </div>
           <div className="hidden sm:flex items-center justify-center flex-1">
             <TopMenuItem url="/anasayfa" title="Anasayfa" />

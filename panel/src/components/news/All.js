@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_USERS } from "../../gql/user/query";
-import { DELETE_USER } from "./../../gql/user/mutation";
+import { GET_NEWS } from "../../gql/news/query";
+import { DELETE_NEW } from "./../../gql/news/mutation";
 import { Link } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
 import Td from "../ui/TableData";
 import Delete from "../ui/Delete";
 import ErrorContainer from "../ui/ErrorContainer";
+import moment from "moment";
+import "moment/locale/tr";
 import { BsArrowClockwise, BsPlusCircle } from "react-icons/bs";
 
 const All = () => {
+  moment.locale("tr");
   const [submitError, setSubmitError] = useState(null);
-  const [deleteUser, { loading: deleteLoading }] = useMutation(DELETE_USER);
-  const { loading, error, data, networkStatus, refetch } = useQuery(GET_USERS, {
+  const [deleteNew, { loading: deleteLoading }] = useMutation(DELETE_NEW);
+  const { loading, error, data, networkStatus, refetch } = useQuery(GET_NEWS, {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
@@ -28,10 +31,10 @@ const All = () => {
     );
   }
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async (id) => {
     try {
-      const result = await deleteUser({
-        variables: { id: userId },
+      const result = await deleteNew({
+        variables: { id: id },
       });
       if (result) {
         refetch();
@@ -41,14 +44,15 @@ const All = () => {
       console.log(err);
     }
   };
+
   return (
     <div>
       <div className="flex mb-4">
         <div className="w-1/2">
-          <h2 className="text-4xl">Üye listesi</h2>
+          <h2 className="text-4xl">Haber listesi</h2>
           <p>
-            Aşağıda siteye üye olan bütün kullanıcılar listelenmiştir.
-            Kullanıcıları düzenleyebilir veya silebilirsiniz.
+            Buradan sitedeki tüm haberleri görüntüleyebilir ve
+            düzenleyebilirsiniz.
           </p>
         </div>
         <div className="flex w-1/2 items-center justify-end">
@@ -60,7 +64,7 @@ const All = () => {
           </button>
 
           <Link
-            to="/kullanicilar/ekle"
+            to="/haberler/ekle"
             className="bg-white hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
           >
             <BsPlusCircle />
@@ -72,31 +76,41 @@ const All = () => {
         <thead>
           <tr>
             <Th>#</Th>
-            <Th custom="text-left whitespace-no-wrap">Ad Soyad</Th>
-            <Th custom="text-left whitespace-no-wrap">Kullanıcı Adı</Th>
-            <Th custom=" whitespace-no-wrap text-left">Rol</Th>
+            <Th custom="text-left whitespace-no-wrap">Haber Başlığı</Th>
+            <Th custom=" whitespace-no-wrap text-left">Yayınlanma Tarihi</Th>
+            <Th custom=" whitespace-no-wrap text-left">Oluşturan Kullanıcı</Th>
+            <Th custom=" whitespace-no-wrap text-left">Beğenilme Sayısı</Th>
+            <Th custom=" whitespace-no-wrap text-left">Görüntülenme Sayısı</Th>
             <Th>İşlemler</Th>
           </tr>
         </thead>
         <tbody>
-          {data.users.map((user, index) => (
-            <tr key={user.id}>
+          {data.news.map((item, index) => (
+            <tr key={item.id}>
               <Td custom="text-center w-1/12">{index + 1}</Td>
-              <Td custom=" whitespace-no-wrap">{user.nameSurname}</Td>
-              <Td custom=" whitespace-no-wrap">{user.username}</Td>
-              <Td>{user.userType === "ADMIN" ? "Yönetici" : "Moderatör"}</Td>
+              <Td custom=" whitespace-no-wrap">{item.title}</Td>
+              <Td custom=" whitespace-no-wrap">
+                {moment(item.publishDate).format("Do MMMM YYYY, h:mm")}
+              </Td>
+              <Td custom=" whitespace-no-wrap">
+                {item.user && item.user.nameSurname
+                  ? item.user.nameSurname
+                  : item.user.username}
+              </Td>
+              <Td custom=" whitespace-no-wrap">{item.likeCount}</Td>
+              <Td custom=" whitespace-no-wrap">{item.viewCount}</Td>
               <Td custom="text-center w-2/12">
                 <div className="inline-flex">
                   <Link
-                    to={`/kullanicilar/duzenle/${user.id}`}
+                    to={`/haberler/duzenle/${item.id}`}
                     className="bg-blue-600 hover:bg-blue-400 text-gray-100 py-1 text-xs px-2 rounded-l"
                   >
                     Düzenle
                   </Link>
                   <Delete
                     handleDelete={handleDelete}
-                    dataId={user.id}
-                    title={user.username}
+                    dataId={item.id}
+                    title={item.username}
                     deleteLoading={deleteLoading}
                   />
                 </div>

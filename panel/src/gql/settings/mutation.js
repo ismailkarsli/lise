@@ -9,10 +9,6 @@ export const UPDATE_SETTINGS = gql`
     $mapLongitude: Float
     $mapLatitude: Float
     $about: String
-    $aboutShort: String
-    $classCount: Int
-    $studentCount: Int
-    $teacherCount: Int
   ) {
     updateSiteSettings(
       data: {
@@ -23,10 +19,6 @@ export const UPDATE_SETTINGS = gql`
         mapLongitude: $mapLongitude
         mapLatitude: $mapLatitude
         about: $about
-        aboutShort: $aboutShort
-        classCount: $classCount
-        studentCount: $studentCount
-        teacherCount: $teacherCount
       }
     ) {
       id
@@ -37,10 +29,6 @@ export const UPDATE_SETTINGS = gql`
       mapLongitude
       mapLatitude
       about
-      aboutShort
-      classCount
-      studentCount
-      teacherCount
     }
   }
 `;

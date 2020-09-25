@@ -4,14 +4,15 @@ import { GET_USER } from "../../gql/user/query";
 import ErrorContainer from "../ui/ErrorContainer";
 import { UPDATE_USER } from "../../gql/user/mutation";
 import Loading from "../ui/Loading";
-
+import { useParams } from "react-router-dom";
 import Form from "./Form";
 import { history } from "../../routes/AppRouter";
 
-export default ({ dataId }) => {
+export default () => {
+  const params = useParams();
   const { loading, error, data, networkStatus } = useQuery(GET_USER, {
     variables: {
-      id: dataId,
+      id: params.dataId,
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
@@ -35,7 +36,7 @@ export default ({ dataId }) => {
     try {
       const result = await updateUser({
         variables: {
-          id: dataId,
+          id: params.dataId,
           ...formData,
         },
       });

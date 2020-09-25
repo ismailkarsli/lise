@@ -7,7 +7,7 @@ const siteSettings = {
     return prisma.mutation.createSiteSettings(
       {
         data: {
-          name: "Okul",
+          name: "Lise",
         },
       },
       info
