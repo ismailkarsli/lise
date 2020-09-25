@@ -53,6 +53,10 @@
         padding: 12px 32px;
         justify-content: space-between;
         width: 100%;
+
+        .footer-title {
+          font-size: 0.9rem;
+        }
         .social-icons {
           > span {
             margin-right: 4px;
