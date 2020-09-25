@@ -1,0 +1,59 @@
+.footer {
+  display: flex;
+  margin-top: 16px;
+  color: rgb(240, 240, 240);
+  background-color: #2a303e;
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .footer-top {
+      display: flex;
+      width: 100%;
+      padding: 32px;
+      > div {
+        flex: 1;
+        h2 {
+          margin-bottom: 8px;
+        }
+      }
+      .footer-menu {
+        ul {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          li {
+            margin-top: 8px;
+            margin-bottom: 8px;
+          }
+        }
+      }
+      .footer-news {
+        li {
+          margin-top: 8px;
+          margin-bottom: 8px;
+        }
+      }
+
+      .footer-map {
+        .map-content {
+          width: 100%;
+          height: 200px;
+          background-color: rgb(100, 100, 100);
+        }
+      }
+    }
+    .footer-bottom {
+      width: 100%;
+      height: 100%;
+      background-color: #1d212b;
+
+      .footer-bottom-content {
+        display: flex;
+        padding: 12px 32px;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
+}

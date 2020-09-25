@@ -94,7 +94,7 @@ export default () => {
                   <time dateTime="2019-08-07T07:32:15+00:00">
                     <BsCalendar /> 7 Ağustos 2019
                   </time>
-                </div>{" "}
+                </div>
               </div>
             </div>
           </div>
