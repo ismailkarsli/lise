@@ -24,6 +24,9 @@ html {
   margin-right: auto;
   max-width: 1280px;
 }
+svg {
+  margin-bottom: -1px;
+}
 
 @import "header";
 @import "footer";

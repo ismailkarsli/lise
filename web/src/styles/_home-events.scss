@@ -25,6 +25,10 @@
         > a > h3 {
           font-weight: 500;
           font-size: 1.3rem;
+          color: #0241a6;
+          &:hover {
+            color: $secondaryColor;
+          }
         }
         .event-date {
           .day {

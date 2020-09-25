@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HiLocationMarker, HiPhone, HiMail } from "react-icons/hi";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -29,32 +31,27 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-news">
-            <h2>Haberler</h2>
-            {/* <ul>
-              <li>
-                <Link to="/">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                  a egestas erat
-                </Link>
-              </li>
-              <li>
-                <Link to="/">
-                  Nulla elementum nulla id leo sagittis laoreet. Sed consequat,
-                  mi in fermentum congue
-                </Link>
-              </li>
-              <li>
-                <Link to="/">
-                  Curabitur rutrum, est id euismod porttitor, velit sapien
-                  scelerisque sem, id iaculis
-                </Link>
-              </li>
-            </ul> */}
+          <div className="footer-contact">
+            <h2>İletişim</h2>
+            <div className="address">
+              <HiLocationMarker /> Kemerburgaz Cad. İstanbul/Eyüp
+            </div>
+            <div className="phone">
+              <HiPhone /> 0537 126 84 56
+            </div>
+            <div className="mail">
+              <HiMail /> okul@meb.gov.tr
+            </div>
           </div>
           <div className="footer-map">
             <h2>Harita</h2>
-            <div className="map-content">Burada bir harita var.</div>
+            <div className="map-content">
+              <img
+                style={{ width: "100%" }}
+                alt="Harita örnek"
+                src="https://i.imgur.com/h4r5aDF.png"
+              />
+            </div>
           </div>
         </div>
         <div className="footer-bottom">
@@ -62,7 +59,17 @@ const Footer = () => {
             <div className="footer-title">
               Tüm hakları saklıdır &copy; Okul adı
             </div>
-            <div className="social-icons">Sosyal medya bağlantıları</div>
+            <div className="social-icons">
+              <span>
+                <FaFacebookF />
+              </span>
+              <span>
+                <FaTwitter />
+              </span>
+              <span>
+                <FaInstagram />
+              </span>
+            </div>
           </div>
         </div>
       </div>
