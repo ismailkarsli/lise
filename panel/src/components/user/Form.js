@@ -48,20 +48,18 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       {error && error}
 
       <div className="flex flex-wrap">
-        <div className="w-full sm:w-1/2 lg:w-1/3 p-2">
-          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Kullanıcı Adı
-          </label>
-          <input
-            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            type="text"
-            placeholder="Kullanıcı adı"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+        <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Kullanıcı Adı
+        </label>
+        <input
+          className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+          type="text"
+          placeholder="Kullanıcı adı"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-        <div className="w-full sm:w-1/2 lg:w-1/3 p-2">
+        <div className="w-full pb-2">
           <label
             className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-state"
@@ -75,8 +73,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
               className="appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="user-role"
             >
-              <option value="MODERATOR">Moderatör</option>
               <option value="ADMIN">Yönetici</option>
+              <option value="MODERATOR">Moderatör</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -90,29 +88,27 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
           </div>
         </div>
 
-        <div className="w-full sm:w-1/2 lg:w-1/3 p-2">
-          <label className=" uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Şifre
-          </label>
-          <div className="relative w-full">
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              type={passwordVisible ? "text" : "password"}
-              placeholder="Şifre"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div
-              onClick={() => setPasswordVisible(!passwordVisible)}
-              className="absolute"
-              style={{ top: "10px", right: "5px" }}
-            >
-              {passwordVisible ? (
-                <AiOutlineEyeInvisible className="text-2xl" />
-              ) : (
-                <AiOutlineEye className="text-2xl" />
-              )}
-            </div>
+        <label className=" uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+          Şifre
+        </label>
+        <div className="relative w-full">
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            type={passwordVisible ? "text" : "password"}
+            placeholder="Şifre"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div
+            onClick={() => setPasswordVisible(!passwordVisible)}
+            className="absolute"
+            style={{ top: "10px", right: "5px" }}
+          >
+            {passwordVisible ? (
+              <AiOutlineEyeInvisible className="text-2xl" />
+            ) : (
+              <AiOutlineEye className="text-2xl" />
+            )}
           </div>
         </div>
       </div>

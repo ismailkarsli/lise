@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER } from "../../gql/user/query";
+import ErrorContainer from "../ui/ErrorContainer";
 import { UPDATE_USER } from "../../gql/user/mutation";
 import Loading from "../ui/Loading";
 
@@ -16,6 +17,7 @@ export default ({ dataId }) => {
     fetchPolicy: "network-only",
   });
   const [updateUser, { loading: mutationLoading }] = useMutation(UPDATE_USER);
+  const [submitError, setSubmitError] = useState("");
 
   if (loading || networkStatus === 4) {
     return <Loading />;
@@ -43,11 +45,13 @@ export default ({ dataId }) => {
       }
     } catch (err) {
       console.log(err);
+      setSubmitError("Hata: " + err.message);
     }
   };
 
   return (
     <div>
+      {submitError && <ErrorContainer title={submitError} />}
       <Form
         handleSubmit={handleSubmit}
         title={"Üye Düzenle"}

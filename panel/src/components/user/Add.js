@@ -19,7 +19,7 @@ const Add = () => {
       }
     } catch (err) {
       console.log(err);
-      setSubmitError(err.message);
+      setSubmitError("Hata: " + err.message);
     }
   };
 

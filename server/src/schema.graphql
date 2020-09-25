@@ -77,6 +77,8 @@ type Post {
   user: User!
   postType: PostType!
   publishDate: String!
+  eventStartDate: String
+  eventEndDate: String
   viewCount: Int
   likeCount: Int
 }

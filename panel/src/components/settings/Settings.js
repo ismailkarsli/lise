@@ -3,33 +3,20 @@ import { history } from "../../routes/AppRouter";
 import SubMenu from "../header/SubMenu";
 import Container from "../ui/Container";
 import Loading from "../ui/Loading";
-import { users } from "../../navigation";
-import All from "./All";
+import { settings } from "../../navigation";
 import Edit from "./Edit";
-import Add from "./Add";
 
 const User = () => {
   const [component, setComponent] = useState(<Loading />);
   const pathName = history.location.pathname.split("/")[2];
 
   useEffect(() => {
-    switch (pathName) {
-      case "ekle":
-        setComponent(<Add />);
-        break;
-
-      case "duzenle":
-        setComponent(<Edit dataId={history.location.pathname.split("/")[3]} />);
-        break;
-
-      default:
-        setComponent(<All />);
-    }
+    setComponent(<Edit />);
   }, [pathName]);
 
   return (
     <>
-      <SubMenu data={users} />
+      <SubMenu data={settings} />
       <Container>{component}</Container>
     </>
   );

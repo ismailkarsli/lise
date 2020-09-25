@@ -4,3 +4,9 @@ export const users = [
     url: "/kullanicilar",
   },
 ];
+export const settings = [
+  {
+    title: "Ayarlar",
+    url: "/ayarlar",
+  },
+];
