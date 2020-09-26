@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_NEWS } from "../../gql/news/query";
-import { DELETE_NEW } from "./../../gql/news/mutation";
+import { GET_ANNOUNCEMENTS } from "../../gql/announcements/query";
+import { DELETE_ANNOUNCEMENT } from "./../../gql/announcements/mutation";
 import { Link } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
@@ -19,20 +19,22 @@ const All = () => {
   const [sortBy, setSortBy] = useState(["createdAt", "DESC"]);
 
   const [
-    getNews,
+    getAnnouncements,
     { data, loading, error, refetch, networkStatus },
-  ] = useLazyQuery(GET_NEWS, {
+  ] = useLazyQuery(GET_ANNOUNCEMENTS, {
     variables: {
       orderBy: sortBy.join("_"),
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
-  const [deleteNew, { loading: deleteLoading }] = useMutation(DELETE_NEW);
+  const [deleteAnnouncement, { loading: deleteLoading }] = useMutation(
+    DELETE_ANNOUNCEMENT
+  );
 
   useEffect(() => {
-    getNews();
-  }, [sortBy, getNews]);
+    getAnnouncements();
+  }, [sortBy, getAnnouncements]);
 
   if (loading || networkStatus === 4 || !data) return <Loading />;
 
@@ -47,7 +49,7 @@ const All = () => {
 
   const handleDelete = async (id) => {
     try {
-      const result = await deleteNew({
+      const result = await deleteAnnouncement({
         variables: { id: id },
       });
       if (result) {
@@ -76,9 +78,9 @@ const All = () => {
     <div>
       <div className="flex mb-4">
         <div className="w-1/2">
-          <h2 className="text-4xl">Haber listesi</h2>
+          <h2 className="text-4xl">Duyuru listesi</h2>
           <p>
-            Buradan sitedeki tüm haberleri görüntüleyebilir ve
+            Buradan sitedeki tüm duyuruları görüntüleyebilir ve
             düzenleyebilirsiniz.
           </p>
         </div>
@@ -91,7 +93,7 @@ const All = () => {
           </button>
 
           <Link
-            to="/haberler/ekle"
+            to="/duyurular/ekle"
             className="bg-white hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
           >
             <BsPlusCircle />
@@ -105,7 +107,7 @@ const All = () => {
             <Th id="createdAt" onClick={handleThClick}>
               #
             </Th>
-            <Th>Haber Başlığı</Th>
+            <Th>Duyuru Başlığı</Th>
             <Th id="publishDate" onClick={handleThClick}>
               Yayınlanma Tarihi
             </Th>
@@ -121,7 +123,7 @@ const All = () => {
         </thead>
 
         <tbody>
-          {data.news.map((item, index) => (
+          {data.announcements.map((item, index) => (
             <tr key={item.id}>
               <Td custom="text-center w-1/12">{index + 1}</Td>
               <Td custom=" whitespace-no-wrap">{item.title}</Td>
@@ -138,7 +140,7 @@ const All = () => {
               <Td custom="text-center w-2/12">
                 <div className="inline-flex">
                   <Link
-                    to={`/haberler/duzenle/${item.id}`}
+                    to={`/duyurular/duzenle/${item.id}`}
                     className="bg-green-500 hover:bg-green-400 text-gray-100 py-1 text-xs px-2 rounded-l"
                   >
                     Düzenle

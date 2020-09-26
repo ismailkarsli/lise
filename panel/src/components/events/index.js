@@ -5,7 +5,7 @@ import All from "./All";
 import Edit from "./Edit";
 import Add from "./Add";
 
-const News = () => {
+const Announcements = () => {
   let match = useRouteMatch();
   return (
     <Container>
@@ -16,4 +16,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Announcements;

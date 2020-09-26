@@ -4,6 +4,7 @@ Gelecek tarihte yayınlanma tarihi eklenecek.
 Panel
 Kullanıcı silinirken tüm postlarının da silineceği eklenmesi gerekiyor.
 Google maps api key eklenmeli.
+Yüklenen fotoğrafların yan dönmesi düzeltilecek. Doruk abide çözüm var.
 
 Web
 Etkinlikler slaytına mobilde navigasyon simgesi eklenmesi gerekiyor.
@@ -11,4 +12,4 @@ Robots.txt tüm botları kapatıyor.
 Anasayfadaki 5'ten fazla haber ve duyurular için daha fazla gör eklenmeli.
 Slayttaki navigasyonun içlerindeki oklar büyütülmeli.
 background-color: #1d212b;
-etkinliklere şu rengi ekle: color: #0241A6;
+Footer menüyü bağlantılar ile değiştir.

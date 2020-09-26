@@ -89,7 +89,7 @@ const All = () => {
                 <div className="inline-flex">
                   <Link
                     to={`/kullanicilar/duzenle/${user.id}`}
-                    className="bg-blue-600 hover:bg-blue-400 text-gray-100 py-1 text-xs px-2 rounded-l"
+                    className="bg-green-500 hover:bg-green-400 text-gray-100 py-1 text-xs px-2 rounded-l"
                   >
                     Düzenle
                   </Link>

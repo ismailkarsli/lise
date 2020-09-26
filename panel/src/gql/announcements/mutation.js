@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const CREATE_NEW = gql`
-  mutation CreateNew(
+export const CREATE_ANNOUNCEMENT = gql`
+  mutation CreateAnnouncement(
     $title: String!
     $photo: String!
     $content: String
@@ -9,7 +9,7 @@ export const CREATE_NEW = gql`
     $viewCount: Int
     $likeCount: Int
   ) {
-    createNew(
+    createAnnouncement(
       data: {
         title: $title
         photo: $photo
@@ -33,8 +33,8 @@ export const CREATE_NEW = gql`
   }
 `;
 
-export const UPDATE_NEW = gql`
-  mutation UpdateNew(
+export const UPDATE_ANNOUNCEMENT = gql`
+  mutation UpdateAnnouncement(
     $id: ID!
     $title: String
     $photo: String
@@ -43,7 +43,7 @@ export const UPDATE_NEW = gql`
     $viewCount: Int
     $likeCount: Int
   ) {
-    updateNew(
+    updateAnnouncement(
       id: $id
       data: {
         title: $title
@@ -69,10 +69,20 @@ export const UPDATE_NEW = gql`
   }
 `;
 
-export const DELETE_NEW = gql`
-  mutation DeleteNew($id: ID!) {
-    deleteNew(id: $id) {
-      id
+export const DELETE_ANNOUNCEMENT = gql`
+  mutation DeleteAnnouncement($id: ID!) {
+    deleteAnnouncement(id: $id) {
+      title
+      photo
+      content
+      publishDate
+      viewCount
+      likeCount
+      user {
+        id
+        nameSurname
+        username
+      }
     }
   }
 `;

@@ -7,6 +7,7 @@ import { UPLOAD_PHOTO } from "../gql/photo/mutation";
 export default ({
   images,
   setImageArray,
+  setIsPhotoUploading,
   isSingle,
   previewWidth = 100,
   previewHeight = 100,
@@ -28,10 +29,7 @@ export default ({
 
     return addedPhotos.map((photo, i) => {
       return (
-        <div
-          key={i}
-          className="m-2 p-2 inline-block border b-gray-300 relative"
-        >
+        <div key={i} className=" inline-block border b-gray-300 relative">
           <div
             onClick={() => deletePhoto(photo)}
             className="absolute t-0 r-0 py-1 px-2 text-sm text-white bg-red-600"
@@ -53,6 +51,7 @@ export default ({
   };
   const onDrop = useCallback(
     async (acceptedFiles) => {
+      setIsPhotoUploading(true);
       acceptedFiles.map(async (a) => {
         try {
           const result = await uploadPhoto({
@@ -66,10 +65,12 @@ export default ({
           setChange(change + Math.random());
         } catch (error) {
           console.log(error);
+        } finally {
+          setIsPhotoUploading(false);
         }
       });
     },
-    [addedPhotos, change, uploadPhoto]
+    [addedPhotos, change, uploadPhoto, setIsPhotoUploading]
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -83,15 +84,13 @@ export default ({
           <input {...getInputProps({ multiple: !isSingle })} />
           {isDragActive ? (
             <div>
-              <div className="block bg-yellow-200 border b-green-200 text-center p-0 lg:p-12 font-display">
+              <div className="block bg-yellow-200 border text-center p-0 lg:p-12 font-display">
                 Fotoğrafı buraya bırakın.
               </div>
             </div>
           ) : (
-            <div>
-              <div className="block bg-green-200 text-center p-3 sm:p-6 md:p-8 lg:p-12 border b-green-200  font-display">
-                Bilgisayarınızdan bir fotoğraf seçin.
-              </div>
+            <div className="block  text-center p-3 border bg-gray-200 font-display">
+              Bir fotoğraf seçin.
             </div>
           )}
         </div>

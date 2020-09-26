@@ -5,6 +5,10 @@ const announcements = {
   createAnnouncement(parent, args, { request, prisma }, info) {
     const user = getUserData(request);
 
+    if (!args.data.publishDate) {
+      args.data.publishDate = new Date();
+    }
+
     return prisma.mutation.createAnnouncement(
       {
         data: {

@@ -3,3 +3,4 @@ package-lock.json
 .DS_Store
 dev.env
 googleStorageOptions.json
+/public/img/*

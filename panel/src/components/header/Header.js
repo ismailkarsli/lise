@@ -46,15 +46,15 @@ const Header = (props) => {
             </div>
 
             <Link to="/ayarlar" className="mr-4">
-              <BsGear className="text-2xl  hover:text-red-200" />
+              <BsGear className="text-2xl  hover:text-green-300" />
             </Link>
 
             <Link to="/kullanicilar" className="mr-4">
-              <FiUsers className="text-2xl   hover:text-red-200" />
+              <FiUsers className="text-2xl   hover:text-green-300" />
             </Link>
 
             <span className="cursor-pointer" onClick={handleLogout}>
-              <BsBoxArrowInRight className="text-2xl  hover:text-red-200" />
+              <BsBoxArrowInRight className="text-2xl  hover:text-green-300" />
             </span>
           </div>
         </div>

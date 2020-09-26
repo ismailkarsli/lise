@@ -1,6 +1,6 @@
 const announcement = {
   announcements(parent, args, { prisma, request }, info) {
-    return prisma.query.announcements({}, info);
+    return prisma.query.announcements({ orderBy: args.orderBy }, info);
   },
 
   announcement(parent, args, { prisma, request }, info) {

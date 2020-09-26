@@ -44,7 +44,7 @@ const Login = () => {
           onSubmit={handleSubmit}
         >
           <div className="flex justify-center mb-2">
-            <p className="text-4xl">logo gelecek</p>
+            <p className="text-4xl">Yönetim Paneli</p>
           </div>
           {error && (
             <p className="text-red-500 text-sm text-center my-2">{error}</p>

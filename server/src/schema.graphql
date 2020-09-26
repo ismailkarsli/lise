@@ -4,10 +4,10 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
-  news: [New!]!
+  news(orderBy: String): [New!]!
   new(id: ID!): New!
 
-  announcements: [Announcement!]!
+  announcements(orderBy: String): [Announcement!]!
   announcement(id: ID!): Announcement!
 
   events: [Event!]!
@@ -101,7 +101,6 @@ input CreateNewInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: String!
 }
 
 input UpdateNewInput {
@@ -111,7 +110,6 @@ input UpdateNewInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: String
 }
 
 type Announcement {
@@ -135,7 +133,6 @@ input CreateAnnouncementInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: String!
 }
 
 input UpdateAnnouncementInput {
@@ -145,7 +142,6 @@ input UpdateAnnouncementInput {
   publishDate: String
   viewCount: Int
   likeCount: Int
-  user: String
 }
 
 type Event {
@@ -173,7 +169,6 @@ input CreateEventInput {
   endDate: String
   viewCount: Int
   likeCount: Int
-  user: String!
 }
 
 input UpdateEventInput {
@@ -185,7 +180,6 @@ input UpdateEventInput {
   endDate: String
   viewCount: Int
   likeCount: Int
-  user: String
 }
 
 type SiteSettings {
