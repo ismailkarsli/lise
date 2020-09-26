@@ -429,6 +429,7 @@ input AnnouncementWhereInput {
 
 input AnnouncementWhereUniqueInput {
   id: ID
+  slug: String
 }
 
 type BatchPayload {
@@ -900,6 +901,7 @@ input EventWhereInput {
 
 input EventWhereUniqueInput {
   id: ID
+  slug: String
 }
 
 scalar Long
@@ -1354,6 +1356,7 @@ input NewWhereInput {
 
 input NewWhereUniqueInput {
   id: ID
+  slug: String
 }
 
 interface Node {

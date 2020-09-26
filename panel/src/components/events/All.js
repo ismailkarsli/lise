@@ -110,38 +110,53 @@ const All = () => {
               Yayınlanma Tarihi
             </Th>
             <Th>Oluşturan Kişi</Th>
-            <Th>Başlangıç / Süre</Th>
-            <Th>Beğeni</Th>
-            <Th>Görüntülenme</Th>
+            <Th onClick={() => handleThClick("startDate")}>Başlangıç / Süre</Th>
+            <Th onClick={() => handleThClick("likeCount")}>Beğeni</Th>
+            <Th onClick={() => handleThClick("viewCount")}>Görüntülenme</Th>
             <Th>İşlemler</Th>
           </tr>
         </thead>
 
         <tbody>
           {data.events.map((item, index) => {
+            const startDate = moment(item.startDate);
+            const endDate = moment(item.endDate);
             let eventDate = "";
 
-            const duration = moment.duration(eventDuration.diff(item.startDate))
-              ._data;
-            eventDate = `
-                ${item.startDate.format("Do MMM YYYY, HH:mm / ")}
+            if (startDate._isValid) {
+              if (endDate._isValid) {
+                const duration = moment.duration(endDate.diff(startDate))._data;
+                eventDate = `
+                ${startDate.format("Do MMM YYYY, HH:mm / ")}
+                ${duration.days ? duration.days + " gn" : ""}
+                ${duration.hours ? duration.hours + " sa" : ""}
+                ${duration.minutes ? duration.minutes + " dk" : ""}
                 `;
+              } else {
+                eventDate = `
+                ${startDate.format("Do MMM YYYY, HH:mm")}`;
+              }
+            } else if (endDate._isValid) {
+              eventDate = "Başlangıç eklenmemiş.";
+            } else {
+              eventDate = "Belirtilmemiş.";
+            }
 
             return (
               <tr key={item.id}>
-                <Td custom="text-center w-1/12">{index + 1}</Td>
-                <Td custom=" whitespace-no-wrap">{item.title}</Td>
-                <Td custom=" whitespace-no-wrap">
+                <Td>{index + 1}</Td>
+                <Td>{item.title}</Td>
+                <Td>
                   {moment(item.publishDate).format("Do MMMM YYYY, hh:mm")}
                 </Td>
-                <Td custom=" whitespace-no-wrap">
+                <Td>
                   {item.user && item.user.nameSurname
                     ? item.user.nameSurname
                     : item.user.username}
                 </Td>
-                <Td custom=" whitespace-no-wrap">{eventDate}</Td>
-                <Td custom=" whitespace-no-wrap">{item.likeCount}</Td>
-                <Td custom=" whitespace-no-wrap">{item.viewCount}</Td>
+                <Td>{eventDate}</Td>
+                <Td>{item.likeCount}</Td>
+                <Td>{item.viewCount}</Td>
                 <Td custom="text-center w-2/12">
                   <div className="inline-flex">
                     <Link

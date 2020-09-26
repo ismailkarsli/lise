@@ -32,17 +32,23 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       return setError(<ErrorContainer title="Başlık girilmesi gereklidir." />);
     }
 
+    if (endDate && startDate > endDate) {
+      return setError(
+        <ErrorContainer title="Başlangıç tarihi, bitiş tarihinden daha önce olamaz." />
+      );
+    }
+
     const sendData = {
       title,
       photo: photosArray.toString(),
       content,
+      viewCount: viewCount ? parseInt(viewCount) : undefined,
+      likeCount: likeCount ? parseInt(likeCount) : undefined,
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,
-      viewCount: viewCount ? parseInt(viewCount) : undefined,
-      likeCount: likeCount ? parseInt(likeCount) : undefined,
       startDate: startDate ? new Date(moment(startDate).format()) : undefined,
-      endDate: endDate ? new Date(moment(endDate).format()) : "",
+      endDate: endDate ? new Date(moment(endDate).format()) : undefined,
     };
 
     return handleSubmit(sendData);
@@ -131,14 +137,14 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
           <div className="w-full px-4">
             <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Etkinlik Süresi
+              Bitiş Tarihi
             </label>
             <input
               className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               type="datetime-local"
               placeholder="Etkinlik Süresi"
-              value={eventDuration}
-              onChange={(e) => setEventDuration(e.target.value)}
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
             />
           </div>
           <div className="w-full mb-3 px-4">
