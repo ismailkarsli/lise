@@ -15,7 +15,7 @@ type User {
 type New {
   id: ID! @id
   title: String!
-  slug: String!
+  slug: String! @unique
   photo: String
   content: String
   publishDate: DateTime!
@@ -29,7 +29,7 @@ type New {
 type Announcement {
   id: ID! @id
   title: String!
-  slug: String!
+  slug: String! @unique
   photo: String
   content: String
   publishDate: DateTime!
@@ -43,7 +43,7 @@ type Announcement {
 type Event {
   id: ID! @id
   title: String!
-  slug: String!
+  slug: String! @unique
   photo: String
   content: String
   publishDate: DateTime!

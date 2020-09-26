@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_ANNOUNCEMENTS } from "../../gql/announcements/query";
-import { DELETE_ANNOUNCEMENT } from "./../../gql/announcements/mutation";
+import { GET_EVENTS } from "../../gql/events/query";
+import { DELETE_EVENT } from "./../../gql/events/mutation";
 import { Link } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
@@ -16,25 +16,26 @@ const All = () => {
   moment.locale("tr");
   const [submitError, setSubmitError] = useState(null);
 
-  const [sortBy, setSortBy] = useState(["createdAt", "DESC"]);
+  const [sortBy, setSortBy] = useState(
+    JSON.parse(localStorage.getItem("events_sort")) || ["createdAt", "DESC"]
+  );
 
   const [
-    getAnnouncements,
+    getEvents,
     { data, loading, error, refetch, networkStatus },
-  ] = useLazyQuery(GET_ANNOUNCEMENTS, {
+  ] = useLazyQuery(GET_EVENTS, {
     variables: {
       orderBy: sortBy.join("_"),
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
-  const [deleteAnnouncement, { loading: deleteLoading }] = useMutation(
-    DELETE_ANNOUNCEMENT
-  );
+  const [deleteEvent, { loading: deleteLoading }] = useMutation(DELETE_EVENT);
 
   useEffect(() => {
-    getAnnouncements();
-  }, [sortBy, getAnnouncements]);
+    getEvents();
+    localStorage.setItem("events_sort", JSON.stringify(sortBy));
+  }, [sortBy, getEvents]);
 
   if (loading || networkStatus === 4 || !data) return <Loading />;
 
@@ -49,7 +50,7 @@ const All = () => {
 
   const handleDelete = async (id) => {
     try {
-      const result = await deleteAnnouncement({
+      const result = await deleteEvent({
         variables: { id: id },
       });
       if (result) {
@@ -61,8 +62,7 @@ const All = () => {
     }
   };
 
-  const handleThClick = ({ target }) => {
-    const id = target.getAttribute("id");
+  const handleThClick = (id) => {
     if (sortBy[0] === id) {
       if (sortBy[1] === "ASC") {
         setSortBy([id, "DESC"]);
@@ -78,9 +78,9 @@ const All = () => {
     <div>
       <div className="flex mb-4">
         <div className="w-1/2">
-          <h2 className="text-4xl">Duyuru listesi</h2>
+          <h2 className="text-4xl">Etkinlik listesi</h2>
           <p>
-            Buradan sitedeki tüm duyuruları görüntüleyebilir ve
+            Buradan sitedeki tüm etkinlikleri görüntüleyebilir ve
             düzenleyebilirsiniz.
           </p>
         </div>
@@ -93,7 +93,7 @@ const All = () => {
           </button>
 
           <Link
-            to="/duyurular/ekle"
+            to="/etkinlikler/ekle"
             className="bg-white hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
           >
             <BsPlusCircle />
@@ -104,57 +104,63 @@ const All = () => {
       <table className="table-auto w-full mb-6">
         <thead>
           <tr>
-            <Th id="createdAt" onClick={handleThClick}>
-              #
-            </Th>
+            <Th onClick={() => handleThClick("createdAt")}>#</Th>
             <Th>Duyuru Başlığı</Th>
-            <Th id="publishDate" onClick={handleThClick}>
+            <Th onClick={() => handleThClick("publishDate")}>
               Yayınlanma Tarihi
             </Th>
             <Th>Oluşturan Kişi</Th>
-            <Th id="likeCount" onClick={handleThClick}>
-              Beğeni
-            </Th>
-            <Th id="viewCount" onClick={handleThClick}>
-              Görüntülenme
-            </Th>
+            <Th>Başlangıç / Süre</Th>
+            <Th>Beğeni</Th>
+            <Th>Görüntülenme</Th>
             <Th>İşlemler</Th>
           </tr>
         </thead>
 
         <tbody>
-          {data.announcements.map((item, index) => (
-            <tr key={item.id}>
-              <Td custom="text-center w-1/12">{index + 1}</Td>
-              <Td custom=" whitespace-no-wrap">{item.title}</Td>
-              <Td custom=" whitespace-no-wrap">
-                {moment(item.publishDate).format("Do MMMM YYYY, h:mm")}
-              </Td>
-              <Td custom=" whitespace-no-wrap">
-                {item.user && item.user.nameSurname
-                  ? item.user.nameSurname
-                  : item.user.username}
-              </Td>
-              <Td custom=" whitespace-no-wrap">{item.likeCount}</Td>
-              <Td custom=" whitespace-no-wrap">{item.viewCount}</Td>
-              <Td custom="text-center w-2/12">
-                <div className="inline-flex">
-                  <Link
-                    to={`/duyurular/duzenle/${item.id}`}
-                    className="bg-green-500 hover:bg-green-400 text-gray-100 py-1 text-xs px-2 rounded-l"
-                  >
-                    Düzenle
-                  </Link>
-                  <Delete
-                    handleDelete={handleDelete}
-                    dataId={item.id}
-                    title={item.username}
-                    deleteLoading={deleteLoading}
-                  />
-                </div>
-              </Td>
-            </tr>
-          ))}
+          {data.events.map((item, index) => {
+            let eventDate = "";
+
+            const duration = moment.duration(eventDuration.diff(item.startDate))
+              ._data;
+            eventDate = `
+                ${item.startDate.format("Do MMM YYYY, HH:mm / ")}
+                `;
+
+            return (
+              <tr key={item.id}>
+                <Td custom="text-center w-1/12">{index + 1}</Td>
+                <Td custom=" whitespace-no-wrap">{item.title}</Td>
+                <Td custom=" whitespace-no-wrap">
+                  {moment(item.publishDate).format("Do MMMM YYYY, hh:mm")}
+                </Td>
+                <Td custom=" whitespace-no-wrap">
+                  {item.user && item.user.nameSurname
+                    ? item.user.nameSurname
+                    : item.user.username}
+                </Td>
+                <Td custom=" whitespace-no-wrap">{eventDate}</Td>
+                <Td custom=" whitespace-no-wrap">{item.likeCount}</Td>
+                <Td custom=" whitespace-no-wrap">{item.viewCount}</Td>
+                <Td custom="text-center w-2/12">
+                  <div className="inline-flex">
+                    <Link
+                      to={`/etkinlikler/duzenle/${item.id}`}
+                      className="bg-green-500 hover:bg-green-400 text-gray-100 py-1 text-xs px-2 rounded-l"
+                    >
+                      Düzenle
+                    </Link>
+                    <Delete
+                      handleDelete={handleDelete}
+                      dataId={item.id}
+                      title={item.username}
+                      deleteLoading={deleteLoading}
+                    />
+                  </div>
+                </Td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

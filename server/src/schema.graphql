@@ -10,7 +10,7 @@ type Query {
   announcements(orderBy: String): [Announcement!]!
   announcement(id: ID!): Announcement!
 
-  events: [Event!]!
+  events(orderBy: String): [Event!]!
   event(id: ID!): Event!
 
   siteSettings: SiteSettings!
@@ -27,11 +27,11 @@ type Mutation {
   deleteNew(id: ID!): New!
 
   createAnnouncement(data: CreateAnnouncementInput!): Announcement!
-  updateAnnouncement(data: UpdateAnnouncementInput!): Announcement!
+  updateAnnouncement(id: ID!, data: UpdateAnnouncementInput!): Announcement!
   deleteAnnouncement(id: ID!): Announcement!
 
   createEvent(data: CreateEventInput!): Event!
-  updateEvent(data: UpdateEventInput!): Event!
+  updateEvent(id: ID!, data: UpdateEventInput!): Event!
   deleteEvent(id: ID!): Event!
 
   updateSiteSettings(data: UpdateSiteSettings!): SiteSettings!

@@ -1,4 +1,4 @@
-const event = {
+const events = {
   events(parent, args, { prisma, request }, info) {
     return prisma.query.events(
       {
@@ -20,4 +20,4 @@ const event = {
   },
 };
 
-export default event;
+export default events;

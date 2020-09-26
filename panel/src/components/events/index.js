@@ -5,7 +5,7 @@ import All from "./All";
 import Edit from "./Edit";
 import Add from "./Add";
 
-const Announcements = () => {
+const Events = () => {
   let match = useRouteMatch();
   return (
     <Container>
@@ -16,4 +16,4 @@ const Announcements = () => {
   );
 };
 
-export default Announcements;
+export default Events;

@@ -12,11 +12,17 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [title, setTitle] = useState(data ? data.title : "");
   const [photosArray, setPhotosArray] = useState([]);
   const [content, setContent] = useState(data ? data.content : "");
+  const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
+  const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
   const [publishDate, setPublishDate] = useState(
     data ? moment(data.publishDate).format("YYYY-MM-DDTHH:mm") : ""
   );
-  const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
-  const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
+  const [startDate, setStartDate] = useState(
+    data ? moment(data.startDate).format("YYYY-MM-DDTHH:mm") : ""
+  );
+  const [endDate, setEndDate] = useState(
+    data ? moment(data.endDate).format("YYYY-MM-DDTHH:mm") : ""
+  );
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +31,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     if (!title) {
       return setError(<ErrorContainer title="Başlık girilmesi gereklidir." />);
     }
+
     const sendData = {
       title,
       photo: photosArray.toString(),
@@ -34,6 +41,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
         : undefined,
       viewCount: viewCount ? parseInt(viewCount) : undefined,
       likeCount: likeCount ? parseInt(likeCount) : undefined,
+      startDate: startDate ? new Date(moment(startDate).format()) : undefined,
+      endDate: endDate ? new Date(moment(endDate).format()) : "",
     };
 
     return handleSubmit(sendData);
@@ -79,11 +88,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
               type="datetime-local"
               placeholder="Yayınlanma Tarihi"
               value={publishDate}
-              onChange={(e) =>
-                setPublishDate(
-                  moment(e.target.value).format("YYYY-MM-DDTHH:mm")
-                )
-              }
+              onChange={(e) => setPublishDate(e.target.value)}
             />
           </div>
 
@@ -110,6 +115,31 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
                 onChange={(e) => setLikeCount(e.target.value)}
               />
             </div>
+          </div>
+          <div className="w-full px-4">
+            <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Başlangıç Tarihi
+            </label>
+            <input
+              className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              type="datetime-local"
+              placeholder="Başlangıç Tarihi"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+          </div>
+
+          <div className="w-full px-4">
+            <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Etkinlik Süresi
+            </label>
+            <input
+              className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              type="datetime-local"
+              placeholder="Etkinlik Süresi"
+              value={eventDuration}
+              onChange={(e) => setEventDuration(e.target.value)}
+            />
           </div>
           <div className="w-full mb-3 px-4">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

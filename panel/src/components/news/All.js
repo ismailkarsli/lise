@@ -16,7 +16,9 @@ const All = () => {
   moment.locale("tr");
   const [submitError, setSubmitError] = useState(null);
 
-  const [sortBy, setSortBy] = useState(["createdAt", "DESC"]);
+  const [sortBy, setSortBy] = useState(
+    JSON.parse(localStorage.getItem("news_sort")) || ["createdAt", "DESC"]
+  );
 
   const [
     getNews,
@@ -32,6 +34,7 @@ const All = () => {
 
   useEffect(() => {
     getNews();
+    localStorage.setItem("news_sort", JSON.stringify(sortBy));
   }, [sortBy, getNews]);
 
   if (loading || networkStatus === 4 || !data) return <Loading />;
@@ -59,8 +62,7 @@ const All = () => {
     }
   };
 
-  const handleThClick = ({ target }) => {
-    const id = target.getAttribute("id");
+  const handleThClick = (id) => {
     if (sortBy[0] === id) {
       if (sortBy[1] === "ASC") {
         setSortBy([id, "DESC"]);
@@ -102,20 +104,14 @@ const All = () => {
       <table className="table-auto w-full mb-6">
         <thead>
           <tr>
-            <Th id="createdAt" onClick={handleThClick}>
-              #
-            </Th>
-            <Th>Haber Başlığı</Th>
-            <Th id="publishDate" onClick={handleThClick}>
+            <Th onClick={() => handleThClick("createdAt")}>#</Th>
+            <Th>Duyuru Başlığı</Th>
+            <Th onClick={() => handleThClick("publishDate")}>
               Yayınlanma Tarihi
             </Th>
             <Th>Oluşturan Kişi</Th>
-            <Th id="likeCount" onClick={handleThClick}>
-              Beğeni
-            </Th>
-            <Th id="viewCount" onClick={handleThClick}>
-              Görüntülenme
-            </Th>
+            <Th>Beğeni</Th>
+            <Th>Görüntülenme</Th>
             <Th>İşlemler</Th>
           </tr>
         </thead>
