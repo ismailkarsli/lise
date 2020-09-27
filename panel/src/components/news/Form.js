@@ -11,7 +11,14 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
   const [title, setTitle] = useState(data ? data.title : "");
   const [photosArray, setPhotosArray] = useState([]);
-  const [content, setContent] = useState(data ? data.content : "");
+  const [content, setContent] = useState(
+    data
+      ? data.content.replace(
+          "---SERVER-HOST---",
+          process.env.REACT_APP_GRAPHQL_SERVER
+        )
+      : ""
+  );
   const [publishDate, setPublishDate] = useState(
     data ? moment(data.publishDate).format("YYYY-MM-DDTHH:mm") : ""
   );
@@ -28,7 +35,10 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     const sendData = {
       title,
       photo: photosArray.toString(),
-      content,
+      content: content.replace(
+        process.env.REACT_APP_GRAPHQL_SERVER,
+        "---SERVER-HOST---"
+      ),
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,

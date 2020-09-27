@@ -16,7 +16,14 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     data ? data.mapLongitude : ""
   );
   const [mapLatitude, setMapLatitude] = useState(data ? data.mapLatitude : "");
-  const [about, setAbout] = useState(data ? data.about : "");
+  const [about, setAbout] = useState(
+    data
+      ? data.about.replace(
+          "---SERVER-HOST---",
+          process.env.REACT_APP_GRAPHQL_SERVER
+        )
+      : ""
+  );
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +36,10 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       address,
       mapLongitude: mapLongitude ? parseFloat(mapLongitude) : undefined,
       mapLatitude: mapLatitude ? parseFloat(mapLatitude) : undefined,
-      about,
+      about: about.replace(
+        process.env.REACT_APP_GRAPHQL_SERVER,
+        "---SERVER-HOST---"
+      ),
     };
 
     return handleSubmit(sendData);

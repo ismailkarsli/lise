@@ -11,7 +11,14 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
   const [title, setTitle] = useState(data ? data.title : "");
   const [photosArray, setPhotosArray] = useState([]);
-  const [content, setContent] = useState(data ? data.content : "");
+  const [content, setContent] = useState(
+    data
+      ? data.content.replace(
+          "---SERVER-HOST---",
+          process.env.REACT_APP_GRAPHQL_SERVER
+        )
+      : ""
+  );
   const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
   const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
   const [publishDate, setPublishDate] = useState(
@@ -41,7 +48,10 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     const sendData = {
       title,
       photo: photosArray.toString(),
-      content,
+      content: content.replace(
+        process.env.REACT_APP_GRAPHQL_SERVER,
+        "---SERVER-HOST---"
+      ),
       viewCount: viewCount ? parseInt(viewCount) : undefined,
       likeCount: likeCount ? parseInt(likeCount) : undefined,
       publishDate: publishDate
