@@ -13,6 +13,9 @@ type Query {
   events(orderBy: String): [Event!]!
   event(id: ID!): Event!
 
+  links: [Link!]!
+  link(id: ID!): Link!
+
   siteSettings: SiteSettings!
 }
 
@@ -33,6 +36,10 @@ type Mutation {
   createEvent(data: CreateEventInput!): Event!
   updateEvent(id: ID!, data: UpdateEventInput!): Event!
   deleteEvent(id: ID!): Event!
+
+  createLink(data: CreateLinkInput!): Link!
+  updateLink(id: ID!, data: UpdateLinkInput!): Link!
+  deleteLink(id: ID!): Link!
 
   updateSiteSettings(data: UpdateSiteSettings!): SiteSettings!
 
@@ -201,6 +208,22 @@ input UpdateSiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String
+}
+
+type Link {
+  id: String!
+  name: String!
+  url: String!
+}
+
+input CreateLinkInput {
+  name: String!
+  url: String!
+}
+
+input UpdateLinkInput {
+  name: String
+  url: String
 }
 
 enum UserType {

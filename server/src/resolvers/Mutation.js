@@ -4,6 +4,7 @@ import announcement from "./mutation/announcement";
 import event from "./mutation/event";
 import photo from "./mutation/photo";
 import siteSettings from "./mutation/siteSettings";
+import links from "./mutation/links";
 
 const mutations = {
   ...user,
@@ -12,6 +13,7 @@ const mutations = {
   ...event,
   ...photo,
   ...siteSettings,
+  ...links,
 };
 
 export default mutations;

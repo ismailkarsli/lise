@@ -13,6 +13,7 @@ import Settings from "../components/settings";
 import News from "../components/news";
 import Announcements from "../components/announcements";
 import Events from "../components/events";
+import Links from "../components/links";
 
 export const history = createBrowserHistory({
   basename: process.env.PUBLIC_URL,
@@ -29,6 +30,7 @@ const AppRouter = () => {
           <PrivateRoute path="/haberler" component={News} />
           <PrivateRoute path="/duyurular" component={Announcements} />
           <PrivateRoute path="/etkinlikler" component={Events} />
+          <PrivateRoute path="/baglantilar" component={Links} />
           <PrivateRoute path="/ayarlar" component={Settings} />
         </Switch>
       </ApolloProvider>
