@@ -98,6 +98,7 @@ const All = () => {
                     dataId={user.id}
                     title={user.username}
                     deleteLoading={deleteLoading}
+                    customText="Sildiğinizde bu kullanıcının oluşturmuş olduğu her şey silinecektir."
                   />
                 </div>
               </Td>

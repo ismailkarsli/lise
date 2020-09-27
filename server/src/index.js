@@ -20,5 +20,5 @@ const server = new GraphQLServer({
 server.express.use(imageRouter);
 
 server.start(() => {
-  console.log("Sunucu çalışıyor!");
+  console.log("Sunucu çalışıyor");
 });

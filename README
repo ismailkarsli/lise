@@ -13,3 +13,6 @@ Anasayfadaki 5'ten fazla haber ve duyurular için daha fazla gör eklenmeli.
 Slayttaki navigasyonun içlerindeki oklar büyütülmeli.
 background-color: #1d212b;
 Footer menüyü bağlantılar ile değiştir.
+
+Genel
+Eklenen fotoğrafların dinamik olarak linkinin sunucuya göre değiştirilmesi gerekiyor.

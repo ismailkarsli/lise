@@ -15,7 +15,13 @@ const customStyles = {
   },
 };
 
-export default ({ title, dataId, handleDelete, deleteLoading }) => {
+export default ({
+  title,
+  dataId,
+  handleDelete,
+  deleteLoading,
+  customText = null,
+}) => {
   const [open, setOpen] = useState(false);
   useEffect(() => {}, [dataId]);
   const openModal = () => {
@@ -43,6 +49,7 @@ export default ({ title, dataId, handleDelete, deleteLoading }) => {
         contentLabel="Delete"
       >
         <h2 className="font-bold">{title} silinecektir. Onaylıyor musunuz?</h2>
+        <div className="text-sm underline">{customText}</div>
 
         <div className="flex justify-center mt-6">
           <button
@@ -56,7 +63,7 @@ export default ({ title, dataId, handleDelete, deleteLoading }) => {
             )}
           </button>
           <button
-            className="bg-blue-600 hover:bg-blue-400 text-gray-100 py-1 text-xs px-2 rounded mr-4"
+            className="bg-green-500 hover:bg-green-400 text-gray-100 py-1 text-xs px-2 rounded mr-4"
             onClick={closeModal}
           >
             Vazgeç

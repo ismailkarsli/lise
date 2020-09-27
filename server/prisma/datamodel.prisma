@@ -67,6 +67,12 @@ type SiteSettings {
   about: String
 }
 
+type Link {
+  id: ID! @id
+  name: String!
+  url: String!
+}
+
 enum UserType {
   ADMIN
   MODERATOR
