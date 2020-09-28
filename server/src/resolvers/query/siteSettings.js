@@ -8,6 +8,7 @@ const siteSettings = {
       {
         data: {
           name: "Lise",
+          about: ""
         },
       },
       info
