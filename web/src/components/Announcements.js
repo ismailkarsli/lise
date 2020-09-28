@@ -1,10 +1,10 @@
 import React from "react";
 import { BsCalendar } from "react-icons/bs";
 
-const News = () => {
+const Announcements = () => {
   return (
     <div className="post container">
-      <h2 className="page-title">Haberler</h2>
+      <h2 className="page-title">Duyurular</h2>
       <div className="post-list">
         <div className="post-item">
           <div className="item-photo">
@@ -110,4 +110,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Announcements;

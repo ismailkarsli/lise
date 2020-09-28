@@ -1,0 +1,57 @@
+.post{
+	color: rgb(50,50,50);
+	img {
+		width: 100%;
+		height: 250px;
+		object-fit: cover;
+	}
+	.page-title{
+		margin-bottom: 8px;
+		font-size:2rem;
+		text-align:center;
+	}
+	.post-list{
+		.post-item{
+			display:flex;
+			border-bottom:1px solid rgb(200, 200, 200);
+			
+			.item-photo{
+				width: 33%;
+				img{
+					padding-top:16px;
+					padding-bottom:16px;
+				}
+			}
+			.item-meta{
+				width: 66%;
+				padding: 12px;
+				
+				.meta-title{
+					font-size:1.8rem;
+					padding-bottom:8px;
+				}
+
+				.meta-date{
+					color: rgb(120, 120, 120);
+					font-size:.9rem;
+					padding-top:4px;
+					padding-bottom:4px;
+					time{
+						padding-right: 4px;
+						padding-left: 4px;
+					}
+					.duration {
+						padding-right: 4px;
+						padding-left: 4px;
+					}
+				}
+
+				.meta-description{
+					padding-top:4px;
+					padding-bottom:4px;
+					font-size:1.1rem;
+				}
+			}
+		}
+	}
+}

@@ -17,7 +17,7 @@ html {
 }
 #root {
   background-color: rgb(240, 240, 240);
-  font-family: "Montserrat", sans-serif;
+  font-family: "Encode Sans", sans-serif;
 }
 .container {
   margin-left: auto;
@@ -36,3 +36,7 @@ svg {
 @import "home-news-anns";
 @import "home-parallax";
 @import "home-events";
+
+@import "staff";
+@import "contact";
+@import "post";

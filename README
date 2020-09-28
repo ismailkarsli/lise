@@ -1,5 +1,7 @@
 Server
 Gelecek tarihte yayınlanma tarihi eklenecek.
+Linklere logo ekleme yap
+Personeller için model ekle
 
 Panel
 Kullanıcı silinirken tüm postlarının da silineceği eklenmesi gerekiyor.
@@ -12,7 +14,7 @@ Robots.txt tüm botları kapatıyor.
 Anasayfadaki 5'ten fazla haber ve duyurular için daha fazla gör eklenmeli.
 Slayttaki navigasyonun içlerindeki oklar büyütülmeli.
 background-color: #1d212b;
-Footer menüyü bağlantılar ile değiştir.
+Footerı sadece logolar olacak şekilde değiştir.
 
 Genel
 Eklenen fotoğrafların dinamik olarak linkinin sunucuya göre değiştirilmesi gerekiyor.
