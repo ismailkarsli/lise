@@ -3,6 +3,7 @@ header {
   grid-template-columns: auto 174px;
   grid-template-rows: auto auto;
   align-items: center;
+  width: 100%;
   .header-top {
     grid-row: 1/2;
     grid-column: 1/2;
@@ -34,7 +35,7 @@ header {
           font-size: 2rem;
           color: #666666;
           font-weight: bold;
-          
+
           &:hover {
             color: $mainColor;
           }
