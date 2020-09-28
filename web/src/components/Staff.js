@@ -2,7 +2,7 @@ import React from "react";
 
 export default () => {
   return (
-    <div className="staff">
+    <div className="staff main-container">
       <div className="staff-content container">
         <h2>Kadro</h2>
         <div className="staff-list-container">
@@ -50,7 +50,6 @@ export default () => {
           </div>
 
           <div className="staff-list">
-
             <div className="list-item width-1-5">
               <div className="item-content">
                 <img

@@ -7,7 +7,7 @@
       height: 100%;
       align-items: flex-end;
       .slide-content {
-        margin-bottom: 250px;
+        margin-bottom: 200px;
         position: relative;
         max-width: 50%;
         border-radius: 8px;
@@ -21,7 +21,7 @@
         }
         .read-more {
           position: absolute;
-          bottom: -60px;
+          bottom: -80px;
           padding: 10px 20px;
           display: inline-block;
           border-radius: 3px;
@@ -45,11 +45,11 @@
 
   .slider-navigation {
     position: absolute;
-    bottom: 0;
+    bottom: 8px;
     right: 0;
     display: flex;
     div {
-      padding-left: 0.5rem;
+      padding-left: 8px;
       cursor: pointer;
       svg {
         background-color: $mainColor;

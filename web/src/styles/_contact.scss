@@ -1,26 +1,20 @@
 .contact {
-	.page-title {
-	  font-size: 2rem;
-	  padding-bottom: 8px;
-	  text-align: center;
-	}
-	.contact-content {
-		display: flex;
-		h2{
-			padding-bottom: 12px;
-		}
-	  .contact-info {
-		width: 33%;
-		padding: 16px;
-  
-		div {
-		  padding-bottom: 16px;
-		}
-	  }
-	  .map {
-		width: 66%;
-		padding: 16px;
-	  }
-	}
+  .contact-content {
+    display: flex;
+    h2 {
+      padding-bottom: 12px;
+    }
+    .contact-info {
+      width: 33%;
+      padding: 16px;
+
+      div {
+        padding-bottom: 16px;
+      }
+    }
+    .map {
+      width: 66%;
+      padding: 16px;
+    }
   }
-  
+}

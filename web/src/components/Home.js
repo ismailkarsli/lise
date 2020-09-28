@@ -6,11 +6,11 @@ import Events from "./ui/home/Events";
 
 export default () => {
   return (
-    <React.Fragment>
+    <div className="main-container">
       <Slider />
       <NewsAnns />
       <Parallax />
       <Events />
-    </React.Fragment>
+    </div>
   );
 };

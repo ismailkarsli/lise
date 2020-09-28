@@ -3,10 +3,10 @@ import { BsCalendar } from "react-icons/bs";
 
 const Events = () => {
   return (
-    <div className="post container">
+    <div className="event container main-container">
       <h2 className="page-title">Etkinlikler</h2>
-      <div className="post-list">
-        <div className="post-item">
+      <div className="event-list">
+        <div className="list-item">
           <div className="item-photo">
             <img alt="foto" src="https://picsum.photos/1000/600" />
           </div>
@@ -31,7 +31,7 @@ const Events = () => {
           </div>
         </div>
 
-        <div className="post-item">
+        <div className="list-item">
           <div className="item-photo">
             <img alt="foto" src="https://picsum.photos/1000/600" />
           </div>
@@ -56,7 +56,7 @@ const Events = () => {
           </div>
         </div>
 
-        <div className="post-item">
+        <div className="list-item">
           <div className="item-photo">
             <img alt="foto" src="https://picsum.photos/1000/600" />
           </div>
@@ -81,7 +81,7 @@ const Events = () => {
           </div>
         </div>
 
-        <div className="post-item">
+        <div className="list-item">
           <div className="item-photo">
             <img alt="foto" src="https://picsum.photos/1000/600" />
           </div>

@@ -1,0 +1,61 @@
+.timeline {
+  .timeline-item {
+    display: flex;
+
+    .item-photo {
+      img {
+        width: 20em;
+        height: 16em;
+        padding: 2em;
+        object-fit: cover;
+      }
+    }
+    .item-meta {
+      padding: 2em;
+      position: relative;
+      color: rgba(black, 0.7);
+      border-left: 2px solid rgba(black, 0.3);
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 6px;
+      }
+
+      .item-photo {
+        background-color: black;
+      }
+
+      &:before {
+        content: attr(date-is);
+        position: absolute;
+        left: 1.5em;
+        font-weight: bold;
+        top: 1.3em;
+        display: block;
+        font-weight: 700;
+        font-size: 0.75rem;
+      }
+
+      &:after {
+        width: 10px;
+        height: 10px;
+        display: block;
+        top: 1em;
+        position: absolute;
+        left: -8px;
+        border-radius: 10px;
+        content: "";
+        border: 2px solid rgba(black, 0.3);
+        background: white;
+      }
+    }
+    &:last-child {
+      border-image: linear-gradient(
+          to bottom,
+          rgba(black, 0.3) 60%,
+          rgba(rgba(black, 0.3), 0)
+        )
+        1 100%;
+    }
+  }
+}

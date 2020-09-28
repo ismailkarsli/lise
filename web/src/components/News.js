@@ -1,108 +1,39 @@
 import React from "react";
-import { BsCalendar } from "react-icons/bs";
 
 const News = () => {
   return (
-    <div className="post container">
+    <div className="main-container">
       <h2 className="page-title">Haberler</h2>
-      <div className="post-list">
-        <div className="post-item">
+      <div className="timeline container">
+        <div className="timeline-item">
           <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
+            <img src="https://picsum.photos/1500/800" alt="Phosto" />
           </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 7 Ağustos 2019
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+          <div className="item-meta" date-is="28 Eylül 2020">
+            <h1>Arcu odio ut sem nulla pharetra diam sit amet.</h1>
+            <p>
+              Dictum varius duis at consectetur lorem donec massa. Nisi lacus
+              sed viverra tellus in hac habitasse platea dictumst. Faucibus a
+              pellentesque sit amet porttitor. Et leo duis ut diam quam nulla
+              porttitor massa id. Et molestie ac feugiat sed lectus vestibulum
+              mattis ullamcorper velit. Platea dictumst vestibulum rhoncus est
+              pellentesque elit ullamcorper dignissim.
+            </p>
           </div>
         </div>
 
-        <div className="post-item">
+        <div className="timeline-item">
           <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
+            <img src="https://picsum.photos/1500/1500" alt="Phosto" />
           </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 7 Ağustos 2019
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
-
-        <div className="post-item">
-          <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
-          </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 7 Ağustos 2019
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
-
-        <div className="post-item">
-          <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
-          </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 7 Ağustos 2019
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
+          <div className="item-meta" date-is="28 Eylül 2020">
+            <h1>Sit amet volutpat consequat mauris nunc congue nisi.</h1>
+            <p>
+              vitae suscipit. Morbi quis commodo odio aenean sed adipiscing.
+              Viverra nibh cras pulvinar mattis. Tellus molestie nunc non
+              blandit massa enim nec dui nunc. Cursus in hac habitasse platea
+              dictumst quisque.
+            </p>
           </div>
         </div>
       </div>
