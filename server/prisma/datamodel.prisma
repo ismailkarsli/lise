@@ -64,7 +64,14 @@ type SiteSettings {
   address: String
   mapLongitude: Float
   mapLatitude: Float
-  about: String
+  about: String!
+  socialLinks: [SocialLink!]!
+}
+
+type SocialLink {
+  id: ID! @id
+  name: String!
+  url: String!
 }
 
 type Link {
