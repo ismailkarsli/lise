@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import Form from "./Form";
 import ErrorContainer from "../ui/ErrorContainer";
 import { useMutation } from "@apollo/client";
-import { CREATE_NEW } from "../../gql/news/mutation";
+import { CREATE_POST } from "../../gql/posts/mutation";
 import { history } from "../../routes/AppRouter";
 
 const Add = () => {
-  const [createNew, { loading: mutationLoading }] = useMutation(CREATE_NEW);
+  const [createPost, { loading: mutationLoading }] = useMutation(CREATE_POST);
   const [submitError, setSubmitError] = useState("");
 
   const handleSubmit = async (formData) => {
     try {
-      const result = await createNew({
-        variables: { ...formData },
+      const result = await createPost({
+        variables: { postType: "NEWS", ...formData },
       });
       if (result) {
         history.push("/haberler");

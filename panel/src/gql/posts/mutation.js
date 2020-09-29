@@ -1,19 +1,21 @@
 import { gql } from "@apollo/client";
 
-export const CREATE_ANNOUNCEMENT = gql`
-  mutation CreateAnnouncement(
+export const CREATE_POST = gql`
+  mutation CreatePost(
     $title: String!
     $photo: String!
     $content: String
+    $postType: PostType!
     $publishDate: String
     $viewCount: Int
     $likeCount: Int
   ) {
-    createAnnouncement(
+    createPost(
       data: {
         title: $title
         photo: $photo
         content: $content
+        postType: $postType
         publishDate: $publishDate
         viewCount: $viewCount
         likeCount: $likeCount
@@ -22,6 +24,7 @@ export const CREATE_ANNOUNCEMENT = gql`
       title
       photo
       content
+      postType
       publishDate
       viewCount
       likeCount
@@ -33,22 +36,24 @@ export const CREATE_ANNOUNCEMENT = gql`
   }
 `;
 
-export const UPDATE_ANNOUNCEMENT = gql`
-  mutation UpdateAnnouncement(
+export const UPDATE_POST = gql`
+  mutation UpdatePost(
     $id: ID!
     $title: String
     $photo: String
+    $postType: PostType
     $content: String
     $publishDate: String
     $viewCount: Int
     $likeCount: Int
   ) {
-    updateAnnouncement(
+    updatePost(
       id: $id
       data: {
         title: $title
         photo: $photo
         content: $content
+        postType: $postType
         publishDate: $publishDate
         viewCount: $viewCount
         likeCount: $likeCount
@@ -59,6 +64,7 @@ export const UPDATE_ANNOUNCEMENT = gql`
       content
       publishDate
       viewCount
+      postType
       likeCount
       user {
         id
@@ -69,20 +75,10 @@ export const UPDATE_ANNOUNCEMENT = gql`
   }
 `;
 
-export const DELETE_ANNOUNCEMENT = gql`
-  mutation DeleteAnnouncement($id: ID!) {
-    deleteAnnouncement(id: $id) {
-      title
-      photo
-      content
-      publishDate
-      viewCount
-      likeCount
-      user {
-        id
-        nameSurname
-        username
-      }
+export const DELETE_POST = gql`
+  mutation DeletePost($id: ID!) {
+    deletePost(id: $id) {
+      id
     }
   }
 `;

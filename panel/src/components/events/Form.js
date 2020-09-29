@@ -13,7 +13,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [photosArray, setPhotosArray] = useState([]);
   const [content, setContent] = useState(
     data
-      ? data.content.replace(
+      ? data.content.replaceAll(
           "---SERVER-HOST---",
           process.env.REACT_APP_GRAPHQL_SERVER
         )
@@ -48,7 +48,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     const sendData = {
       title,
       photo: photosArray.toString(),
-      content: content.replace(
+      content: content.replaceAll(
         process.env.REACT_APP_GRAPHQL_SERVER,
         "---SERVER-HOST---"
       ),

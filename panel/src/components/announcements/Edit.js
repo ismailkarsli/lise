@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_ANNOUNCEMENT } from "../../gql/announcements/query";
+import { GET_POST } from "../../gql/posts/query";
 import ErrorContainer from "../ui/ErrorContainer";
-import { UPDATE_ANNOUNCEMENT } from "../../gql/announcements/mutation";
+import { UPDATE_POST } from "../../gql/posts/mutation";
 import Loading from "../ui/Loading";
 import { useParams } from "react-router-dom";
 import Form from "./Form";
@@ -10,7 +10,7 @@ import { history } from "../../routes/AppRouter";
 
 export default () => {
   const params = useParams();
-  const { loading, error, data, networkStatus } = useQuery(GET_ANNOUNCEMENT, {
+  const { loading, error, data, networkStatus } = useQuery(GET_POST, {
     variables: {
       id: params.dataId,
     },
@@ -18,9 +18,7 @@ export default () => {
     fetchPolicy: "network-only",
   });
 
-  const [updateAnnouncement, { loading: mutationLoading }] = useMutation(
-    UPDATE_ANNOUNCEMENT
-  );
+  const [updatePost, { loading: mutationLoading }] = useMutation(UPDATE_POST);
   const [submitError, setSubmitError] = useState("");
 
   if (loading || networkStatus === 4) {
@@ -37,9 +35,10 @@ export default () => {
 
   const handleSubmit = async (formData) => {
     try {
-      const result = await updateAnnouncement({
+      const result = await updatePost({
         variables: {
           id: params.dataId,
+          postType: "ANNOUNCEMENT",
           ...formData,
         },
       });
@@ -58,7 +57,7 @@ export default () => {
       <Form
         handleSubmit={handleSubmit}
         title={"Duyuru Düzenle"}
-        data={data.announcement}
+        data={data.post}
         mutationLoading={mutationLoading}
       />
     </div>

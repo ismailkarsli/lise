@@ -4,38 +4,23 @@ type User {
   username: String! @unique
   password: String!
   userType: UserType!
-  news: [New!]! @relation(name: "NewsToUser", onDelete: CASCADE)
-  announcements: [Announcement!]!
-    @relation(name: "AnnmntToUser", onDelete: CASCADE)
+  posts: [Post!]! @relation(name: "PostsToUser", onDelete: CASCADE)
   events: [Event!]! @relation(name: "EventToUser", onDelete: CASCADE)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
 
-type New {
+type Post {
   id: ID! @id
   title: String!
   slug: String! @unique
+  postType: PostType!
   photo: String
   content: String
   publishDate: DateTime!
   viewCount: Int! @default(value: 0)
   likeCount: Int! @default(value: 0)
-  user: User! @relation(name: "NewsToUser", onDelete: SET_NULL)
-  updatedAt: DateTime! @updatedAt
-  createdAt: DateTime! @createdAt
-}
-
-type Announcement {
-  id: ID! @id
-  title: String!
-  slug: String! @unique
-  photo: String
-  content: String
-  publishDate: DateTime!
-  viewCount: Int! @default(value: 0)
-  likeCount: Int! @default(value: 0)
-  user: User! @relation(name: "AnnmntToUser", onDelete: SET_NULL)
+  user: User! @relation(name: "PostsToUser", onDelete: SET_NULL)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
@@ -65,13 +50,8 @@ type SiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String!
-  socialLinks: [SocialLink!]!
-}
-
-type SocialLink {
-  id: ID! @id
-  name: String!
-  url: String!
+  aboutHome: String
+  socialLinks: [SocialLink!]! @scalarList(strategy: RELATION)
 }
 
 type Link {
@@ -83,4 +63,16 @@ type Link {
 enum UserType {
   ADMIN
   MODERATOR
+}
+
+enum PostType {
+  NEWS
+  ANNOUNCEMENT
+}
+
+enum SocialLink {
+  FACEBOOK
+  TWITTER
+  INSTAGRAM
+  YOUTUBE
 }

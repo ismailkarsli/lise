@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_NEWS } from "../../gql/news/query";
-import { DELETE_NEW } from "./../../gql/news/mutation";
+import { GET_POSTS } from "../../gql/posts/query";
+import { DELETE_POST } from "./../../gql/posts/mutation";
 import { Link } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
@@ -21,21 +21,22 @@ const All = () => {
   );
 
   const [
-    getNews,
+    getPosts,
     { data, loading, error, refetch, networkStatus },
-  ] = useLazyQuery(GET_NEWS, {
+  ] = useLazyQuery(GET_POSTS, {
     variables: {
       orderBy: sortBy.join("_"),
+      postType: "NEWS",
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
-  const [deleteNew, { loading: deleteLoading }] = useMutation(DELETE_NEW);
+  const [deletePost, { loading: deleteLoading }] = useMutation(DELETE_POST);
 
   useEffect(() => {
-    getNews();
+    getPosts();
     localStorage.setItem("news_sort", JSON.stringify(sortBy));
-  }, [sortBy, getNews]);
+  }, [sortBy, getPosts]);
 
   if (loading || networkStatus === 4 || !data) return <Loading />;
 
@@ -50,7 +51,7 @@ const All = () => {
 
   const handleDelete = async (id) => {
     try {
-      const result = await deleteNew({
+      const result = await deletePost({
         variables: { id: id },
       });
       if (result) {
@@ -117,7 +118,7 @@ const All = () => {
         </thead>
 
         <tbody>
-          {data.news.map((item, index) => (
+          {data.posts.map((item, index) => (
             <tr key={item.id}>
               <Td custom="text-center w-1/12">{index + 1}</Td>
               <Td custom=" whitespace-no-wrap">{item.title}</Td>

@@ -1,12 +1,13 @@
 import { gql } from "@apollo/client";
 
-export const GET_ANNOUNCEMENTS = gql`
-  query Announcements($orderBy: String) {
-    announcements(orderBy: $orderBy) {
+export const GET_POSTS = gql`
+  query Posts($orderBy: String, $postType: String) {
+    posts(orderBy: $orderBy, postType: $postType) {
       id
       title
       photo
       content
+      postType
       publishDate
       viewCount
       likeCount
@@ -18,15 +19,16 @@ export const GET_ANNOUNCEMENTS = gql`
   }
 `;
 
-export const GET_ANNOUNCEMENT = gql`
-  query Announcement($id: ID!) {
-    announcement(id: $id) {
+export const GET_POST = gql`
+  query Post($id: ID!) {
+    post(id: $id) {
       id
       title
       photo
       content
       publishDate
       viewCount
+      postType
       likeCount
       user {
         username

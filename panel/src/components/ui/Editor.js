@@ -25,6 +25,9 @@ class UploadAdapter {
 
             resolve({
               default: `${process.env.REACT_APP_GRAPHQL_SERVER}images/0/0/${result.data.uploadPhoto.photo}`,
+              1080: `${process.env.REACT_APP_GRAPHQL_SERVER}images/1920/1080/${result.data.uploadPhoto.photo}`,
+              720: `${process.env.REACT_APP_GRAPHQL_SERVER}images/1280/720/${result.data.uploadPhoto.photo}`,
+              360: `${process.env.REACT_APP_GRAPHQL_SERVER}images/640/360/${result.data.uploadPhoto.photo}`,
             });
           } catch (error) {
             reject(

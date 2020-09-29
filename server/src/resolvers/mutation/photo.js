@@ -1,7 +1,12 @@
-import { uploadGoogleStorageFile, downloadGoogleStorageFile } from "./../../utils/googleStorageFunctions";
+import getUserData from "../../utils/getUserData";
+import {
+  uploadGoogleStorageFile,
+  downloadGoogleStorageFile,
+} from "./../../utils/googleStorageFunctions";
 
 const photo = {
-  async uploadPhoto(parent, args, { prisma }, info) {
+  async uploadPhoto(parent, args, { prisma, request }, info) {
+    const user = getUserData(request);
     const photo = await args.photo;
     const uploadFile = await uploadGoogleStorageFile(photo);
 

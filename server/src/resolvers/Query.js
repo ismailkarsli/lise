@@ -1,14 +1,12 @@
 import user from "./query/user";
-import news from "./query/news";
-import announcement from "./query/announcement";
+import post from "./query/post";
 import event from "./query/event";
 import siteSettings from "./query/siteSettings";
 import links from "./query/links";
 
 const queries = {
   ...user,
-  ...news,
-  ...announcement,
+  ...post,
   ...event,
   ...siteSettings,
   ...links,

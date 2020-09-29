@@ -1,7 +1,3 @@
-type AggregateAnnouncement {
-  count: Int!
-}
-
 type AggregateEvent {
   count: Int!
 }
@@ -10,7 +6,7 @@ type AggregateLink {
   count: Int!
 }
 
-type AggregateNew {
+type AggregatePost {
   count: Int!
 }
 
@@ -20,420 +16,6 @@ type AggregateSiteSettings {
 
 type AggregateUser {
   count: Int!
-}
-
-type Announcement {
-  id: ID!
-  title: String!
-  slug: String!
-  photo: String
-  content: String
-  publishDate: DateTime!
-  viewCount: Int!
-  likeCount: Int!
-  user: User!
-  updatedAt: DateTime!
-  createdAt: DateTime!
-}
-
-type AnnouncementConnection {
-  pageInfo: PageInfo!
-  edges: [AnnouncementEdge]!
-  aggregate: AggregateAnnouncement!
-}
-
-input AnnouncementCreateInput {
-  id: ID
-  title: String!
-  slug: String!
-  photo: String
-  content: String
-  publishDate: DateTime!
-  viewCount: Int
-  likeCount: Int
-  user: UserCreateOneWithoutAnnouncementsInput!
-}
-
-input AnnouncementCreateManyWithoutUserInput {
-  create: [AnnouncementCreateWithoutUserInput!]
-  connect: [AnnouncementWhereUniqueInput!]
-}
-
-input AnnouncementCreateWithoutUserInput {
-  id: ID
-  title: String!
-  slug: String!
-  photo: String
-  content: String
-  publishDate: DateTime!
-  viewCount: Int
-  likeCount: Int
-}
-
-type AnnouncementEdge {
-  node: Announcement!
-  cursor: String!
-}
-
-enum AnnouncementOrderByInput {
-  id_ASC
-  id_DESC
-  title_ASC
-  title_DESC
-  slug_ASC
-  slug_DESC
-  photo_ASC
-  photo_DESC
-  content_ASC
-  content_DESC
-  publishDate_ASC
-  publishDate_DESC
-  viewCount_ASC
-  viewCount_DESC
-  likeCount_ASC
-  likeCount_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
-}
-
-type AnnouncementPreviousValues {
-  id: ID!
-  title: String!
-  slug: String!
-  photo: String
-  content: String
-  publishDate: DateTime!
-  viewCount: Int!
-  likeCount: Int!
-  updatedAt: DateTime!
-  createdAt: DateTime!
-}
-
-input AnnouncementScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  slug: String
-  slug_not: String
-  slug_in: [String!]
-  slug_not_in: [String!]
-  slug_lt: String
-  slug_lte: String
-  slug_gt: String
-  slug_gte: String
-  slug_contains: String
-  slug_not_contains: String
-  slug_starts_with: String
-  slug_not_starts_with: String
-  slug_ends_with: String
-  slug_not_ends_with: String
-  photo: String
-  photo_not: String
-  photo_in: [String!]
-  photo_not_in: [String!]
-  photo_lt: String
-  photo_lte: String
-  photo_gt: String
-  photo_gte: String
-  photo_contains: String
-  photo_not_contains: String
-  photo_starts_with: String
-  photo_not_starts_with: String
-  photo_ends_with: String
-  photo_not_ends_with: String
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  publishDate: DateTime
-  publishDate_not: DateTime
-  publishDate_in: [DateTime!]
-  publishDate_not_in: [DateTime!]
-  publishDate_lt: DateTime
-  publishDate_lte: DateTime
-  publishDate_gt: DateTime
-  publishDate_gte: DateTime
-  viewCount: Int
-  viewCount_not: Int
-  viewCount_in: [Int!]
-  viewCount_not_in: [Int!]
-  viewCount_lt: Int
-  viewCount_lte: Int
-  viewCount_gt: Int
-  viewCount_gte: Int
-  likeCount: Int
-  likeCount_not: Int
-  likeCount_in: [Int!]
-  likeCount_not_in: [Int!]
-  likeCount_lt: Int
-  likeCount_lte: Int
-  likeCount_gt: Int
-  likeCount_gte: Int
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  AND: [AnnouncementScalarWhereInput!]
-  OR: [AnnouncementScalarWhereInput!]
-  NOT: [AnnouncementScalarWhereInput!]
-}
-
-type AnnouncementSubscriptionPayload {
-  mutation: MutationType!
-  node: Announcement
-  updatedFields: [String!]
-  previousValues: AnnouncementPreviousValues
-}
-
-input AnnouncementSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: AnnouncementWhereInput
-  AND: [AnnouncementSubscriptionWhereInput!]
-  OR: [AnnouncementSubscriptionWhereInput!]
-  NOT: [AnnouncementSubscriptionWhereInput!]
-}
-
-input AnnouncementUpdateInput {
-  title: String
-  slug: String
-  photo: String
-  content: String
-  publishDate: DateTime
-  viewCount: Int
-  likeCount: Int
-  user: UserUpdateOneRequiredWithoutAnnouncementsInput
-}
-
-input AnnouncementUpdateManyDataInput {
-  title: String
-  slug: String
-  photo: String
-  content: String
-  publishDate: DateTime
-  viewCount: Int
-  likeCount: Int
-}
-
-input AnnouncementUpdateManyMutationInput {
-  title: String
-  slug: String
-  photo: String
-  content: String
-  publishDate: DateTime
-  viewCount: Int
-  likeCount: Int
-}
-
-input AnnouncementUpdateManyWithoutUserInput {
-  create: [AnnouncementCreateWithoutUserInput!]
-  delete: [AnnouncementWhereUniqueInput!]
-  connect: [AnnouncementWhereUniqueInput!]
-  set: [AnnouncementWhereUniqueInput!]
-  disconnect: [AnnouncementWhereUniqueInput!]
-  update: [AnnouncementUpdateWithWhereUniqueWithoutUserInput!]
-  upsert: [AnnouncementUpsertWithWhereUniqueWithoutUserInput!]
-  deleteMany: [AnnouncementScalarWhereInput!]
-  updateMany: [AnnouncementUpdateManyWithWhereNestedInput!]
-}
-
-input AnnouncementUpdateManyWithWhereNestedInput {
-  where: AnnouncementScalarWhereInput!
-  data: AnnouncementUpdateManyDataInput!
-}
-
-input AnnouncementUpdateWithoutUserDataInput {
-  title: String
-  slug: String
-  photo: String
-  content: String
-  publishDate: DateTime
-  viewCount: Int
-  likeCount: Int
-}
-
-input AnnouncementUpdateWithWhereUniqueWithoutUserInput {
-  where: AnnouncementWhereUniqueInput!
-  data: AnnouncementUpdateWithoutUserDataInput!
-}
-
-input AnnouncementUpsertWithWhereUniqueWithoutUserInput {
-  where: AnnouncementWhereUniqueInput!
-  update: AnnouncementUpdateWithoutUserDataInput!
-  create: AnnouncementCreateWithoutUserInput!
-}
-
-input AnnouncementWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  slug: String
-  slug_not: String
-  slug_in: [String!]
-  slug_not_in: [String!]
-  slug_lt: String
-  slug_lte: String
-  slug_gt: String
-  slug_gte: String
-  slug_contains: String
-  slug_not_contains: String
-  slug_starts_with: String
-  slug_not_starts_with: String
-  slug_ends_with: String
-  slug_not_ends_with: String
-  photo: String
-  photo_not: String
-  photo_in: [String!]
-  photo_not_in: [String!]
-  photo_lt: String
-  photo_lte: String
-  photo_gt: String
-  photo_gte: String
-  photo_contains: String
-  photo_not_contains: String
-  photo_starts_with: String
-  photo_not_starts_with: String
-  photo_ends_with: String
-  photo_not_ends_with: String
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  publishDate: DateTime
-  publishDate_not: DateTime
-  publishDate_in: [DateTime!]
-  publishDate_not_in: [DateTime!]
-  publishDate_lt: DateTime
-  publishDate_lte: DateTime
-  publishDate_gt: DateTime
-  publishDate_gte: DateTime
-  viewCount: Int
-  viewCount_not: Int
-  viewCount_in: [Int!]
-  viewCount_not_in: [Int!]
-  viewCount_lt: Int
-  viewCount_lte: Int
-  viewCount_gt: Int
-  viewCount_gte: Int
-  likeCount: Int
-  likeCount_not: Int
-  likeCount_in: [Int!]
-  likeCount_not_in: [Int!]
-  likeCount_lt: Int
-  likeCount_lte: Int
-  likeCount_gt: Int
-  likeCount_gte: Int
-  user: UserWhereInput
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  AND: [AnnouncementWhereInput!]
-  OR: [AnnouncementWhereInput!]
-  NOT: [AnnouncementWhereInput!]
-}
-
-input AnnouncementWhereUniqueInput {
-  id: ID
-  slug: String
 }
 
 type BatchPayload {
@@ -1029,12 +611,6 @@ input LinkWhereUniqueInput {
 scalar Long
 
 type Mutation {
-  createAnnouncement(data: AnnouncementCreateInput!): Announcement!
-  updateAnnouncement(data: AnnouncementUpdateInput!, where: AnnouncementWhereUniqueInput!): Announcement
-  updateManyAnnouncements(data: AnnouncementUpdateManyMutationInput!, where: AnnouncementWhereInput): BatchPayload!
-  upsertAnnouncement(where: AnnouncementWhereUniqueInput!, create: AnnouncementCreateInput!, update: AnnouncementUpdateInput!): Announcement!
-  deleteAnnouncement(where: AnnouncementWhereUniqueInput!): Announcement
-  deleteManyAnnouncements(where: AnnouncementWhereInput): BatchPayload!
   createEvent(data: EventCreateInput!): Event!
   updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
   updateManyEvents(data: EventUpdateManyMutationInput!, where: EventWhereInput): BatchPayload!
@@ -1047,12 +623,12 @@ type Mutation {
   upsertLink(where: LinkWhereUniqueInput!, create: LinkCreateInput!, update: LinkUpdateInput!): Link!
   deleteLink(where: LinkWhereUniqueInput!): Link
   deleteManyLinks(where: LinkWhereInput): BatchPayload!
-  createNew(data: NewCreateInput!): New!
-  updateNew(data: NewUpdateInput!, where: NewWhereUniqueInput!): New
-  updateManyNews(data: NewUpdateManyMutationInput!, where: NewWhereInput): BatchPayload!
-  upsertNew(where: NewWhereUniqueInput!, create: NewCreateInput!, update: NewUpdateInput!): New!
-  deleteNew(where: NewWhereUniqueInput!): New
-  deleteManyNews(where: NewWhereInput): BatchPayload!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  deletePost(where: PostWhereUniqueInput!): Post
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
   createSiteSettings(data: SiteSettingsCreateInput!): SiteSettings!
   updateSiteSettings(data: SiteSettingsUpdateInput!, where: SiteSettingsWhereUniqueInput!): SiteSettings
   updateManySiteSettingses(data: SiteSettingsUpdateManyMutationInput!, where: SiteSettingsWhereInput): BatchPayload!
@@ -1073,10 +649,22 @@ enum MutationType {
   DELETED
 }
 
-type New {
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Post {
   id: ID!
   title: String!
   slug: String!
+  postType: PostType!
   photo: String
   content: String
   publishDate: DateTime!
@@ -1087,33 +675,35 @@ type New {
   createdAt: DateTime!
 }
 
-type NewConnection {
+type PostConnection {
   pageInfo: PageInfo!
-  edges: [NewEdge]!
-  aggregate: AggregateNew!
+  edges: [PostEdge]!
+  aggregate: AggregatePost!
 }
 
-input NewCreateInput {
+input PostCreateInput {
   id: ID
   title: String!
   slug: String!
+  postType: PostType!
   photo: String
   content: String
   publishDate: DateTime!
   viewCount: Int
   likeCount: Int
-  user: UserCreateOneWithoutNewsInput!
+  user: UserCreateOneWithoutPostsInput!
 }
 
-input NewCreateManyWithoutUserInput {
-  create: [NewCreateWithoutUserInput!]
-  connect: [NewWhereUniqueInput!]
+input PostCreateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  connect: [PostWhereUniqueInput!]
 }
 
-input NewCreateWithoutUserInput {
+input PostCreateWithoutUserInput {
   id: ID
   title: String!
   slug: String!
+  postType: PostType!
   photo: String
   content: String
   publishDate: DateTime!
@@ -1121,18 +711,20 @@ input NewCreateWithoutUserInput {
   likeCount: Int
 }
 
-type NewEdge {
-  node: New!
+type PostEdge {
+  node: Post!
   cursor: String!
 }
 
-enum NewOrderByInput {
+enum PostOrderByInput {
   id_ASC
   id_DESC
   title_ASC
   title_DESC
   slug_ASC
   slug_DESC
+  postType_ASC
+  postType_DESC
   photo_ASC
   photo_DESC
   content_ASC
@@ -1149,10 +741,11 @@ enum NewOrderByInput {
   createdAt_DESC
 }
 
-type NewPreviousValues {
+type PostPreviousValues {
   id: ID!
   title: String!
   slug: String!
+  postType: PostType!
   photo: String
   content: String
   publishDate: DateTime!
@@ -1162,7 +755,7 @@ type NewPreviousValues {
   createdAt: DateTime!
 }
 
-input NewScalarWhereInput {
+input PostScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1205,6 +798,10 @@ input NewScalarWhereInput {
   slug_not_starts_with: String
   slug_ends_with: String
   slug_not_ends_with: String
+  postType: PostType
+  postType_not: PostType
+  postType_in: [PostType!]
+  postType_not_in: [PostType!]
   photo: String
   photo_not: String
   photo_in: [String!]
@@ -1273,80 +870,50 @@ input NewScalarWhereInput {
   createdAt_lte: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
-  AND: [NewScalarWhereInput!]
-  OR: [NewScalarWhereInput!]
-  NOT: [NewScalarWhereInput!]
+  AND: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  NOT: [PostScalarWhereInput!]
 }
 
-type NewSubscriptionPayload {
+type PostSubscriptionPayload {
   mutation: MutationType!
-  node: New
+  node: Post
   updatedFields: [String!]
-  previousValues: NewPreviousValues
+  previousValues: PostPreviousValues
 }
 
-input NewSubscriptionWhereInput {
+input PostSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: NewWhereInput
-  AND: [NewSubscriptionWhereInput!]
-  OR: [NewSubscriptionWhereInput!]
-  NOT: [NewSubscriptionWhereInput!]
+  node: PostWhereInput
+  AND: [PostSubscriptionWhereInput!]
+  OR: [PostSubscriptionWhereInput!]
+  NOT: [PostSubscriptionWhereInput!]
 }
 
-input NewUpdateInput {
+enum PostType {
+  NEWS
+  ANNOUNCEMENT
+}
+
+input PostUpdateInput {
   title: String
   slug: String
+  postType: PostType
   photo: String
   content: String
   publishDate: DateTime
   viewCount: Int
   likeCount: Int
-  user: UserUpdateOneRequiredWithoutNewsInput
+  user: UserUpdateOneRequiredWithoutPostsInput
 }
 
-input NewUpdateManyDataInput {
+input PostUpdateManyDataInput {
   title: String
   slug: String
-  photo: String
-  content: String
-  publishDate: DateTime
-  viewCount: Int
-  likeCount: Int
-}
-
-input NewUpdateManyMutationInput {
-  title: String
-  slug: String
-  photo: String
-  content: String
-  publishDate: DateTime
-  viewCount: Int
-  likeCount: Int
-}
-
-input NewUpdateManyWithoutUserInput {
-  create: [NewCreateWithoutUserInput!]
-  delete: [NewWhereUniqueInput!]
-  connect: [NewWhereUniqueInput!]
-  set: [NewWhereUniqueInput!]
-  disconnect: [NewWhereUniqueInput!]
-  update: [NewUpdateWithWhereUniqueWithoutUserInput!]
-  upsert: [NewUpsertWithWhereUniqueWithoutUserInput!]
-  deleteMany: [NewScalarWhereInput!]
-  updateMany: [NewUpdateManyWithWhereNestedInput!]
-}
-
-input NewUpdateManyWithWhereNestedInput {
-  where: NewScalarWhereInput!
-  data: NewUpdateManyDataInput!
-}
-
-input NewUpdateWithoutUserDataInput {
-  title: String
-  slug: String
+  postType: PostType
   photo: String
   content: String
   publishDate: DateTime
@@ -1354,18 +921,57 @@ input NewUpdateWithoutUserDataInput {
   likeCount: Int
 }
 
-input NewUpdateWithWhereUniqueWithoutUserInput {
-  where: NewWhereUniqueInput!
-  data: NewUpdateWithoutUserDataInput!
+input PostUpdateManyMutationInput {
+  title: String
+  slug: String
+  postType: PostType
+  photo: String
+  content: String
+  publishDate: DateTime
+  viewCount: Int
+  likeCount: Int
 }
 
-input NewUpsertWithWhereUniqueWithoutUserInput {
-  where: NewWhereUniqueInput!
-  update: NewUpdateWithoutUserDataInput!
-  create: NewCreateWithoutUserInput!
+input PostUpdateManyWithoutUserInput {
+  create: [PostCreateWithoutUserInput!]
+  delete: [PostWhereUniqueInput!]
+  connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  disconnect: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [PostScalarWhereInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
 }
 
-input NewWhereInput {
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
+}
+
+input PostUpdateWithoutUserDataInput {
+  title: String
+  slug: String
+  postType: PostType
+  photo: String
+  content: String
+  publishDate: DateTime
+  viewCount: Int
+  likeCount: Int
+}
+
+input PostUpdateWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  data: PostUpdateWithoutUserDataInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutUserInput {
+  where: PostWhereUniqueInput!
+  update: PostUpdateWithoutUserDataInput!
+  create: PostCreateWithoutUserInput!
+}
+
+input PostWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -1408,6 +1014,10 @@ input NewWhereInput {
   slug_not_starts_with: String
   slug_ends_with: String
   slug_not_ends_with: String
+  postType: PostType
+  postType_not: PostType
+  postType_in: [PostType!]
+  postType_not_in: [PostType!]
   photo: String
   photo_not: String
   photo_in: [String!]
@@ -1477,40 +1087,26 @@ input NewWhereInput {
   createdAt_lte: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
-  AND: [NewWhereInput!]
-  OR: [NewWhereInput!]
-  NOT: [NewWhereInput!]
+  AND: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  NOT: [PostWhereInput!]
 }
 
-input NewWhereUniqueInput {
+input PostWhereUniqueInput {
   id: ID
   slug: String
 }
 
-interface Node {
-  id: ID!
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-
 type Query {
-  announcement(where: AnnouncementWhereUniqueInput!): Announcement
-  announcements(where: AnnouncementWhereInput, orderBy: AnnouncementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Announcement]!
-  announcementsConnection(where: AnnouncementWhereInput, orderBy: AnnouncementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AnnouncementConnection!
   event(where: EventWhereUniqueInput!): Event
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
   link(where: LinkWhereUniqueInput!): Link
   links(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Link]!
   linksConnection(where: LinkWhereInput, orderBy: LinkOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LinkConnection!
-  new(where: NewWhereUniqueInput!): New
-  news(where: NewWhereInput, orderBy: NewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [New]!
-  newsConnection(where: NewWhereInput, orderBy: NewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NewConnection!
+  post(where: PostWhereUniqueInput!): Post
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   siteSettings(where: SiteSettingsWhereUniqueInput!): SiteSettings
   siteSettingses(where: SiteSettingsWhereInput, orderBy: SiteSettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SiteSettings]!
   siteSettingsesConnection(where: SiteSettingsWhereInput, orderBy: SiteSettingsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SiteSettingsConnection!
@@ -1528,7 +1124,9 @@ type SiteSettings {
   address: String
   mapLongitude: Float
   mapLatitude: Float
-  about: String
+  about: String!
+  aboutHome: String
+  socialLinks: [SocialLink!]!
 }
 
 type SiteSettingsConnection {
@@ -1545,7 +1143,13 @@ input SiteSettingsCreateInput {
   address: String
   mapLongitude: Float
   mapLatitude: Float
-  about: String
+  about: String!
+  aboutHome: String
+  socialLinks: SiteSettingsCreatesocialLinksInput
+}
+
+input SiteSettingsCreatesocialLinksInput {
+  set: [SocialLink!]
 }
 
 type SiteSettingsEdge {
@@ -1570,6 +1174,8 @@ enum SiteSettingsOrderByInput {
   mapLatitude_DESC
   about_ASC
   about_DESC
+  aboutHome_ASC
+  aboutHome_DESC
 }
 
 type SiteSettingsPreviousValues {
@@ -1580,7 +1186,9 @@ type SiteSettingsPreviousValues {
   address: String
   mapLongitude: Float
   mapLatitude: Float
-  about: String
+  about: String!
+  aboutHome: String
+  socialLinks: [SocialLink!]!
 }
 
 type SiteSettingsSubscriptionPayload {
@@ -1609,6 +1217,8 @@ input SiteSettingsUpdateInput {
   mapLongitude: Float
   mapLatitude: Float
   about: String
+  aboutHome: String
+  socialLinks: SiteSettingsUpdatesocialLinksInput
 }
 
 input SiteSettingsUpdateManyMutationInput {
@@ -1619,6 +1229,12 @@ input SiteSettingsUpdateManyMutationInput {
   mapLongitude: Float
   mapLatitude: Float
   about: String
+  aboutHome: String
+  socialLinks: SiteSettingsUpdatesocialLinksInput
+}
+
+input SiteSettingsUpdatesocialLinksInput {
+  set: [SocialLink!]
 }
 
 input SiteSettingsWhereInput {
@@ -1722,6 +1338,20 @@ input SiteSettingsWhereInput {
   about_not_starts_with: String
   about_ends_with: String
   about_not_ends_with: String
+  aboutHome: String
+  aboutHome_not: String
+  aboutHome_in: [String!]
+  aboutHome_not_in: [String!]
+  aboutHome_lt: String
+  aboutHome_lte: String
+  aboutHome_gt: String
+  aboutHome_gte: String
+  aboutHome_contains: String
+  aboutHome_not_contains: String
+  aboutHome_starts_with: String
+  aboutHome_not_starts_with: String
+  aboutHome_ends_with: String
+  aboutHome_not_ends_with: String
   AND: [SiteSettingsWhereInput!]
   OR: [SiteSettingsWhereInput!]
   NOT: [SiteSettingsWhereInput!]
@@ -1731,11 +1361,17 @@ input SiteSettingsWhereUniqueInput {
   id: ID
 }
 
+enum SocialLink {
+  FACEBOOK
+  TWITTER
+  INSTAGRAM
+  YOUTUBE
+}
+
 type Subscription {
-  announcement(where: AnnouncementSubscriptionWhereInput): AnnouncementSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
   link(where: LinkSubscriptionWhereInput): LinkSubscriptionPayload
-  new(where: NewSubscriptionWhereInput): NewSubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   siteSettings(where: SiteSettingsSubscriptionWhereInput): SiteSettingsSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
@@ -1746,8 +1382,7 @@ type User {
   username: String!
   password: String!
   userType: UserType!
-  news(where: NewWhereInput, orderBy: NewOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [New!]
-  announcements(where: AnnouncementWhereInput, orderBy: AnnouncementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Announcement!]
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event!]
   updatedAt: DateTime!
   createdAt: DateTime!
@@ -1765,14 +1400,8 @@ input UserCreateInput {
   username: String!
   password: String!
   userType: UserType!
-  news: NewCreateManyWithoutUserInput
-  announcements: AnnouncementCreateManyWithoutUserInput
+  posts: PostCreateManyWithoutUserInput
   events: EventCreateManyWithoutUserInput
-}
-
-input UserCreateOneWithoutAnnouncementsInput {
-  create: UserCreateWithoutAnnouncementsInput
-  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutEventsInput {
@@ -1780,19 +1409,9 @@ input UserCreateOneWithoutEventsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutNewsInput {
-  create: UserCreateWithoutNewsInput
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
   connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutAnnouncementsInput {
-  id: ID
-  nameSurname: String
-  username: String!
-  password: String!
-  userType: UserType!
-  news: NewCreateManyWithoutUserInput
-  events: EventCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutEventsInput {
@@ -1801,17 +1420,15 @@ input UserCreateWithoutEventsInput {
   username: String!
   password: String!
   userType: UserType!
-  news: NewCreateManyWithoutUserInput
-  announcements: AnnouncementCreateManyWithoutUserInput
+  posts: PostCreateManyWithoutUserInput
 }
 
-input UserCreateWithoutNewsInput {
+input UserCreateWithoutPostsInput {
   id: ID
   nameSurname: String
   username: String!
   password: String!
   userType: UserType!
-  announcements: AnnouncementCreateManyWithoutUserInput
   events: EventCreateManyWithoutUserInput
 }
 
@@ -1875,8 +1492,7 @@ input UserUpdateInput {
   username: String
   password: String
   userType: UserType
-  news: NewUpdateManyWithoutUserInput
-  announcements: AnnouncementUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
   events: EventUpdateManyWithoutUserInput
 }
 
@@ -1887,13 +1503,6 @@ input UserUpdateManyMutationInput {
   userType: UserType
 }
 
-input UserUpdateOneRequiredWithoutAnnouncementsInput {
-  create: UserCreateWithoutAnnouncementsInput
-  update: UserUpdateWithoutAnnouncementsDataInput
-  upsert: UserUpsertWithoutAnnouncementsInput
-  connect: UserWhereUniqueInput
-}
-
 input UserUpdateOneRequiredWithoutEventsInput {
   create: UserCreateWithoutEventsInput
   update: UserUpdateWithoutEventsDataInput
@@ -1901,20 +1510,11 @@ input UserUpdateOneRequiredWithoutEventsInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutNewsInput {
-  create: UserCreateWithoutNewsInput
-  update: UserUpdateWithoutNewsDataInput
-  upsert: UserUpsertWithoutNewsInput
+input UserUpdateOneRequiredWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
   connect: UserWhereUniqueInput
-}
-
-input UserUpdateWithoutAnnouncementsDataInput {
-  nameSurname: String
-  username: String
-  password: String
-  userType: UserType
-  news: NewUpdateManyWithoutUserInput
-  events: EventUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutEventsDataInput {
@@ -1922,22 +1522,15 @@ input UserUpdateWithoutEventsDataInput {
   username: String
   password: String
   userType: UserType
-  news: NewUpdateManyWithoutUserInput
-  announcements: AnnouncementUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutUserInput
 }
 
-input UserUpdateWithoutNewsDataInput {
+input UserUpdateWithoutPostsDataInput {
   nameSurname: String
   username: String
   password: String
   userType: UserType
-  announcements: AnnouncementUpdateManyWithoutUserInput
   events: EventUpdateManyWithoutUserInput
-}
-
-input UserUpsertWithoutAnnouncementsInput {
-  update: UserUpdateWithoutAnnouncementsDataInput!
-  create: UserCreateWithoutAnnouncementsInput!
 }
 
 input UserUpsertWithoutEventsInput {
@@ -1945,9 +1538,9 @@ input UserUpsertWithoutEventsInput {
   create: UserCreateWithoutEventsInput!
 }
 
-input UserUpsertWithoutNewsInput {
-  update: UserUpdateWithoutNewsDataInput!
-  create: UserCreateWithoutNewsInput!
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
 }
 
 input UserWhereInput {
@@ -2011,12 +1604,9 @@ input UserWhereInput {
   userType_not: UserType
   userType_in: [UserType!]
   userType_not_in: [UserType!]
-  news_every: NewWhereInput
-  news_some: NewWhereInput
-  news_none: NewWhereInput
-  announcements_every: AnnouncementWhereInput
-  announcements_some: AnnouncementWhereInput
-  announcements_none: AnnouncementWhereInput
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
   events_every: EventWhereInput
   events_some: EventWhereInput
   events_none: EventWhereInput

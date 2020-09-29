@@ -1,6 +1,5 @@
 import user from "./mutation/user";
-import news from "./mutation/news";
-import announcement from "./mutation/announcement";
+import post from "./mutation/post";
 import event from "./mutation/event";
 import photo from "./mutation/photo";
 import siteSettings from "./mutation/siteSettings";
@@ -8,8 +7,7 @@ import links from "./mutation/links";
 
 const mutations = {
   ...user,
-  ...news,
-  ...announcement,
+  ...post,
   ...event,
   ...photo,
   ...siteSettings,

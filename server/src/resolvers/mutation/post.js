@@ -1,15 +1,15 @@
-import getUserData from "./../../utils/getUserData";
+import getUserData from "../../utils/getUserData";
 import getSlug from "speakingurl";
 
-const announcements = {
-  createAnnouncement(parent, args, { request, prisma }, info) {
+const post = {
+  createPost(parent, args, { request, prisma }, info) {
     const user = getUserData(request);
 
     if (!args.data.publishDate) {
       args.data.publishDate = new Date();
     }
 
-    return prisma.mutation.createAnnouncement(
+    return prisma.mutation.createPost(
       {
         data: {
           ...args.data,
@@ -25,7 +25,7 @@ const announcements = {
     );
   },
 
-  updateAnnouncement(parent, args, { request, prisma }, info) {
+  updatePost(parent, args, { request, prisma }, info) {
     const user = getUserData(request);
 
     let slug = undefined;
@@ -36,7 +36,7 @@ const announcements = {
       });
     }
 
-    return prisma.mutation.updateAnnouncement(
+    return prisma.mutation.updatePost(
       {
         where: {
           id: args.id,
@@ -50,10 +50,10 @@ const announcements = {
     );
   },
 
-  deleteAnnouncement(parent, args, { request, prisma }, info) {
+  deletePost(parent, args, { request, prisma }, info) {
     const user = getUserData(request);
 
-    return prisma.mutation.deleteAnnouncement(
+    return prisma.mutation.deletePost(
       {
         where: {
           id: args.id,
@@ -64,4 +64,4 @@ const announcements = {
   },
 };
 
-export default announcements;
+export default post;

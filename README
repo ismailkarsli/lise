@@ -1,5 +1,6 @@
 Server
 Sosyal medya bağlantıları geliştir
+Site ayarlarını düzenlemeyi düzelt
 
 Panel
 Google maps api key eklenmeli.
@@ -9,9 +10,8 @@ Web
 Etkinlikler slaytına mobilde navigasyon simgesi eklenmesi gerekiyor.
 Robots.txt tüm botları kapatıyor.
 Anasayfadaki 5'ten fazla haber ve duyurular için daha fazla gör eklenmeli.
-Slayttaki navigasyonun içlerindeki oklar büyütülmeli.
-background-color: #1d212b;
-Footerı sadece logolar olacak şekilde değiştir.
+Footerı ayarla.
+sticky header
 
 Genel
 Eklenen fotoğrafların dinamik olarak linkinin sunucuya göre değiştirilmesi gerekiyor.

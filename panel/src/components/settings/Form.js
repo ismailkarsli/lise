@@ -18,7 +18,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [mapLatitude, setMapLatitude] = useState(data ? data.mapLatitude : "");
   const [about, setAbout] = useState(
     data
-      ? data.about.replace(
+      ? data.about.replaceAll(
           "---SERVER-HOST---",
           process.env.REACT_APP_GRAPHQL_SERVER
         )
@@ -36,7 +36,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       address,
       mapLongitude: mapLongitude ? parseFloat(mapLongitude) : undefined,
       mapLatitude: mapLatitude ? parseFloat(mapLatitude) : undefined,
-      about: about.replace(
+      about: about.replaceAll(
         process.env.REACT_APP_GRAPHQL_SERVER,
         "---SERVER-HOST---"
       ),

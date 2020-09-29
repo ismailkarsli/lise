@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_ANNOUNCEMENTS } from "../../gql/announcements/query";
-import { DELETE_ANNOUNCEMENT } from "./../../gql/announcements/mutation";
+import { GET_POSTS } from "../../gql/posts/query";
+import { DELETE_POST } from "./../../gql/posts/mutation";
 import { Link } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
@@ -23,23 +23,22 @@ const All = () => {
   );
 
   const [
-    getAnnouncements,
+    getPosts,
     { data, loading, error, refetch, networkStatus },
-  ] = useLazyQuery(GET_ANNOUNCEMENTS, {
+  ] = useLazyQuery(GET_POSTS, {
     variables: {
       orderBy: sortBy.join("_"),
+      postType: "ANNOUNCEMENT",
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
-  const [deleteAnnouncement, { loading: deleteLoading }] = useMutation(
-    DELETE_ANNOUNCEMENT
-  );
+  const [deletePost, { loading: deleteLoading }] = useMutation(DELETE_POST);
 
   useEffect(() => {
-    getAnnouncements();
+    getPosts();
     localStorage.setItem("announcements_sort", JSON.stringify(sortBy));
-  }, [sortBy, getAnnouncements]);
+  }, [sortBy, getPosts]);
 
   if (loading || networkStatus === 4 || !data) return <Loading />;
 
@@ -54,7 +53,7 @@ const All = () => {
 
   const handleDelete = async (id) => {
     try {
-      const result = await deleteAnnouncement({
+      const result = await deletePost({
         variables: { id: id },
       });
       if (result) {
@@ -121,7 +120,7 @@ const All = () => {
         </thead>
 
         <tbody>
-          {data.announcements.map((item, index) => (
+          {data.posts.map((item, index) => (
             <tr key={item.id}>
               <Td custom="text-center w-1/12">{index + 1}</Td>
               <Td custom=" whitespace-no-wrap">{item.title}</Td>

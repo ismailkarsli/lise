@@ -3,8 +3,3 @@ body,
 #root {
   min-height: 100vh;
 }
-
-/* Yazı editörünün minimum boyutu */
-.ck-editor__editable {
-  min-height: 300px;
-}

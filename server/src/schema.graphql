@@ -4,19 +4,16 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
-  news(orderBy: String): [New!]!
-  new(id: ID!): New!
-
-  announcements(orderBy: String): [Announcement!]!
-  announcement(id: ID!): Announcement!
+  posts(orderBy: String, postType: String): [Post!]!
+  post(id: ID!): Post!
 
   events(orderBy: String): [Event!]!
   event(id: ID!): Event!
 
+  siteSettings: SiteSettings!
+
   links: [Link!]!
   link(id: ID!): Link!
-
-  siteSettings: SiteSettings!
 }
 
 type Mutation {
@@ -25,13 +22,9 @@ type Mutation {
   deleteUser(id: ID!): User!
   loginUser(data: LoginUserInput!): AuthPayload!
 
-  createNew(data: CreateNewInput!): New!
-  updateNew(id: ID!, data: UpdateNewInput!): New!
-  deleteNew(id: ID!): New!
-
-  createAnnouncement(data: CreateAnnouncementInput!): Announcement!
-  updateAnnouncement(id: ID!, data: UpdateAnnouncementInput!): Announcement!
-  deleteAnnouncement(id: ID!): Announcement!
+  createPost(data: CreatePostInput!): Post!
+  updatePost(id: ID!, data: UpdatePostInput!): Post!
+  deletePost(id: ID!): Post!
 
   createEvent(data: CreateEventInput!): Event!
   updateEvent(id: ID!, data: UpdateEventInput!): Event!
@@ -52,12 +45,11 @@ type UploadPayload {
 
 type User {
   id: String!
-  username: String!
   nameSurname: String
+  username: String!
   password: String!
   userType: UserType!
-  news: [New!]!
-  announcements: [Announcement!]!
+  posts: [Post!]!
   events: [Event!]!
   updatedAt: String!
   createdAt: String!
@@ -87,10 +79,11 @@ type AuthPayload {
   user: String!
 }
 
-type New {
+type Post {
   id: String!
   title: String!
   slug: String!
+  postType: PostType!
   photo: String
   content: String
   publishDate: String!
@@ -101,51 +94,21 @@ type New {
   updatedAt: String!
 }
 
-input CreateNewInput {
+input CreatePostInput {
   title: String!
   photo: String
   content: String
+  postType: PostType!
   publishDate: String
   viewCount: Int
   likeCount: Int
 }
 
-input UpdateNewInput {
+input UpdatePostInput {
   title: String
   photo: String
   content: String
-  publishDate: String
-  viewCount: Int
-  likeCount: Int
-}
-
-type Announcement {
-  id: String!
-  title: String!
-  slug: String!
-  photo: String
-  content: String
-  publishDate: String!
-  viewCount: Int
-  likeCount: Int
-  user: User!
-  createdAt: String!
-  updatedAt: String!
-}
-
-input CreateAnnouncementInput {
-  title: String!
-  photo: String
-  content: String
-  publishDate: String
-  viewCount: Int
-  likeCount: Int
-}
-
-input UpdateAnnouncementInput {
-  title: String
-  photo: String
-  content: String
+  postType: PostType
   publishDate: String
   viewCount: Int
   likeCount: Int
@@ -198,6 +161,8 @@ type SiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String
+  aboutHome: String
+  socialLinks: [SocialLink!]!
 }
 
 input UpdateSiteSettings {
@@ -208,6 +173,8 @@ input UpdateSiteSettings {
   mapLongitude: Float
   mapLatitude: Float
   about: String
+  aboutHome: String
+  socialLinks: [SocialLink!]!
 }
 
 type Link {
@@ -229,4 +196,15 @@ input UpdateLinkInput {
 enum UserType {
   ADMIN
   MODERATOR
+}
+enum PostType {
+  NEWS
+  ANNOUNCEMENT
+}
+
+enum SocialLink {
+  FACEBOOK
+  TWITTER
+  INSTAGRAM
+  YOUTUBE
 }
