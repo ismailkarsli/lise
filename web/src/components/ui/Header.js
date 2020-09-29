@@ -23,7 +23,9 @@ export default () => {
       <div className="header">
         <div className="header-inner">
           <div className="title">
-            <Link to="/">Lorem Ipsum</Link>
+            <Link to="/">
+              İstanbul Lorem İpsum Mesleki ve Teknik Anadolu Lisesi
+            </Link>
           </div>
           <div className="nav-wrap">
             <nav>

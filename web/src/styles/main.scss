@@ -44,8 +44,20 @@ svg {
 }
 .page-title {
   font-size: 2rem;
-  padding-bottom: 8px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
   text-align: center;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background-color: $secondaryColor;
+  }
 }
 
 @import "header";

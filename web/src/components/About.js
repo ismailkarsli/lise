@@ -8,7 +8,7 @@ const About = () => {
         <img
           src="/images/bir-lise-binasi.jpg"
           alt="okul"
-          style={{ width: "100%", padding: "16px" }}
+          style={{ width: "100%", padding: "4px" }}
         />
 
         <p style={{ padding: "4px" }}>
