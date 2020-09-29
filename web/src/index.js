@@ -21,8 +21,8 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/hakkimizda" component={About} />
         <Route exact path="/haberler" component={News} />
-        <Route exact path="/duyurular" component={News} />
-        <Route exact path="/etkinlikler" component={News} />
+        <Route exact path="/duyurular" component={Announcements} />
+        <Route exact path="/etkinlikler" component={Events} />
         <Route exact path="/iletisim" component={Contact} />
       </Switch>
       <Footer />
