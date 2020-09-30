@@ -15,7 +15,7 @@ const news = {
     return prisma.query.post(
       {
         where: {
-          id: args.id,
+          slug: args.slug,
         },
       },
       info

@@ -5,10 +5,10 @@ type Query {
   user(id: ID!): User!
 
   posts(orderBy: String, postType: String): [Post!]!
-  post(id: ID!): Post!
+  post(slug: String!): Post!
 
   events(orderBy: String): [Event!]!
-  event(id: ID!): Event!
+  event(slug: String!): Event!
 
   siteSettings: SiteSettings!
 

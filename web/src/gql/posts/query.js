@@ -16,3 +16,20 @@ export const GET_POSTS = gql`
     }
   }
 `;
+
+export const GET_POST = gql`
+  query GetPost($slug: String!) {
+    post(slug: $slug) {
+      id
+      title
+      slug
+      postType
+      photo
+      content
+      publishDate
+      viewCount
+      likeCount
+      createdAt
+    }
+  }
+`;

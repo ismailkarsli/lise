@@ -45,9 +45,6 @@ export default () => {
                   <Link to="/haberler">Haberler</Link>
                 </li>
                 <li>
-                  <Link to="/duyurular">Duyurular</Link>
-                </li>
-                <li>
                   <Link to="/etkinlikler">Etkinlikler</Link>
                 </li>
                 <li>

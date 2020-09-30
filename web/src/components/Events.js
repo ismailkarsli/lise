@@ -1,110 +1,78 @@
 import React from "react";
+import { GET_EVENTS } from "../gql/events/query";
+import day from "dayjs";
+import duration from "dayjs/plugin/duration";
+import "dayjs/locale/tr";
 import { BsCalendar } from "react-icons/bs";
+import { useQuery } from "@apollo/client";
 
 const Events = () => {
+  day.locale("tr");
+  day.extend(duration);
+  const { data, loading, error } = useQuery(GET_EVENTS);
+
+  if (loading) {
+    return <div>Yükleniyor</div>;
+  } else if (error) {
+    return <div>Hata</div>;
+  }
+
   return (
     <div className="event container main-container">
       <h2 className="page-title">Etkinlikler</h2>
       <div className="event-list">
-        <div className="list-item">
-          <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
-          </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 24 Eylül 2020 - 10:30 - 16:00
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
+        {data.events.map((event) => {
+          let postContent = event.content
+            .replaceAll(
+              "---SERVER-HOST---",
+              process.env.REACT_APP_GRAPHQL_SERVER
+            )
+            .replaceAll(/<[^>]*>/g, "")
+            .slice(0, 320);
 
-        <div className="list-item">
-          <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
-          </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 24 Eylül 2020 - 10:30 - 16:00
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
+          const startDate = day(event.startDate);
+          const endDate = day(event.endDate);
 
-        <div className="list-item">
-          <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
-          </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 24 Eylül 2020 - 10:30 - 16:00
-              </time>
-            </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
+          const duration = day.duration(endDate.diff(startDate)).$d;
+          console.log(duration);
 
-        <div className="list-item">
-          <div className="item-photo">
-            <img alt="foto" src="https://picsum.photos/1000/600" />
-          </div>
-          <div className="item-meta">
-            <h3 className="meta-title">
-              Mezuniyet Aşamasında Fazladan Alınacak Ders Duyurusu
-            </h3>
-            <div className="meta-date">
-              <time dateTime="2019-08-07T07:32:15+00:00">
-                <BsCalendar /> 24 Eylül 2020 - 10:30 - 16:00
-              </time>
+          const endDateFormatted = `
+                ${duration.days ? duration.days + " gn" : ""}
+                ${duration.hours ? duration.hours + " sa" : ""}
+                ${duration.minutes ? duration.minutes + " dk" : ""}
+                `;
+          return (
+            <div key={event.id} className="list-item">
+              <div className="item-photo">
+                <img
+                  src={
+                    event.photo
+                      ? `${process.env.REACT_APP_GRAPHQL_SERVER}images/320/256/${event.photo}`
+                      : "/images/placeholder-1.png"
+                  }
+                  alt={event.title}
+                />
+              </div>
+              <div className="item-meta">
+                <h3 className="meta-title">{event.title}</h3>
+                <div className="meta-date">
+                  {event.startDate && (
+                    <time
+                      className="start-date"
+                      dateTime={day(event.startDate).format("DD MMM YYYY")}
+                    >
+                      <BsCalendar />{" "}
+                      {day(event.startDate).format("DD MMM YYYY")}
+                    </time>
+                  )}
+
+                  {endDateFormatted && "- " + endDateFormatted}
+                </div>
+                <div className="meta-description">{postContent}</div>
+              </div>
             </div>
-            <div className="meta-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );

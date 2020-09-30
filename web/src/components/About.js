@@ -6,7 +6,11 @@ const About = () => {
   return (
     <div className="about container main-container">
       <h2 className="page-title">Hakkımızda</h2>
-      <div className="about-content">{settings.about}</div>
+      <div className="about-content">
+        {settings.about || (
+          <span style={{ fontSize: "1.3rem" }}>Henüz bilgi girilmemiş.</span>
+        )}
+      </div>
     </div>
   );
 };
