@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
+import { settingsContext } from "./../../index";
 import { AiFillPhone, AiFillMail } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export default () => {
+  const settings = useContext(settingsContext);
+
   return (
     <header className="container">
       <div className="header-top">
         <div className="header-top-content">
           <ul className="left-bar">
-            <li>
-              <AiFillPhone />
-              +90 555 555 55 55
-            </li>
-            <li>
-              <AiFillMail />
-              mail@meb.gov.tr
-            </li>
+            {settings.phone && (
+              <li>
+                <AiFillPhone />
+                {settings.phone}
+              </li>
+            )}
+            {settings.mail && (
+              <li>
+                <AiFillMail />
+                {settings.mail}
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -23,9 +30,7 @@ export default () => {
       <div className="header">
         <div className="header-inner">
           <div className="title">
-            <Link to="/">
-              İstanbul Lorem İpsum Mesleki ve Teknik Anadolu Lisesi
-            </Link>
+            <Link to="/">{settings.name}</Link>
           </div>
           <div className="nav-wrap">
             <nav>

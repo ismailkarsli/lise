@@ -1,8 +1,10 @@
 import React from "react";
+import { settingsContext } from "../../index";
 // import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
+  const settings = React.useContext(settingsContext);
   return (
     <div className="footer">
       <div className="footer-content">
@@ -10,7 +12,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content container">
             <div className="footer-title">
-              Tüm hakları saklıdır &copy; Okul adı
+              Tüm hakları saklıdır &copy; {settings.name}
             </div>
             <div className="social-icons">
               <span>
