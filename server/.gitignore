@@ -4,3 +4,4 @@ package-lock.json
 dev.env
 googleStorageOptions.json
 /public/img/*
+!/public/img/.gitkeep
