@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { GET_EVENTS } from "../../gql/events/query";
-import { DELETE_EVENT } from "./../../gql/events/mutation";
+import { GET_POSTS } from "../../gql/posts/query";
+import { DELETE_POST } from "./../../gql/posts/mutation";
 import { Link } from "react-router-dom";
 import Loading from "../ui/Loading";
 import Th from "../ui/TableHead";
@@ -21,21 +21,22 @@ const All = () => {
   );
 
   const [
-    getEvents,
+    getPosts,
     { data, loading, error, refetch, networkStatus },
-  ] = useLazyQuery(GET_EVENTS, {
+  ] = useLazyQuery(GET_POSTS, {
     variables: {
       orderBy: sortBy.join("_"),
+      postType: "EVENT",
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
   });
-  const [deleteEvent, { loading: deleteLoading }] = useMutation(DELETE_EVENT);
+  const [deletePost, { loading: deleteLoading }] = useMutation(DELETE_POST);
 
   useEffect(() => {
-    getEvents();
+    getPosts();
     localStorage.setItem("events_sort", JSON.stringify(sortBy));
-  }, [sortBy, getEvents]);
+  }, [sortBy, getPosts]);
 
   if (loading || networkStatus === 4 || !data) return <Loading />;
 
@@ -50,7 +51,7 @@ const All = () => {
 
   const handleDelete = async (id) => {
     try {
-      const result = await deleteEvent({
+      const result = await deletePost({
         variables: { id: id },
       });
       if (result) {
@@ -80,7 +81,7 @@ const All = () => {
         <div className="w-1/2">
           <h2 className="text-4xl">Etkinlik listesi</h2>
           <p>
-            Buradan sitedeki tüm etkinlikleri görüntüleyebilir ve
+            Buradan sitedeki tüm etkinlikleir görüntüleyebilir ve
             düzenleyebilirsiniz.
           </p>
         </div>
@@ -118,7 +119,7 @@ const All = () => {
         </thead>
 
         <tbody>
-          {data.events.map((item, index) => {
+          {data.posts.map((item, index) => {
             const startDate = moment(item.startDate);
             const endDate = moment(item.endDate);
             let eventDate = "";

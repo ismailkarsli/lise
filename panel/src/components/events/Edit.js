@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_EVENT } from "../../gql/events/query";
+import { GET_POST } from "../../gql/posts/query";
 import ErrorContainer from "../ui/ErrorContainer";
-import { UPDATE_EVENT } from "../../gql/events/mutation";
+import { UPDATE_POST } from "../../gql/posts/mutation";
 import Loading from "../ui/Loading";
 import { useParams } from "react-router-dom";
 import Form from "./Form";
@@ -10,7 +10,7 @@ import { history } from "../../routes/AppRouter";
 
 export default () => {
   const params = useParams();
-  const { loading, error, data, networkStatus } = useQuery(GET_EVENT, {
+  const { loading, error, data, networkStatus } = useQuery(GET_POST, {
     variables: {
       slug: params.slug,
     },
@@ -18,7 +18,7 @@ export default () => {
     fetchPolicy: "network-only",
   });
 
-  const [updateEvent, { loading: mutationLoading }] = useMutation(UPDATE_EVENT);
+  const [updatePost, { loading: mutationLoading }] = useMutation(UPDATE_POST);
   const [submitError, setSubmitError] = useState("");
 
   if (loading || networkStatus === 4) {
@@ -35,8 +35,9 @@ export default () => {
 
   const handleSubmit = async (formData) => {
     try {
-      const result = await updateEvent({
+      const result = await updatePost({
         variables: {
+          postType: "EVENT",
           ...formData,
         },
       });
@@ -49,14 +50,13 @@ export default () => {
       setSubmitError("Hata: " + err.message);
     }
   };
-
   return (
     <div>
       {submitError && <ErrorContainer title={submitError} />}
       <Form
         handleSubmit={handleSubmit}
-        title={"Duyuru Düzenle"}
-        data={data.event}
+        title={"Etkinlik Düzenle"}
+        data={data.post}
         mutationLoading={mutationLoading}
       />
     </div>

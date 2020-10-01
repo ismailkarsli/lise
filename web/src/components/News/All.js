@@ -59,8 +59,7 @@ const News = () => {
                 "---SERVER-HOST---",
                 process.env.REACT_APP_GRAPHQL_SERVER
               )
-              .replaceAll(/<[^>]*>/g, "")
-              .replace(/&nbsp;/g, " ")
+              .replaceAll(/(<table>.*?<\/table>|<[^>]*>|&nbsp;)/g, "")
           );
 
           return (

@@ -7,6 +7,9 @@ export const CREATE_POST = gql`
     $content: String
     $postType: PostType!
     $publishDate: String
+    $inSlide: Boolean
+    $startDate: String
+    $endDate: String
     $viewCount: Int
     $likeCount: Int
   ) {
@@ -17,6 +20,9 @@ export const CREATE_POST = gql`
         content: $content
         postType: $postType
         publishDate: $publishDate
+        inSlide: $inSlide
+        startDate: $startDate
+        endDate: $endDate
         viewCount: $viewCount
         likeCount: $likeCount
       }
@@ -26,6 +32,9 @@ export const CREATE_POST = gql`
       content
       postType
       publishDate
+      inSlide
+      startDate
+      endDate
       viewCount
       likeCount
       user {
@@ -42,6 +51,9 @@ export const UPDATE_POST = gql`
     $title: String
     $photo: String
     $postType: PostType
+    $inSlide: Boolean
+    $startDate: String
+    $endDate: String
     $content: String
     $publishDate: String
     $viewCount: Int
@@ -53,6 +65,9 @@ export const UPDATE_POST = gql`
         title: $title
         photo: $photo
         content: $content
+        inSlide: $inSlide
+        startDate: $startDate
+        endDate: $endDate
         postType: $postType
         publishDate: $publishDate
         viewCount: $viewCount
@@ -64,6 +79,9 @@ export const UPDATE_POST = gql`
       content
       publishDate
       viewCount
+      inSlide
+      startDate
+      endDate
       postType
       likeCount
       user {

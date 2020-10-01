@@ -38,7 +38,6 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     if (!title) {
       return setError(<ErrorContainer title="Başlık girilmesi gereklidir." />);
     }
-
     if (endDate && startDate > endDate) {
       return setError(
         <ErrorContainer title="Başlangıç tarihi, bitiş tarihinden daha önce olamaz." />
@@ -61,6 +60,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       startDate: startDate ? new Date(moment(startDate).format()) : undefined,
       endDate: endDate ? new Date(moment(endDate).format()) : undefined,
     };
+
     return handleSubmit(sendData);
   };
   return (

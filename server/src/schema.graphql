@@ -4,11 +4,10 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
-  posts(orderBy: String, postType: String): [Post!]!
+  posts(orderBy: String, postType: String, skip: Int, first: Int): [Post!]!
   post(slug: String!): Post!
 
-  events(orderBy: String): [Event!]!
-  event(slug: String!): Event!
+  slides: [Post!]!
 
   siteSettings: SiteSettings!
 
@@ -25,10 +24,6 @@ type Mutation {
   createPost(data: CreatePostInput!): Post!
   updatePost(id: ID!, data: UpdatePostInput!): Post!
   deletePost(id: ID!): Post!
-
-  createEvent(data: CreateEventInput!): Event!
-  updateEvent(id: ID!, data: UpdateEventInput!): Event!
-  deleteEvent(id: ID!): Event!
 
   createLink(data: CreateLinkInput!): Link!
   updateLink(id: ID!, data: UpdateLinkInput!): Link!
@@ -50,7 +45,6 @@ type User {
   password: String!
   userType: UserType!
   posts: [Post!]!
-  events: [Event!]!
   updatedAt: String!
   createdAt: String!
 }
@@ -86,6 +80,9 @@ type Post {
   postType: PostType!
   photo: String
   content: String
+  inSlide: Boolean
+  startDate: String
+  endDate: String
   publishDate: String!
   viewCount: Int
   likeCount: Int
@@ -98,6 +95,9 @@ input CreatePostInput {
   title: String!
   photo: String
   content: String
+  inSlide: Boolean
+  startDate: String
+  endDate: String
   postType: PostType!
   publishDate: String
   viewCount: Int
@@ -109,45 +109,10 @@ input UpdatePostInput {
   photo: String
   content: String
   postType: PostType
-  publishDate: String
-  viewCount: Int
-  likeCount: Int
-}
-
-type Event {
-  id: String!
-  title: String!
-  slug: String!
-  photo: String
-  content: String
-  publishDate: String!
+  inSlide: Boolean
   startDate: String
   endDate: String
-  viewCount: Int
-  likeCount: Int
-  user: User!
-  createdAt: String!
-  updatedAt: String!
-}
-
-input CreateEventInput {
-  title: String!
-  photo: String
-  content: String
   publishDate: String
-  startDate: String
-  endDate: String
-  viewCount: Int
-  likeCount: Int
-}
-
-input UpdateEventInput {
-  title: String
-  photo: String
-  content: String
-  publishDate: String
-  startDate: String
-  endDate: String
   viewCount: Int
   likeCount: Int
 }
@@ -206,4 +171,5 @@ enum UserType {
 enum PostType {
   NEWS
   ANNOUNCEMENT
+  EVENT
 }

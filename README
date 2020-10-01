@@ -1,10 +1,6 @@
-Server
-Sosyal medya bağlantıları geliştir
-Site ayarlarını düzenlemeyi düzelt
-
 Panel
 Google maps api key eklenmeli.
-Yüklenen fotoğrafların yan dönmesi düzeltilecek. Doruk abide çözüm var.
+Ayarlara abouthome ve parallax görseli ekle
 
 Web
 Etkinlikler slaytına mobilde navigasyon simgesi eklenmesi gerekiyor.
@@ -14,4 +10,4 @@ Footerı ayarla.
 sticky header
 
 Genel
-Eklenen fotoğrafların dinamik olarak linkinin sunucuya göre değiştirilmesi gerekiyor.
+Sunucuya limit, skip, first falan eklenip, frontendde buna göre düzenlenmeli.

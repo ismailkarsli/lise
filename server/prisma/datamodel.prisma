@@ -5,7 +5,6 @@ type User {
   password: String!
   userType: UserType!
   posts: [Post!]! @relation(name: "PostsToUser", onDelete: CASCADE)
-  events: [Event!]! @relation(name: "EventToUser", onDelete: CASCADE)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
@@ -18,25 +17,12 @@ type Post {
   photo: String
   content: String
   publishDate: DateTime!
+  startDate: DateTime
+  endDate: DateTime
+  inSlide: Boolean
   viewCount: Int! @default(value: 0)
   likeCount: Int! @default(value: 0)
   user: User! @relation(name: "PostsToUser", onDelete: SET_NULL)
-  updatedAt: DateTime! @updatedAt
-  createdAt: DateTime! @createdAt
-}
-
-type Event {
-  id: ID! @id
-  title: String!
-  slug: String! @unique
-  photo: String
-  content: String
-  publishDate: DateTime!
-  startDate: DateTime
-  endDate: DateTime
-  viewCount: Int! @default(value: 0)
-  likeCount: Int! @default(value: 0)
-  user: User! @relation(name: "EventToUser", onDelete: SET_NULL)
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
 }
@@ -71,4 +57,5 @@ enum UserType {
 enum PostType {
   NEWS
   ANNOUNCEMENT
+  EVENT
 }

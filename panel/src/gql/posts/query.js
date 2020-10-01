@@ -9,6 +9,9 @@ export const GET_POSTS = gql`
       photo
       content
       postType
+      inSlide
+      startDate
+      endDate
       publishDate
       viewCount
       likeCount
@@ -28,6 +31,9 @@ export const GET_POST = gql`
       title
       photo
       content
+      inSlide
+      startDate
+      endDate
       publishDate
       viewCount
       postType
