@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsCalendar } from "react-icons/bs";
 
+
 export default () => {
   return (
     <div className="news-anns-section container">
@@ -100,6 +101,8 @@ export default () => {
           </div>
         </div>
       </div>
+      
     </div>
+    
   );
 };

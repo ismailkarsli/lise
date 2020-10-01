@@ -1,0 +1,22 @@
+.sidebar{
+  border: 1px solid grey;
+    height: 100%;
+    width: 25%;
+    .single-content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+   
+    .list-news{
+       margin: 5px;
+        .news-header{
+           display: flex;
+           flex-direction: column;
+           margin-bottom: 5px;
+        }
+    }
+
+
+}
+

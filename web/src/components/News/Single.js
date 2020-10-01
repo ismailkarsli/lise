@@ -8,6 +8,7 @@ import Loading from "../ui/Loading";
 import Error from "../ui/Error";
 
 import { GET_POST } from "../../gql/posts/query";
+import Sidebar from "../ui/Sidebar";
 
 const News = () => {
   const params = useParams();
@@ -30,20 +31,23 @@ const News = () => {
 
   return (
     <div className="post-single main-container container">
-      {post.photo && (
-        <div className="post-photo">
-          <img
-            src={`${process.env.REACT_APP_GRAPHQL_SERVER}images/0/0/${post.photo}`}
-            alt={post.title}
-          />
-        </div>
-      )}
+      <div className="post-single-content">
+        {post.photo && (
+          <div className="post-photo">
+            <img
+              src={`${process.env.REACT_APP_GRAPHQL_SERVER}images/0/0/${post.photo}`}
+              alt={post.title}
+            />
+          </div>
+        )}
 
-      <div>{day(post.publishedAt).format("DD MMM YYYY")}</div>
-      <h1>
-        <div>{post.title}</div>
-      </h1>
-      <div>{htmlParser(content)}</div>
+        <div>{day(post.publishedAt).format("DD MMM YYYY")}</div>
+        <h1>
+          <div>{post.title}</div>
+        </h1>
+        <div>{htmlParser(content)}</div>
+      </div>
+      <Sidebar />
     </div>
   );
 };
