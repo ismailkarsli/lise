@@ -105,7 +105,7 @@ const All = () => {
         <thead>
           <tr>
             <Th onClick={() => handleThClick("createdAt")}>#</Th>
-            <Th>Duyuru Başlığı</Th>
+            <Th>Etkinlik Başlığı</Th>
             <Th onClick={() => handleThClick("publishDate")}>
               Yayınlanma Tarihi
             </Th>

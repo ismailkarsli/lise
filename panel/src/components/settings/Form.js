@@ -81,7 +81,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
           />
         </div>
 
-        <div className="w-full p-2 md:w-1/4">
+        <div className="w-full p-2 md:w-1/2">
           <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Telefon Numarası
           </label>
@@ -94,7 +94,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
           />
         </div>
 
-        <div className="w-full p-2 md:w-1/4">
+        <div className="w-full p-2 md:w-1/2">
           <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             E-Posta Adresi
           </label>
