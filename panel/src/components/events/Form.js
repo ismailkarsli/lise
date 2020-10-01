@@ -46,6 +46,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     }
 
     const sendData = {
+      id: data.id,
       title,
       photo: photosArray.toString(),
       content: content.replaceAll(
@@ -60,7 +61,6 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       startDate: startDate ? new Date(moment(startDate).format()) : undefined,
       endDate: endDate ? new Date(moment(endDate).format()) : undefined,
     };
-
     return handleSubmit(sendData);
   };
   return (

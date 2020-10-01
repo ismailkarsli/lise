@@ -4,6 +4,7 @@ export const GET_POSTS = gql`
   query Posts($orderBy: String, $postType: String) {
     posts(orderBy: $orderBy, postType: $postType) {
       id
+      slug
       title
       photo
       content
@@ -20,9 +21,10 @@ export const GET_POSTS = gql`
 `;
 
 export const GET_POST = gql`
-  query Post($id: ID!) {
-    post(id: $id) {
+  query Post($slug: String!) {
+    post(slug: $slug) {
       id
+      slug
       title
       photo
       content

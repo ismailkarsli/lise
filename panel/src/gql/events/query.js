@@ -4,6 +4,7 @@ export const GET_EVENTS = gql`
   query Events($orderBy: String) {
     events(orderBy: $orderBy) {
       id
+      slug
       title
       photo
       content
@@ -21,9 +22,10 @@ export const GET_EVENTS = gql`
 `;
 
 export const GET_EVENT = gql`
-  query Event($id: ID!) {
-    event(id: $id) {
+  query Event($slug: String!) {
+    event(slug: $slug) {
       id
+      slug
       title
       photo
       content

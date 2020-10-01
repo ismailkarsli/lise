@@ -12,7 +12,7 @@ export default () => {
   const params = useParams();
   const { loading, error, data, networkStatus } = useQuery(GET_POST, {
     variables: {
-      id: params.dataId,
+      slug: params.slug,
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
@@ -37,7 +37,6 @@ export default () => {
     try {
       const result = await updatePost({
         variables: {
-          id: params.dataId,
           postType: "NEWS",
           ...formData,
         },

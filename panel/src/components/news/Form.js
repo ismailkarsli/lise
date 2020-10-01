@@ -33,6 +33,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       return setError(<ErrorContainer title="Başlık girilmesi gereklidir." />);
     }
     const sendData = {
+      id: data.id,
       title,
       photo: photosArray.toString(),
       content: content.replaceAll(

@@ -11,7 +11,7 @@ const Events = () => {
     <Container>
       <Route exact path={`${match.path}/`} component={All} />
       <Route path={`${match.path}/ekle`} component={Add} />
-      <Route path={`${match.path}/duzenle/:dataId`} component={Edit} />
+      <Route path={`${match.path}/duzenle/:slug`} component={Edit} />
     </Container>
   );
 };

@@ -12,7 +12,7 @@ const events = {
     return prisma.query.event(
       {
         where: {
-          id: args.id,
+          slug: args.slug,
         },
       },
       info

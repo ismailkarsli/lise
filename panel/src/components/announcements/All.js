@@ -137,7 +137,7 @@ const All = () => {
               <Td custom="text-center w-2/12">
                 <div className="inline-flex">
                   <Link
-                    to={`/duyurular/duzenle/${item.id}`}
+                    to={`/duyurular/duzenle/${item.slug}`}
                     className="bg-green-500 hover:bg-green-400 text-gray-100 py-1 text-xs px-2 rounded-l"
                   >
                     Düzenle
