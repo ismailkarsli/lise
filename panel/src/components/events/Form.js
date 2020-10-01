@@ -46,7 +46,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
     }
 
     const sendData = {
-      id: data.id,
+      id: data && data.id ? data.id : undefined,
       title,
       photo: photosArray.toString(),
       content: content.replaceAll(

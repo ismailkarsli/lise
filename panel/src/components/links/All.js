@@ -95,7 +95,6 @@ const All = () => {
                     dataId={link.id}
                     title={link.name}
                     deleteLoading={deleteLoading}
-                    customText="Sildiğinizde bu kullanıcının oluşturmuş olduğu her şey silinecektir."
                   />
                 </div>
               </Td>
