@@ -10,6 +10,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);
 
   const [title, setTitle] = useState(data ? data.title : "");
+  const [inSlide, setInSlide] = useState(data ? data.inSlide : "checked");
   const [photosArray, setPhotosArray] = useState([]);
   const [content, setContent] = useState(
     data
@@ -43,12 +44,14 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,
+      inSlide: inSlide ? true : false,
       viewCount: viewCount ? parseInt(viewCount) : undefined,
       likeCount: likeCount ? parseInt(likeCount) : undefined,
     };
 
     return handleSubmit(sendData);
   };
+
   return (
     <form onSubmit={onSubmit} className="w-full bg-white p-5">
       <h1 className="text-2xl font-semibold mb-3 text-center">{pageTitle}</h1>

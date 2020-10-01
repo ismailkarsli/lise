@@ -29,7 +29,7 @@ const news = {
       {
         orderBy: "publishDate_DESC",
         where: {
-          inSlide: true,
+          AND: [{ inSlide: true }, { publishDate_lte: new Date() }],
         },
         first: 8,
       },
