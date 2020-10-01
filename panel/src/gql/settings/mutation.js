@@ -6,6 +6,10 @@ export const UPDATE_SETTINGS = gql`
     $phone: String
     $mail: String
     $address: String
+    $facebook: String
+    $twitter: String
+    $youtube: String
+    $instagram: String
     $mapLongitude: Float
     $mapLatitude: Float
     $about: String
@@ -16,6 +20,10 @@ export const UPDATE_SETTINGS = gql`
         phone: $phone
         mail: $mail
         address: $address
+        facebook: $facebook
+        twitter: $twitter
+        youtube: $youtube
+        instagram: $instagram
         mapLongitude: $mapLongitude
         mapLatitude: $mapLatitude
         about: $about
@@ -26,6 +34,10 @@ export const UPDATE_SETTINGS = gql`
       phone
       mail
       address
+      facebook
+      twitter
+      youtube
+      instagram
       mapLongitude
       mapLatitude
       about

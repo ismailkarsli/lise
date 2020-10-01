@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
+import { useRouteMatch, Route, Switch } from "react-router-dom";
 import { GET_SETTINGS } from "../../gql/settings/query";
 import { UPDATE_SETTINGS } from "../../gql/settings/mutation";
 import ErrorContainer from "../ui/ErrorContainer";
 import Loading from "../ui/Loading";
 
 import Form from "./Form";
-import { history } from "../../routes/AppRouter";
+import SocialMedia from "./SocialMedia";
 
 export default () => {
+  const match = useRouteMatch();
   const { loading, error, data, networkStatus } = useQuery(GET_SETTINGS, {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",
@@ -32,30 +34,40 @@ export default () => {
 
   const handleSubmit = async (formData) => {
     try {
-      const result = await updateSettings({
+      await updateSettings({
         variables: {
           ...formData,
         },
       });
-
-      if (result) {
-        history.push("/ayarlar");
-      }
     } catch (err) {
       console.log(err);
       setSubmitError("Hata: " + err.message);
     }
   };
-
   return (
-    <div>
-      {submitError && <ErrorContainer title={submitError} />}
-      <Form
-        handleSubmit={handleSubmit}
-        title={"Ayarları düzenle"}
-        data={data.siteSettings}
-        mutationLoading={mutationLoading}
-      />
-    </div>
+    <Switch>
+      <Route path={`${match.path}/sosyal-medya`}>
+        <div>
+          {submitError && <ErrorContainer title={submitError} />}
+          <SocialMedia
+            handleSubmit={handleSubmit}
+            title={"Sosyal Medya Bağlantıları"}
+            data={data.siteSettings}
+            mutationLoading={mutationLoading}
+          />
+        </div>
+      </Route>
+      <Route>
+        <div>
+          {submitError && <ErrorContainer title={submitError} />}
+          <Form
+            handleSubmit={handleSubmit}
+            title={"Ayarları düzenle"}
+            data={data.siteSettings}
+            mutationLoading={mutationLoading}
+          />
+        </div>
+      </Route>
+    </Switch>
   );
 };

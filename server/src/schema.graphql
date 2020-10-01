@@ -162,7 +162,10 @@ type SiteSettings {
   mapLatitude: Float
   about: String
   aboutHome: String
-  socialLinks: [SocialLink!]!
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 input UpdateSiteSettings {
@@ -174,7 +177,10 @@ input UpdateSiteSettings {
   mapLatitude: Float
   about: String
   aboutHome: String
-  socialLinks: [SocialLink!]!
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 type Link {
@@ -200,11 +206,4 @@ enum UserType {
 enum PostType {
   NEWS
   ANNOUNCEMENT
-}
-
-enum SocialLink {
-  FACEBOOK
-  TWITTER
-  INSTAGRAM
-  YOUTUBE
 }

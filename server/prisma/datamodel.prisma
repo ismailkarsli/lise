@@ -51,18 +51,15 @@ type SiteSettings {
   mapLatitude: Float
   about: String!
   aboutHome: String
-  socialLinks: SocialLink
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 type Link {
   id: ID! @id
   name: String!
-  url: String!
-}
-
-type SocialLink {
-  id: ID! @id
-  type: SocialMediaSite!
   url: String!
 }
 
@@ -74,11 +71,4 @@ enum UserType {
 enum PostType {
   NEWS
   ANNOUNCEMENT
-}
-
-enum SocialMediaSite {
-  FACEBOOK
-  TWITTER
-  INSTAGRAM
-  YOUTUBE
 }

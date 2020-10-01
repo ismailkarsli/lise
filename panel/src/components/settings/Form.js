@@ -8,16 +8,20 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [error, setError] = useState("");
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);
 
-  const [name, setName] = useState(data ? data.name : "");
-  const [phone, setPhone] = useState(data ? data.phone : "");
-  const [mail, setMail] = useState(data ? data.mail : "");
-  const [address, setAddress] = useState(data ? data.address : "");
-  const [mapLongitude, setMapLongitude] = useState(
-    data ? data.mapLongitude : ""
+  const [name, setName] = useState(data && data.name ? data.name : "");
+  const [phone, setPhone] = useState(data && data.phone ? data.phone : "");
+  const [mail, setMail] = useState(data && data.mail ? data.mail : "");
+  const [address, setAddress] = useState(
+    data && data.address ? data.address : ""
   );
-  const [mapLatitude, setMapLatitude] = useState(data ? data.mapLatitude : "");
+  const [mapLongitude, setMapLongitude] = useState(
+    data && data.mapLongitude ? data.mapLongitude : ""
+  );
+  const [mapLatitude, setMapLatitude] = useState(
+    data && data.mapLatitude ? data.mapLatitude : ""
+  );
   const [about, setAbout] = useState(
-    data
+    data && data.about
       ? data.about.replaceAll(
           "---SERVER-HOST---",
           process.env.REACT_APP_GRAPHQL_SERVER
@@ -51,7 +55,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       {error && <ErrorContainer title={error} />}
 
       <div className="flex flex-wrap">
-        <div className="w-full md:w-1/2 p-2">
+        <div className="w-full md:w-2/4 p-2">
           <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Okul Adı
           </label>
@@ -66,6 +70,19 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
         <div className="w-full p-2 md:w-1/2">
           <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Adres
+          </label>
+          <input
+            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            type="text"
+            placeholder="Adres"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+
+        <div className="w-full p-2 md:w-1/4">
+          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             Telefon Numarası
           </label>
           <input
@@ -76,7 +93,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </div>
-        <div className="w-full p-2 md:w-1/2">
+
+        <div className="w-full p-2 md:w-1/4">
           <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
             E-Posta Adresi
           </label>
@@ -88,18 +106,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
             onChange={(e) => setMail(e.target.value)}
           />
         </div>
-        <div className="w-full p-2 md:w-1/2">
-          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-            Adres
-          </label>
-          <input
-            className="appearance-none w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            type="text"
-            placeholder="Adres"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-        </div>
+
         <div className="w-full flex flex-col sm:flex-row">
           <div className="w-full sm:w-1/2  p-2 mb-8">
             <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

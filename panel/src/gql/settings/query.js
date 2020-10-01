@@ -3,7 +3,6 @@ import { gql } from "@apollo/client";
 export const GET_SETTINGS = gql`
   query Settings {
     siteSettings {
-      id
       name
       phone
       mail
@@ -11,6 +10,11 @@ export const GET_SETTINGS = gql`
       mapLongitude
       mapLatitude
       about
+      aboutHome
+      facebook
+      twitter
+      youtube
+      instagram
     }
   }
 `;

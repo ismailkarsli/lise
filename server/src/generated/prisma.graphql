@@ -1126,7 +1126,10 @@ type SiteSettings {
   mapLatitude: Float
   about: String!
   aboutHome: String
-  socialLinks: [SocialLink!]!
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 type SiteSettingsConnection {
@@ -1145,11 +1148,10 @@ input SiteSettingsCreateInput {
   mapLatitude: Float
   about: String!
   aboutHome: String
-  socialLinks: SiteSettingsCreatesocialLinksInput
-}
-
-input SiteSettingsCreatesocialLinksInput {
-  set: [SocialLink!]
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 type SiteSettingsEdge {
@@ -1176,6 +1178,14 @@ enum SiteSettingsOrderByInput {
   about_DESC
   aboutHome_ASC
   aboutHome_DESC
+  facebook_ASC
+  facebook_DESC
+  twitter_ASC
+  twitter_DESC
+  youtube_ASC
+  youtube_DESC
+  instagram_ASC
+  instagram_DESC
 }
 
 type SiteSettingsPreviousValues {
@@ -1188,7 +1198,10 @@ type SiteSettingsPreviousValues {
   mapLatitude: Float
   about: String!
   aboutHome: String
-  socialLinks: [SocialLink!]!
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 type SiteSettingsSubscriptionPayload {
@@ -1218,7 +1231,10 @@ input SiteSettingsUpdateInput {
   mapLatitude: Float
   about: String
   aboutHome: String
-  socialLinks: SiteSettingsUpdatesocialLinksInput
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 input SiteSettingsUpdateManyMutationInput {
@@ -1230,11 +1246,10 @@ input SiteSettingsUpdateManyMutationInput {
   mapLatitude: Float
   about: String
   aboutHome: String
-  socialLinks: SiteSettingsUpdatesocialLinksInput
-}
-
-input SiteSettingsUpdatesocialLinksInput {
-  set: [SocialLink!]
+  facebook: String
+  twitter: String
+  youtube: String
+  instagram: String
 }
 
 input SiteSettingsWhereInput {
@@ -1352,6 +1367,62 @@ input SiteSettingsWhereInput {
   aboutHome_not_starts_with: String
   aboutHome_ends_with: String
   aboutHome_not_ends_with: String
+  facebook: String
+  facebook_not: String
+  facebook_in: [String!]
+  facebook_not_in: [String!]
+  facebook_lt: String
+  facebook_lte: String
+  facebook_gt: String
+  facebook_gte: String
+  facebook_contains: String
+  facebook_not_contains: String
+  facebook_starts_with: String
+  facebook_not_starts_with: String
+  facebook_ends_with: String
+  facebook_not_ends_with: String
+  twitter: String
+  twitter_not: String
+  twitter_in: [String!]
+  twitter_not_in: [String!]
+  twitter_lt: String
+  twitter_lte: String
+  twitter_gt: String
+  twitter_gte: String
+  twitter_contains: String
+  twitter_not_contains: String
+  twitter_starts_with: String
+  twitter_not_starts_with: String
+  twitter_ends_with: String
+  twitter_not_ends_with: String
+  youtube: String
+  youtube_not: String
+  youtube_in: [String!]
+  youtube_not_in: [String!]
+  youtube_lt: String
+  youtube_lte: String
+  youtube_gt: String
+  youtube_gte: String
+  youtube_contains: String
+  youtube_not_contains: String
+  youtube_starts_with: String
+  youtube_not_starts_with: String
+  youtube_ends_with: String
+  youtube_not_ends_with: String
+  instagram: String
+  instagram_not: String
+  instagram_in: [String!]
+  instagram_not_in: [String!]
+  instagram_lt: String
+  instagram_lte: String
+  instagram_gt: String
+  instagram_gte: String
+  instagram_contains: String
+  instagram_not_contains: String
+  instagram_starts_with: String
+  instagram_not_starts_with: String
+  instagram_ends_with: String
+  instagram_not_ends_with: String
   AND: [SiteSettingsWhereInput!]
   OR: [SiteSettingsWhereInput!]
   NOT: [SiteSettingsWhereInput!]
@@ -1359,13 +1430,6 @@ input SiteSettingsWhereInput {
 
 input SiteSettingsWhereUniqueInput {
   id: ID
-}
-
-enum SocialLink {
-  FACEBOOK
-  TWITTER
-  INSTAGRAM
-  YOUTUBE
 }
 
 type Subscription {
