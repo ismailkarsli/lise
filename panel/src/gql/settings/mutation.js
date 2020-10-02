@@ -13,6 +13,8 @@ export const UPDATE_SETTINGS = gql`
     $mapLongitude: Float
     $mapLatitude: Float
     $about: String
+    $aboutHome: String
+    $aboutHomeBg: String
   ) {
     updateSiteSettings(
       data: {
@@ -27,6 +29,8 @@ export const UPDATE_SETTINGS = gql`
         mapLongitude: $mapLongitude
         mapLatitude: $mapLatitude
         about: $about
+        aboutHome: $aboutHome
+        aboutHomeBg: $aboutHomeBg
       }
     ) {
       id
@@ -41,6 +45,8 @@ export const UPDATE_SETTINGS = gql`
       mapLongitude
       mapLatitude
       about
+      aboutHome
+      aboutHomeBg
     }
   }
 `;

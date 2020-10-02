@@ -9,7 +9,7 @@ const navigation = [
     url: "/",
   },
   {
-    title: "Sosyal Medya Bağlantıları",
+    title: "Sosyal Medya",
     url: "/sosyal-medya",
   },
 ];

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ErrorContainer from "./../ui/ErrorContainer";
 import GoogleMap from "./../ui/GoogleMaps";
+import PhotoUpload from "../PhotoUpload";
 import { ScaleLoader } from "react-spinners";
 import Editor from "./../ui/Editor";
 
@@ -11,6 +12,10 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [name, setName] = useState(data && data.name ? data.name : "");
   const [phone, setPhone] = useState(data && data.phone ? data.phone : "");
   const [mail, setMail] = useState(data && data.mail ? data.mail : "");
+  const [aboutHome, setAboutHome] = useState(
+    data && data.aboutHome ? data.aboutHome : ""
+  );
+  const [photosArray, setPhotosArray] = useState([]);
   const [address, setAddress] = useState(
     data && data.address ? data.address : ""
   );
@@ -44,6 +49,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
         process.env.REACT_APP_GRAPHQL_SERVER,
         "---SERVER-HOST---"
       ),
+      aboutHome,
+      aboutHomeBg: photosArray.toString(),
     };
 
     return handleSubmit(sendData);
@@ -107,18 +114,19 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
           />
         </div>
 
+        <div className="w-full p-2 mb-8">
+          <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+            Hakkında
+          </label>
+          <Editor
+            value={about}
+            setValue={setAbout}
+            isPhotoUploading={isPhotoUploading}
+            setIsPhotoUploading={setIsPhotoUploading}
+          />
+        </div>
+
         <div className="w-full flex flex-col sm:flex-row">
-          <div className="w-full sm:w-1/2  p-2 mb-8">
-            <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-              Hakkında
-            </label>
-            <Editor
-              value={about}
-              setValue={setAbout}
-              isPhotoUploading={isPhotoUploading}
-              setIsPhotoUploading={setIsPhotoUploading}
-            />
-          </div>
           <div className="w-full sm:w-1/2 p-2">
             <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Harita
@@ -145,26 +153,57 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
               }
             />
           </div>
-        </div>
-        {isPhotoUploading ? (
-          <div className="w-full bg-gray-200 pt-2 pb-1 mx-2 px-8 my-4 flex items-center">
-            <ScaleLoader height="20px" />
-            <span className="ml-4 mb-2">Fotoğraf yükleniyor...</span>
+          <div className="w-full sm:w-1/2">
+            <div className="w-full p-2">
+              <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Anasayfa Hakkında
+              </label>
+              <textarea
+                className="appearance-none w-full h-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                type="text"
+                rows={4}
+                placeholder="Anasayfa'daki hakkında parçasının içeriği"
+                value={aboutHome}
+                onChange={(e) => setAboutHome(e.target.value)}
+              />
+            </div>
+            <div className="w-full  mb-3 px-2">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Arka Plan Fotoğrafı
+              </label>
+              <PhotoUpload
+                isSingle={true}
+                images={data && data.aboutHomeBg}
+                setImageArray={setPhotosArray}
+                setIsPhotoUploading={setIsPhotoUploading}
+                previewHeight={0}
+                previewWidth={0}
+              />
+            </div>
           </div>
-        ) : (
-          ""
-        )}
-        <div className="flex">
-          <button
-            className="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-            type="submit"
-          >
-            {mutationLoading ? (
-              <ScaleLoader height={15} color="#f6fa28" />
-            ) : (
-              "Kaydet"
-            )}
-          </button>
+        </div>
+
+        <div>
+          {isPhotoUploading ? (
+            <div className="w-full bg-gray-200 pt-2 pb-1 mx-2 px-8 my-4 flex items-center">
+              <ScaleLoader height="20px" />
+              <span className="ml-4 mb-2">Fotoğraf yükleniyor...</span>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="flex">
+            <button
+              className="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+              type="submit"
+            >
+              {mutationLoading ? (
+                <ScaleLoader height={15} color="#f6fa28" />
+              ) : (
+                "Kaydet"
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </form>

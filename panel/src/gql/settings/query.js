@@ -11,6 +11,7 @@ export const GET_SETTINGS = gql`
       mapLatitude
       about
       aboutHome
+      aboutHomeBg
       facebook
       twitter
       youtube

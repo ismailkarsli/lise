@@ -714,6 +714,7 @@ type SiteSettings {
   mapLatitude: Float
   about: String!
   aboutHome: String
+  aboutHomeBg: String
   facebook: String
   twitter: String
   youtube: String
@@ -736,6 +737,7 @@ input SiteSettingsCreateInput {
   mapLatitude: Float
   about: String!
   aboutHome: String
+  aboutHomeBg: String
   facebook: String
   twitter: String
   youtube: String
@@ -766,6 +768,8 @@ enum SiteSettingsOrderByInput {
   about_DESC
   aboutHome_ASC
   aboutHome_DESC
+  aboutHomeBg_ASC
+  aboutHomeBg_DESC
   facebook_ASC
   facebook_DESC
   twitter_ASC
@@ -786,6 +790,7 @@ type SiteSettingsPreviousValues {
   mapLatitude: Float
   about: String!
   aboutHome: String
+  aboutHomeBg: String
   facebook: String
   twitter: String
   youtube: String
@@ -819,6 +824,7 @@ input SiteSettingsUpdateInput {
   mapLatitude: Float
   about: String
   aboutHome: String
+  aboutHomeBg: String
   facebook: String
   twitter: String
   youtube: String
@@ -834,6 +840,7 @@ input SiteSettingsUpdateManyMutationInput {
   mapLatitude: Float
   about: String
   aboutHome: String
+  aboutHomeBg: String
   facebook: String
   twitter: String
   youtube: String
@@ -955,6 +962,20 @@ input SiteSettingsWhereInput {
   aboutHome_not_starts_with: String
   aboutHome_ends_with: String
   aboutHome_not_ends_with: String
+  aboutHomeBg: String
+  aboutHomeBg_not: String
+  aboutHomeBg_in: [String!]
+  aboutHomeBg_not_in: [String!]
+  aboutHomeBg_lt: String
+  aboutHomeBg_lte: String
+  aboutHomeBg_gt: String
+  aboutHomeBg_gte: String
+  aboutHomeBg_contains: String
+  aboutHomeBg_not_contains: String
+  aboutHomeBg_starts_with: String
+  aboutHomeBg_not_starts_with: String
+  aboutHomeBg_ends_with: String
+  aboutHomeBg_not_ends_with: String
   facebook: String
   facebook_not: String
   facebook_in: [String!]

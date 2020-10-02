@@ -37,6 +37,7 @@ type SiteSettings {
   mapLatitude: Float
   about: String!
   aboutHome: String
+  aboutHomeBg: String
   facebook: String
   twitter: String
   youtube: String

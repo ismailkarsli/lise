@@ -9,6 +9,9 @@ export const GET_POSTS = gql`
       postType
       photo
       content
+      inSlide
+      startDate
+      endDate
       publishDate
       viewCount
       likeCount
@@ -24,6 +27,29 @@ export const GET_POST = gql`
       title
       slug
       postType
+      inSlide
+      startDate
+      endDate
+      photo
+      content
+      publishDate
+      viewCount
+      likeCount
+      createdAt
+    }
+  }
+`;
+
+export const GET_SLIDES = gql`
+  query GetSlides {
+    slides {
+      id
+      title
+      slug
+      postType
+      inSlide
+      startDate
+      endDate
       photo
       content
       publishDate

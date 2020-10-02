@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useQuery } from "@apollo/client";
-import { GET_POSTS } from "../../../gql/posts/query";
+import { GET_SLIDES } from "../../../gql/posts/query";
 import Loading from "../../ui/Loading";
 import Error from "../../ui/Error";
 import SwiperCore, { Navigation, Pagination } from "swiper";
@@ -17,7 +17,7 @@ const backgroundImageStyle = {
 
 export default () => {
   SwiperCore.use([Navigation, Pagination]);
-  const { data, loading, error } = useQuery(GET_POSTS);
+  const { data, loading, error } = useQuery(GET_SLIDES);
 
   if (loading) {
     return <Loading />;
@@ -27,7 +27,7 @@ export default () => {
 
   return (
     <div className="home-slider">
-      {data.posts.length > 0 ? (
+      {data.slides.length > 0 ? (
         <Swiper
           slidesPerView={1}
           loop
@@ -35,7 +35,7 @@ export default () => {
           navigation={{ prevEl: "#prev-slide", nextEl: "#next-slide" }}
           pagination={{ el: ".slider-pagination", clickable: true }}
         >
-          {data.posts.slice(0, 5).map((post) => {
+          {data.slides.slice(0, 5).map((post) => {
             const contentClean = post.content.replaceAll(
               /(<table>.*?<\/table>|<[^>]*>|&nbsp;)/g,
               ""
