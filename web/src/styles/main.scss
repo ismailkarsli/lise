@@ -44,7 +44,7 @@ svg {
 }
 .page-title {
   font-size: 2rem;
-  margin-bottom: 32px;
+  margin-bottom: 12px;
   padding-bottom: 16px;
   text-align: center;
   position: relative;
@@ -67,7 +67,7 @@ svg {
 @import "contact";
 @import "timeline";
 @import "events";
-@import "_sidebar";
+@import "sub-nav-menu";
 
 @import "post-single";
 @import "home-slider";

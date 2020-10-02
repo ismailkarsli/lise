@@ -1,6 +1,28 @@
 .post-single {
-	display:flex;
-	justify-content:space-between;
-    width:100%;
-   
+  display: flex;
+  width: 100%;
+  .post-single-content {
+    padding: 16px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .post-title {
+      padding-bottom: 6px;
+    }
+    .post-date {
+      padding-top: 6px;
+      padding-bottom: 12px;
+      color: rgb(126, 126, 126);
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+.post-single-sidebar {
+  width: 25%;
+  .sidebar-title {
+    text-align: center;
+  }
 }

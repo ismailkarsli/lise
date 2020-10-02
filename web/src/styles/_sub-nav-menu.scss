@@ -1,0 +1,15 @@
+.sub-nav-menu {
+  border-bottom: 2px solid rgb(180, 180, 180);
+  text-align: center;
+  button {
+    margin: 2px 2px 4px 2px;
+    padding: 6px 12px;
+    font-size: 1rem;
+    font-family: "Encode Sans";
+    cursor: pointer;
+    background-color: rgb(225, 225, 225);
+    &:hover {
+      background-color: rgb(200, 200, 200);
+    }
+  }
+}

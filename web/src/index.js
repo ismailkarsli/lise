@@ -7,14 +7,14 @@ import { SITE_SETTINGS } from "./gql/siteSettings/query";
 import Loading from "./components/ui/Loading";
 import Error from "./components/ui/Error";
 import NotFound from "./components/ui/NotFound";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 import Header from "./components/ui/Header";
 import Footer from "./components/ui/Footer";
 import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import News from "./components/News/";
-import Events from "./components/Events";
+import Info from "./components/Info/";
 import "./styles/main.scss";
 
 const settingsContext = React.createContext({});
@@ -32,12 +32,12 @@ const App = () => {
   return (
     <settingsContext.Provider value={data.siteSettings}>
       <Router>
+        <ScrollToTop />
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/hakkimizda" component={About} />
-          <Route path="/haberler" component={News} />
-          <Route path="/etkinlikler" component={Events} />
+          <Route path="/bilgi" component={Info} />
           <Route exact path="/iletisim" component={Contact} />
           <Route path="/" component={NotFound} />
         </Switch>

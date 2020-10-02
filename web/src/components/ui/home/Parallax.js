@@ -14,8 +14,11 @@ export default () => {
     <div
       className="parallax"
       style={{
-        background:
-          "linear-gradient(rgba(0,0,0,.4) 0%, rgba(0,0,0,.4)), url('/images/bir-lise-binasi.jpg')",
+        background: `linear-gradient(rgba(0,0,0,.4) 0%, rgba(0,0,0,.4)), url('${
+          settings.aboutHomeBg
+            ? `${process.env.REACT_APP_GRAPHQL_SERVER}images/1920/1080/${settings.aboutHomeBg}`
+            : "/images/placeholder-2.png"
+        }')`,
         ...backgroundImageStyle,
       }}
     >

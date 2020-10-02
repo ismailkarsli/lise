@@ -8,8 +8,9 @@ const News = () => {
   const match = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={`${match.path}`} component={All} />
-      <Route exact path={`${match.path}/:slug`} component={Single} />
+      <Route exact path={`${match.path}/`} component={All} />
+      <Route exact path={`${match.path}/:type`} component={All} />
+      <Route exact path={`${match.path}/:type/:slug`} component={Single} />
       <Route path="/" component={NotFound} />
     </Switch>
   );

@@ -1,13 +1,20 @@
 const news = {
   posts(parent, args, { prisma, request }, info) {
+    let whereQuery;
+    if (args.where) {
+      try {
+        whereQuery = JSON.parse(args.where);
+      } catch (error) {
+        throw new Error("Geçersiz istek.");
+      }
+    }
+
     return prisma.query.posts(
       {
+        where: whereQuery,
         orderBy: args.orderBy,
         skip: args.skip,
         first: args.first,
-        where: {
-          postType: args.postType,
-        },
       },
       info
     );

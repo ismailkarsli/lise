@@ -8,10 +8,18 @@ import Loading from "../ui/Loading";
 import Error from "../ui/Error";
 
 import { GET_POST } from "../../gql/posts/query";
-import Sidebar from "../ui/Sidebar";
 
 const News = () => {
   const params = useParams();
+  const postType =
+    params.type === "haberler"
+      ? "NEWS"
+      : params.type === "duyurular"
+      ? "ANNOUNCEMENT"
+      : params.type === "etkinlikler"
+      ? "EVENT"
+      : undefined;
+
   day.locale("tr");
   const { data, loading, error } = useQuery(GET_POST, {
     variables: { slug: params.slug },
@@ -32,8 +40,15 @@ const News = () => {
   return (
     <div className="post-single main-container container">
       <div className="post-single-content">
+        <h1 className="post-title">{post.title}</h1>
+        <div className="post-date">
+          {day(post.publishDate).format("DD MMM YYYY")}
+        </div>
         {post.photo && (
-          <div className="post-photo">
+          <div
+            className="post-photo"
+            style={{ borderBottom: "2px solid black" }}
+          >
             <img
               src={`${process.env.REACT_APP_GRAPHQL_SERVER}images/0/0/${post.photo}`}
               alt={post.title}
@@ -41,13 +56,15 @@ const News = () => {
           </div>
         )}
 
-        <div>{day(post.publishedAt).format("DD MMM YYYY")}</div>
-        <h1>
-          <div>{post.title}</div>
-        </h1>
         <div>{htmlParser(content)}</div>
       </div>
-      <Sidebar />
+      <div className="post-single-sidebar">
+        <div>
+          <h2 className="sidebar-title">
+            Son {params.type[0].toUpperCase() + params.type.slice(1)}
+          </h2>
+        </div>
+      </div>
     </div>
   );
 };

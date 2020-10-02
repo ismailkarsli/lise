@@ -4,7 +4,7 @@ type Query {
   users: [User!]!
   user(id: ID!): User!
 
-  posts(orderBy: String, postType: String, skip: Int, first: Int): [Post!]!
+  posts(orderBy: String, skip: Int, first: Int, where: String): [Post!]!
   post(slug: String!): Post!
 
   slides: [Post!]!

@@ -42,10 +42,13 @@ export default () => {
                   <Link to="/hakkimizda">Hakkımızda</Link>
                 </li>
                 <li>
-                  <Link to="/haberler">Haberler</Link>
+                  <Link to="/bilgi/haberler">Haberler</Link>
                 </li>
                 <li>
-                  <Link to="/etkinlikler">Etkinlikler</Link>
+                  <Link to="/bilgi/duyurular">Duyurular</Link>
+                </li>
+                <li>
+                  <Link to="/bilgi/etkinlikler">Etkinlikler</Link>
                 </li>
                 <li>
                   <Link to="/iletisim">İletişim</Link>

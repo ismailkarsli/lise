@@ -9,7 +9,12 @@ const About = () => {
       <h2 className="page-title">Hakkımızda</h2>
       <div className="about-content">
         {settings.about ? (
-          htmlParser(settings.about)
+          htmlParser(
+            settings.about.replaceAll(
+              "---SERVER-HOST---",
+              process.env.REACT_APP_GRAPHQL_SERVER
+            )
+          )
         ) : (
           <span style={{ fontSize: "1.3rem" }}>Henüz bilgi girilmemiş.</span>
         )}

@@ -12,6 +12,7 @@ export const SITE_SETTINGS = gql`
       mapLatitude
       about
       aboutHome
+      aboutHomeBg
     }
   }
 `;
