@@ -11,6 +11,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
 
   const [title, setTitle] = useState(data ? data.title : "");
   const [photosArray, setPhotosArray] = useState([]);
+  const [inSlide, setInSlide] = useState(data && data.inSlide);
+
   const [content, setContent] = useState(
     data
       ? data.content.replaceAll(
@@ -40,6 +42,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
         process.env.REACT_APP_GRAPHQL_SERVER,
         "---SERVER-HOST---"
       ),
+      inSlide,
+
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,
@@ -134,6 +138,20 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
               previewHeight={600}
               previewWidth={600}
             />
+          </div>
+
+          <div className="w-full px-4">
+            <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Slayt
+            </label>
+            <div className="flex items-center">
+              <span className="pr-1">Slaytta gösterilsin mi?</span>
+              <input
+                type="checkbox"
+                checked={inSlide}
+                onChange={(e) => setInSlide(!inSlide)}
+              />
+            </div>
           </div>
         </div>
       </div>

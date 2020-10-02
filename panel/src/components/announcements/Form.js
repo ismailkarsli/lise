@@ -10,7 +10,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [isPhotoUploading, setIsPhotoUploading] = useState(false);
 
   const [title, setTitle] = useState(data ? data.title : "");
-  const [inSlide, setInSlide] = useState(data ? data.inSlide : "checked");
+  const [inSlide, setInSlide] = useState(data && data.inSlide);
   const [photosArray, setPhotosArray] = useState([]);
   const [content, setContent] = useState(
     data
@@ -44,10 +44,11 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,
-      inSlide: inSlide ? true : false,
+      inSlide,
       viewCount: viewCount ? parseInt(viewCount) : undefined,
       likeCount: likeCount ? parseInt(likeCount) : undefined,
     };
+    console.log("sendData:", sendData);
 
     return handleSubmit(sendData);
   };
@@ -137,6 +138,20 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
               previewHeight={600}
               previewWidth={600}
             />
+          </div>
+
+          <div className="w-full px-4">
+            <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Slayt
+            </label>
+            <div className="flex items-center">
+              <span className="pr-1">Slaytta gösterilsin mi?</span>
+              <input
+                type="checkbox"
+                checked={inSlide}
+                onChange={(e) => setInSlide(!inSlide)}
+              />
+            </div>
           </div>
         </div>
       </div>

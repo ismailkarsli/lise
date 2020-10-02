@@ -32,7 +32,7 @@ export default ({
         <div key={i} className=" inline-block border b-gray-300 relative">
           <div
             onClick={() => deletePhoto(photo)}
-            className="absolute t-0 r-0 py-1 px-2 text-sm text-white bg-red-600"
+            className="absolute t-0 r-0 py-1 px-3 text-sm text-white cursor-pointer bg-red-600"
           >
             X
           </div>

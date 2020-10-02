@@ -21,6 +21,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   );
   const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
   const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
+  const [inSlide, setInSlide] = useState(data && data.inSlide);
+
   const [publishDate, setPublishDate] = useState(
     data ? moment(data.publishDate).format("YYYY-MM-DDTHH:mm") : ""
   );
@@ -57,6 +59,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,
+      inSlide,
       startDate: startDate ? new Date(moment(startDate).format()) : undefined,
       endDate: endDate ? new Date(moment(endDate).format()) : undefined,
     };
@@ -169,6 +172,20 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
               previewHeight={600}
               previewWidth={600}
             />
+          </div>
+
+          <div className="w-full px-4">
+            <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Slayt
+            </label>
+            <div className="flex items-center">
+              <span className="pr-1">Slaytta gösterilsin mi?</span>
+              <input
+                type="checkbox"
+                checked={inSlide}
+                onChange={(e) => setInSlide(!inSlide)}
+              />
+            </div>
           </div>
         </div>
       </div>
