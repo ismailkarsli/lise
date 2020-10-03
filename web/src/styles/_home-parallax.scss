@@ -10,6 +10,14 @@
     h1 {
       margin-bottom: 32px;
     }
+  }
+}
 
+@media (max-width: 1024px) {
+  .parallax {
+    .parallax-content {
+      text-align: center;
+      padding: 36px 36px 96px 36px;
+    }
   }
 }

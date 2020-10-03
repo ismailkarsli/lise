@@ -1,10 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { settingsContext } from "./../../index";
 import { AiFillPhone, AiFillMail } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 export default () => {
   const settings = useContext(settingsContext);
+  const navRef = useRef();
+
+  const openCloseMenu = () => {
+    navRef.current.style.display =
+      navRef.current.style.display !== "flex" ? "flex" : "none";
+  };
+
+  const menuOnClick = () => {
+    navRef.current.style.display = window.innerWidth > 1024 ? "flex" : "none";
+  };
 
   return (
     <header className="container">
@@ -32,30 +42,42 @@ export default () => {
           <div className="title">
             <Link to="/">{settings.name}</Link>
           </div>
-          <div className="nav-wrap">
+          <div className="nav-wrap" ref={navRef}>
             <nav>
               <ul>
                 <li>
                   <Link to="/">Anasayfa</Link>
                 </li>
                 <li>
-                  <Link to="/hakkimizda">Hakkımızda</Link>
+                  <Link to="/hakkimizda" onClick={menuOnClick}>
+                    Hakkımızda
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/bilgi/haberler">Haberler</Link>
+                  <Link to="/bilgi/haberler" onClick={menuOnClick}>
+                    Haberler
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/bilgi/duyurular">Duyurular</Link>
+                  <Link to="/bilgi/duyurular" onClick={menuOnClick}>
+                    Duyurular
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/bilgi/etkinlikler">Etkinlikler</Link>
+                  <Link to="/bilgi/etkinlikler" onClick={menuOnClick}>
+                    Etkinlikler
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/iletisim">İletişim</Link>
+                  <Link to="/iletisim" onClick={menuOnClick}>
+                    İletişim
+                  </Link>
                 </li>
               </ul>
             </nav>
-            <span style={{ display: "none" }}>mobil toggle</span>
+          </div>
+          <div className="nav-toggle">
+            <button onClick={openCloseMenu}>Menü</button>
           </div>
         </div>
       </div>

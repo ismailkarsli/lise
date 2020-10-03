@@ -61,7 +61,18 @@ export default () => {
                         ? contentClean.slice(0, 120) + "..."
                         : contentClean}
                     </p>
-                    <Link to={`/haberler/${post.slug}`} className="read-more">
+                    <Link
+                      to={`/bilgi/${
+                        post.postType === "NEWS"
+                          ? "haberler"
+                          : post.postType === "ANNOUNCEMENT"
+                          ? "duyurular"
+                          : post.postType === "EVENT"
+                          ? "etkinlikler"
+                          : undefined
+                      }/${post.slug}`}
+                      className="read-more"
+                    >
                       Devamını oku
                     </Link>
                   </div>

@@ -5,6 +5,7 @@ import React from "react";
 import day from "dayjs";
 import "dayjs/locale/tr";
 import Loading from "../ui/Loading";
+import Sidebar from "../ui/post/Sidebar";
 import Error from "../ui/Error";
 
 import { GET_POST } from "../../gql/posts/query";
@@ -40,10 +41,6 @@ const News = () => {
   return (
     <div className="post-single main-container container">
       <div className="post-single-content">
-        <h1 className="post-title">{post.title}</h1>
-        <div className="post-date">
-          {day(post.publishDate).format("DD MMM YYYY")}
-        </div>
         {post.photo && (
           <div
             className="post-photo"
@@ -55,16 +52,19 @@ const News = () => {
             />
           </div>
         )}
+        <h1 className="post-title">{post.title}</h1>
+        <div className="post-date">
+          {day(post.publishDate).format("DD MMMM YYYY")}
+        </div>
 
         <div>{htmlParser(content)}</div>
       </div>
-      <div className="post-single-sidebar">
-        <div>
-          <h2 className="sidebar-title">
-            Son {params.type[0].toUpperCase() + params.type.slice(1)}
-          </h2>
-        </div>
-      </div>
+      <Sidebar
+        title={"Son " + params.type[0].toUpperCase() + params.type.slice(1)}
+        postType={postType}
+        pageType={params.type}
+        currentPostID={post.id}
+      />
     </div>
   );
 };

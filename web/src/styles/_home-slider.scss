@@ -46,7 +46,7 @@
     right: 0;
     display: flex;
     div {
-      padding-left: 8px;
+      margin-left: 8px;
       cursor: pointer;
       svg {
         background-color: $mainColor;
@@ -78,6 +78,36 @@
     .swiper-pagination-bullet-active {
       background-color: $mainColor;
       opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .home-slider
+    .swiper-wrapper
+    > .swiper-slide
+    .slide-content-wrapper
+    .slide-content {
+    max-width: 100%;
+    margin-right: 32px;
+    margin-left: 32px;
+    color: white;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .read-more {
+      margin-left: -32px;
+    }
+  }
+
+  .slider-hover {
+    top: 0;
+    .slider-pagination {
+      .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+      }
     }
   }
 }

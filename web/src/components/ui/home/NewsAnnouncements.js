@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsCalendar } from "react-icons/bs";
 import day from "dayjs";
@@ -37,6 +37,7 @@ export default () => {
       },
     }
   );
+  const [postType, setPostType] = useState("news");
 
   if (newsLoading || annsLoading) {
     return <Loading />;
@@ -46,18 +47,39 @@ export default () => {
 
   return (
     <div className="news-anns-section container">
+      <div className="mobile-toggle">
+        <button
+          onClick={() => setPostType("news")}
+          style={{
+            color: postType === "news" ? "rgb(185, 17, 42)" : "inherit",
+          }}
+        >
+          Haberler
+        </button>
+        <button
+          onClick={() => setPostType("anns")}
+          style={{
+            color: postType === "anns" ? "rgb(185, 17, 42)" : "inherit",
+          }}
+        >
+          Duyurular
+        </button>
+      </div>
       <div className="news-anns-section-content">
-        <div>
-          <h2>
-            <Link to="/haberler/">Haberler</Link>
-          </h2>
+        <div
+          style={{
+            display: postType === "news" ? "block" : "none",
+          }}
+          className="news-block"
+        >
+          <h2>Haberler</h2>
           <div className="news-anns-list">
             {newsData.posts.length > 0 ? (
               newsData.posts.map((post) => {
                 return (
                   <div className="list-item" key={post.id}>
                     <div className="image-container">
-                      <Link to={`/haberler/${post.slug}`}>
+                      <Link to={`/bilgi/haberler/${post.slug}`}>
                         <img
                           src={`${
                             post.photo
@@ -71,7 +93,7 @@ export default () => {
                     <div className="item-meta-info">
                       <h3>
                         <Link
-                          to={`/haberler/${post.slug}`}
+                          to={`/bilgi/haberler/${post.slug}`}
                           className="item-title"
                         >
                           {post.title}
@@ -79,6 +101,7 @@ export default () => {
                       </h3>
                       <div className="date">
                         <time dateTime={post.publishDate}>
+                          <BsCalendar />{" "}
                           {day(post.publishDate).format("DD MMMM YYYY")}
                         </time>
                       </div>
@@ -92,17 +115,23 @@ export default () => {
           </div>
         </div>
 
-        <div>
-          <h2>
-            <Link to="/haberler">Duyurular</Link>
-          </h2>
+        <div
+          style={{
+            display:
+              postType === "anns" || window.innerWidth > 1024
+                ? "block"
+                : "none",
+          }}
+          className="anns-block"
+        >
+          <h2>Duyurular</h2>
           <div className="news-anns-list">
             {annsData.posts.length > 0 ? (
               annsData.posts.map((post) => {
                 return (
                   <div className="list-item" key={post.id}>
                     <div className="image-container">
-                      <Link to={`/haberler/${post.slug}`}>
+                      <Link to={`/bilgi/duyurular/${post.slug}`}>
                         <img
                           src={`${
                             post.photo
@@ -116,7 +145,7 @@ export default () => {
                     <div className="item-meta-info">
                       <h3>
                         <Link
-                          to={`/haberler/${post.slug}`}
+                          to={`/bilgi/duyurular/${post.slug}`}
                           className="item-title"
                         >
                           {post.title}

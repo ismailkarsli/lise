@@ -13,6 +13,10 @@ export const SITE_SETTINGS = gql`
       about
       aboutHome
       aboutHomeBg
+      facebook
+      twitter
+      instagram
+      youtube
     }
   }
 `;

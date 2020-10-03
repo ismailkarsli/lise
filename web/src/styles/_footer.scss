@@ -50,12 +50,16 @@
 
       .footer-bottom-content {
         display: flex;
-        padding: 12px 32px;
+        padding: 8px 16px;
         justify-content: space-between;
         align-items: center;
         width: 100%;
 
+        .footer-title {
+        }
+
         .social-icons {
+          display: flex;
           > span {
             margin-right: 4px;
             margin-left: 4px;
@@ -63,6 +67,35 @@
           svg {
             font-size: 32px;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer .footer-content .footer-bottom {
+    .footer-bottom-content {
+      display: flex;
+      padding: 8px 16px;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .footer-title {
+        span {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .social-icons {
+        > span {
+          margin-right: 4px;
+          margin-left: 4px;
+        }
+        svg {
+          font-size: 24px;
         }
       }
     }

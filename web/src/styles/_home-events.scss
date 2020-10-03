@@ -47,4 +47,15 @@
       }
     }
   }
+  .slider-pagination {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .events.container > div > div.slider-pagination {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
 }

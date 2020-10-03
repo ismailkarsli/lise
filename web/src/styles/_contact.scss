@@ -1,5 +1,7 @@
 .contact {
+  width: 100%;
   .contact-content {
+    width: 100%;
     display: flex;
     h2 {
       padding-bottom: 12px;
@@ -15,6 +17,28 @@
     .map {
       width: 66%;
       padding: 16px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .contact {
+    .contact-content {
+      width: 100%;
+      display: block;
+
+      .contact-info {
+        width: 100%;
+        padding: 16px;
+
+        div {
+          padding-bottom: 16px;
+        }
+      }
+      .map {
+        width: 100%;
+        padding: 16px;
+      }
     }
   }
 }

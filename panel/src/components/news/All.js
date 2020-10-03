@@ -26,7 +26,9 @@ const All = () => {
   ] = useLazyQuery(GET_POSTS, {
     variables: {
       orderBy: sortBy.join("_"),
-      postType: "NEWS",
+      where: JSON.stringify({
+        postType: "NEWS",
+      }),
     },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only",

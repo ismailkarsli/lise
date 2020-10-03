@@ -3,6 +3,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import htmlParser from "html-react-parser";
 import React from "react";
 import day from "dayjs";
+import duration from "dayjs/plugin/duration";
 import "dayjs/locale/tr";
 import Loading from "../ui/Loading";
 import { useHistory } from "react-router-dom";
@@ -15,6 +16,7 @@ const News = () => {
   const history = useHistory();
   const [date] = React.useState(day());
   day.locale("tr");
+  day.extend(duration);
 
   const pageType = match.params.type;
   const postType =
@@ -107,6 +109,28 @@ const News = () => {
               .replaceAll(/(<table>.*?<\/table>|<[^>]*>|&nbsp;)/g, "")
           );
 
+          let postDate = "";
+
+          if (post.startDate) {
+            postDate += day(post.startDate).format("DD MMMM YYYY");
+            if (post.endDate) {
+              const difference = day(post.endDate).diff(day(post.startDate));
+              const duration = day.duration(difference).$d;
+              let endDateFormatted = "";
+              if (difference) {
+                endDateFormatted = `
+                ${duration.days ? duration.days + " gün" : ""}
+                ${duration.hours ? duration.hours + " saat" : ""}
+                ${duration.minutes ? duration.minutes + " dakika" : ""}
+                sürecek
+                `.trim();
+                postDate += " - " + endDateFormatted;
+              }
+            }
+          } else {
+            postDate += day(post.publishDate).format("DD MMMM YYYY");
+          }
+
           return (
             <div key={post.id} className="timeline-item">
               <div className="item-photo">
@@ -121,12 +145,21 @@ const News = () => {
                   />
                 </Link>
               </div>
-              <div
-                className="item-meta"
-                date-is={day(post.publishDate).format("DD MMM YYYY")}
-              >
+              <div className="item-meta" date-is={postDate}>
                 <h1>
-                  <Link to={`${match.url}/${post.slug}`}>{post.title}</Link>
+                  <Link
+                    to={`${
+                      pageType || post.postType === "NEWS"
+                        ? "haberler"
+                        : post.postType === "ANNOUNCEMENT"
+                        ? "duyurular"
+                        : post.postType === "EVENT"
+                        ? "etkinlikler"
+                        : undefined
+                    }/${post.slug}`}
+                  >
+                    {post.title}
+                  </Link>
                 </h1>
                 <div>
                   {content.length > 320
