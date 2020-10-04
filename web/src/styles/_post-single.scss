@@ -28,6 +28,8 @@
     margin-bottom: 12px;
   }
   .posts {
+    display: flex;
+    flex-direction: column;
     li {
       position: relative;
       padding-bottom: 12px;
@@ -48,6 +50,18 @@
       &:hover {
         color: $mainColor;
       }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .post-single {
+    flex-direction: column;
+    .post-single-content {
+      width: 100%;
+    }
+    .post-single-sidebar {
+      width: 100%;
     }
   }
 }

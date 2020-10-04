@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content container">
             <div className="footer-title">
-              <span>Tüm hakları saklıdır &copy;</span> {settings.name}
+              <span>&copy; Tüm hakları saklıdır.</span> {settings.name}
             </div>
             <div className="social-icons">
               {settings.facebook && (

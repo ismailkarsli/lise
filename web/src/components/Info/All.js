@@ -134,7 +134,17 @@ const News = () => {
           return (
             <div key={post.id} className="timeline-item">
               <div className="item-photo">
-                <Link to={`${match.url}/${post.slug}`}>
+                <Link
+                  to={`${
+                    pageType || post.postType === "NEWS"
+                      ? "haberler"
+                      : post.postType === "ANNOUNCEMENT"
+                      ? "duyurular"
+                      : post.postType === "EVENT"
+                      ? "etkinlikler"
+                      : undefined
+                  }/${post.slug}`}
+                >
                   <img
                     src={
                       post.photo
