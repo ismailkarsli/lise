@@ -6,14 +6,12 @@ import day from "dayjs";
 import duration from "dayjs/plugin/duration";
 import "dayjs/locale/tr";
 import Loading from "../ui/Loading";
-import { useHistory } from "react-router-dom";
 import Error from "../ui/Error";
 
 import { GET_POSTS } from "../../gql/posts/query";
 
 const News = () => {
   const match = useRouteMatch();
-  const history = useHistory();
   const [date] = React.useState(day());
   day.locale("tr");
   day.extend(duration);
@@ -53,10 +51,12 @@ const News = () => {
       <h2 className="page-title">
         {pageType ? pageType[0].toUpperCase() + pageType.slice(1) : "Tümü"}
       </h2>
-      <div className="sub-nav-menu container">
+
+      {/* <div className="sub-nav-menu container">
         <button
           style={{
-            backgroundColor: pageType === undefined ? "rgb(209 81 78)" : "",
+            color: pageType === undefined ? "white" : "",
+            backgroundColor: pageType === undefined ? "rgb(80 80 80)" : "",
           }}
           onClick={() => {
             history.push("/bilgi/");
@@ -66,7 +66,8 @@ const News = () => {
         </button>
         <button
           style={{
-            backgroundColor: pageType === "haberler" ? "rgb(209 81 78)" : "",
+            color: pageType === "haberler" ? "white" : "",
+            backgroundColor: pageType === "haberler" ? "rgb(80 80 80)" : "",
           }}
           onClick={(e) => {
             history.push("/bilgi/haberler");
@@ -76,7 +77,8 @@ const News = () => {
         </button>
         <button
           style={{
-            backgroundColor: pageType === "duyurular" ? "rgb(209 81 78)" : "",
+            color: pageType === "duyurular" ? "white" : "",
+            backgroundColor: pageType === "duyurular" ? "rgb(80 80 80)" : "",
           }}
           onClick={() => {
             history.push("/bilgi/duyurular");
@@ -86,7 +88,8 @@ const News = () => {
         </button>
         <button
           style={{
-            backgroundColor: pageType === "etkinlikler" ? "rgb(209 81 78)" : "",
+            color: pageType === "etkinlikler" ? "white" : "",
+            backgroundColor: pageType === "etkinlikler" ? "rgb(80 80 80)" : "",
           }}
           onClick={() => {
             history.push("/bilgi/etkinlikler");
@@ -94,7 +97,7 @@ const News = () => {
         >
           Etkinlikler
         </button>
-      </div>
+      </div> */}
       <div className="timeline container">
         {data.posts.map((post) => {
           if (day(post.publishDate).isAfter(day(Date()))) {

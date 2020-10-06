@@ -7,7 +7,6 @@ import "dayjs/locale/tr";
 import Loading from "../ui/Loading";
 import Sidebar from "../ui/post/Sidebar";
 import Error from "../ui/Error";
-
 import { GET_POST } from "../../gql/posts/query";
 
 const News = () => {

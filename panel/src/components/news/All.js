@@ -113,8 +113,8 @@ const All = () => {
               Yayınlanma Tarihi
             </Th>
             <Th>Oluşturan Kişi</Th>
-            <Th>Beğeni</Th>
-            <Th>Görüntülenme</Th>
+            {/* <Th>Beğeni</Th>
+            <Th>Görüntülenme</Th> */}
             <Th>İşlemler</Th>
           </tr>
         </thead>
@@ -132,8 +132,8 @@ const All = () => {
                   ? item.user.nameSurname
                   : item.user.username}
               </Td>
-              <Td custom=" whitespace-no-wrap">{item.likeCount}</Td>
-              <Td custom=" whitespace-no-wrap">{item.viewCount}</Td>
+              {/* <Td custom=" whitespace-no-wrap">{item.likeCount}</Td>
+              <Td custom=" whitespace-no-wrap">{item.viewCount}</Td> */}
               <Td custom="text-center w-2/12">
                 <div className="inline-flex">
                   <Link

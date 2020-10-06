@@ -23,8 +23,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
   const [publishDate, setPublishDate] = useState(
     data ? moment(data.publishDate).format("YYYY-MM-DDTHH:mm") : ""
   );
-  const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
-  const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
+  // const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
+  // const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -45,8 +45,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
         ? new Date(moment(publishDate).format())
         : undefined,
       inSlide,
-      viewCount: viewCount ? parseInt(viewCount) : undefined,
-      likeCount: likeCount ? parseInt(likeCount) : undefined,
+      // viewCount: viewCount ? parseInt(viewCount) : undefined,
+      // likeCount: likeCount ? parseInt(likeCount) : undefined,
     };
     console.log("sendData:", sendData);
 
@@ -102,7 +102,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="uppercase px-4 block tracking-wide text-gray-700 text-xs font-bold mb-2">
               Görüntülenme / Beğenilme
             </label>
@@ -125,7 +125,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
                 onChange={(e) => setLikeCount(e.target.value)}
               />
             </div>
-          </div>
+          </div> */}
           <div className="w-full mb-3 px-4">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Öne Çıkan Fotoğraf

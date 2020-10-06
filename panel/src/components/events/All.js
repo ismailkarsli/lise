@@ -114,8 +114,8 @@ const All = () => {
             </Th>
             <Th>Oluşturan Kişi</Th>
             <Th onClick={() => handleThClick("startDate")}>Başlangıç / Süre</Th>
-            <Th onClick={() => handleThClick("likeCount")}>Beğeni</Th>
-            <Th onClick={() => handleThClick("viewCount")}>Görüntülenme</Th>
+            {/* <Th onClick={() => handleThClick("likeCount")}>Beğeni</Th>
+            <Th onClick={() => handleThClick("viewCount")}>Görüntülenme</Th> */}
             <Th>İşlemler</Th>
           </tr>
         </thead>
@@ -158,8 +158,8 @@ const All = () => {
                     : item.user.username}
                 </Td>
                 <Td>{eventDate}</Td>
-                <Td>{item.likeCount}</Td>
-                <Td>{item.viewCount}</Td>
+                {/* <Td>{item.likeCount}</Td>
+                <Td>{item.viewCount}</Td> */}
                 <Td custom="text-center w-2/12">
                   <div className="inline-flex">
                     <Link

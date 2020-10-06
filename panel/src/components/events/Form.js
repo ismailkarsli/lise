@@ -19,8 +19,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
         )
       : ""
   );
-  const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
-  const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
+  // const [viewCount, setViewCount] = useState(data ? data.viewCount : "");
+  // const [likeCount, setLikeCount] = useState(data ? data.likeCount : "");
   const [inSlide, setInSlide] = useState(data && data.inSlide);
 
   const [publishDate, setPublishDate] = useState(
@@ -54,8 +54,8 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
         process.env.REACT_APP_GRAPHQL_SERVER,
         "---SERVER-HOST---"
       ),
-      viewCount: viewCount ? parseInt(viewCount) : undefined,
-      likeCount: likeCount ? parseInt(likeCount) : undefined,
+      // viewCount: viewCount ? parseInt(viewCount) : undefined,
+      // likeCount: likeCount ? parseInt(likeCount) : undefined,
       publishDate: publishDate
         ? new Date(moment(publishDate).format())
         : undefined,
@@ -111,7 +111,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="uppercase px-4 block tracking-wide text-gray-700 text-xs font-bold mb-2">
               Görüntülenme / Beğenilme
             </label>
@@ -134,7 +134,7 @@ export default ({ data, title: pageTitle, handleSubmit, mutationLoading }) => {
                 onChange={(e) => setLikeCount(e.target.value)}
               />
             </div>
-          </div>
+          </div> */}
           <div className="w-full px-4">
             <label className="uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
               Başlangıç Tarihi
